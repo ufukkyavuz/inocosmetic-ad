@@ -3,10 +3,30 @@
 ## Görsel Üretim Kuralları
 
 - **Model:** Her zaman `nano_banana_pro` kullanılacak — başka model yasak
-- **Çözünürlük:** Her zaman `2k`
+- **Çözünürlük:** Her zaman `2k` — `"resolution": "2k"` parametresi açıkça yazılacak
 - **Mod:** `unlimited`
 - **Referans zorunlu:** Referanssız görsel üretmek yasak — kullanıcının verdiği her görsel önce analiz edilecek, ardından o görsel referans alınarak üretim yapılacak
 - **Analiz önce:** Kullanıcı görsel paylaşırsa önce kompozisyon, ışık, ton, stil analiz edilecek; onay alındıktan sonra üretime geçilecek
+
+## Teknik Pipeline (Drive → Higgsfield)
+
+Drive'dan ürün görseli yüklemek için:
+1. `mcp__Google_Drive__download_file_content` ile base64 indir → `/tmp/` dosyaya decode et
+2. `mcp__Higgsfield__media_upload` ile presigned URL al
+3. Görseli repo'ya push et → GitHub raw URL üret:
+   `https://raw.githubusercontent.com/ufukkyavuz/inocosmetic-ad/claude/youthful-shannon-jop96g/<dosya.png>`
+4. `mcp__Higgsfield__media_import_url` ile o URL'den import et → `media_id` al
+5. `generate_image` çağrısında `media_id` kullan
+
+> Not: Bash ortamında `upload.higgsfield.ai` doğrudan erişilemiyor; GitHub raw URL yöntemi kullanılacak.
+
+## Reklam Konsept Kütüphanesi
+
+### Güneş Gözlüğü Yansıması (Broad Spectrum için onaylı)
+- **İlham:** Skol beer ad — ürün kadrajda değil, güneş gözlüğü yansımasında saklı
+- **Kompozisyon:** Extreme close-up yüz, mirror-lens gözlük, yansımada eller SPF tüpü tutuyor, backdrop açık gökyüzü
+- **Ton:** Sıcak yaz, güneşli, bakımlı cilt, lüks — beyaz zemin kuralı bu konseptte geçerli değil
+- **Renk:** Warm skin tones + mavi gökyüzü yansıması kontrast
 
 ## Reklam Görseli Yapısı
 
