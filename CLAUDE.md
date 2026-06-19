@@ -27,6 +27,12 @@
 - Tüm öğeler yatayda center veya asimetrik (sol/sağ) hizalı
 - Badge/rozet varsa: Sağ kenara, fotoğrafın üst köşesine, hafif döndürülmüş (+15°)
 
+### Zemin / Arka Plan Kuralı (aksi belirtilmedikçe)
+- Görsellerde **zemin ve arka plan her zaman beyaz** olmalı
+- Kum, taş, kumaş, ahşap gibi materyaller kullanılacaksa bunların **beyaz/nötr tonu** seçilmeli
+- Genel estetik: **lüks, temiz, akılda kalıcı** — minimal ve yüksek kontrast
+- Renkli veya koyu zemin yalnızca özellikle istendiğinde kullanılır
+
 ---
 
 ## Ürün Kataloğu
