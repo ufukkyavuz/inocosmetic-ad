@@ -1,5 +1,11 @@
 # INO Cosmetic — Proje Rehberi
 
+## Görsel Üretim Kuralları
+
+- **Model:** Her zaman `nano_banana_pro` kullanılacak — başka model yasak
+- **Çözünürlük:** Her zaman `2k`
+- **Mod:** `unlimited`
+
 ## Reklam Görseli Yapısı
 
 **Canvas:** 1080 × 1920px (9:16 dikey / Story formatı)
