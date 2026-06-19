@@ -5,6 +5,8 @@
 - **Model:** Her zaman `nano_banana_pro` kullanılacak — başka model yasak
 - **Çözünürlük:** Her zaman `2k`
 - **Mod:** `unlimited`
+- **Referans zorunlu:** Referanssız görsel üretmek yasak — kullanıcının verdiği her görsel önce analiz edilecek, ardından o görsel referans alınarak üretim yapılacak
+- **Analiz önce:** Kullanıcı görsel paylaşırsa önce kompozisyon, ışık, ton, stil analiz edilecek; onay alındıktan sonra üretime geçilecek
 
 ## Reklam Görseli Yapısı
 
