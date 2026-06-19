@@ -7,7 +7,12 @@
 - **Çözünürlük:** Her zaman `2k` — `"resolution": "2k"` parametresi açıkça yazılacak
 - **Mod:** `unlimited`
 - **Referans zorunlu:** Referanssız görsel üretmek yasak — kullanıcının verdiği her görsel önce analiz edilecek, ardından o görsel referans alınarak üretim yapılacak
-- **Analiz önce:** Kullanıcı görsel paylaşırsa önce kompozisyon, ışık, ton, stil analiz edilecek; onay alındıktan sonra üretime geçilecek
+- **Analiz önce:** Kullanıcı görsel paylaşırsa şunlar detaylı analiz edilecek, onay alındıktan sonra üretime geçilecek:
+  - **Kamera açısı:** Hangi açıdan çekilmiş, lens mesafesi, alan derinliği
+  - **Model duruşu:** Vücut pozisyonu, yüz açısı, el/kol konumu, ifade
+  - **Ürün duruşu/yerleşimi:** Üründe tutuş, açı, kadrajdaki konumu
+  - **Hissiyat & mood:** Işık karakteri, renk tonu, atmosfer, duygu
+  - Bu 4 unsur prompt'a birebir yansıtılacak — referans görsel sadece "ilham" değil, teknik şablon olarak kullanılacak
 - **Ürün yazıları:** Üretilen görsellerde ürün üzerindeki tüm yazılar (ürün adı, içerik, SPF değeri vb.) hatasız ve tam okunur olmalı — bulanık, bozuk veya eksik metin kabul edilmez; prompt'a her zaman şu eklenir: *"all product text must be perfectly legible, sharp, and accurate — no blurry or distorted letters"*
 - **Ürün tasarımı:** Ürün görseli referans fotoğrafla birebir eşleşmeli — etiket, renk, form, logo ve yazı düzeni referanstan sapmamalı; prompt'a her zaman şu eklenir: *"The product design must exactly match the reference image provided — same label layout, colors, typography, and logo"*
 
