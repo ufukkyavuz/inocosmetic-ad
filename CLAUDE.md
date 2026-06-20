@@ -27,18 +27,25 @@ Drive'dan ürün görseli yüklemek için:
 5. `generate_image` çağrısında `media_id` kullan
 
 > Not: Bash ortamında `upload.higgsfield.ai` doğrudan erişilemiyor; GitHub raw URL yöntemi kullanılacak.
+> **Önemli:** Branch adında `/` (slash) olduğu için branch'li raw URL 404 verir → raw URL'de **tam commit SHA** kullanılacak:
+> `https://raw.githubusercontent.com/ufukkyavuz/inocosmetic-ad/<commit-sha>/<dosya.png>` (`git rev-parse origin/<branch>` ile alınır).
+> Bir önceki üretimin çıktısı tekrar referans gerekiyorsa `generate_image` içinde `media` değeri olarak o işin **job_id**'si de geçilebilir (yeniden upload gerekmez).
 
 ## Reklam Konsept Kütüphanesi
 
 ### Güneş Gözlüğü Yansıması (Broad Spectrum için onaylı)
 - **İlham:** Skol beer ad — ürün kadrajda değil, güneş gözlüğü yansımasında saklı
-- **Kompozisyon:** Extreme close-up yüz, mirror-lens gözlük, yansımada eller SPF tüpü tutuyor, backdrop açık gökyüzü
-- **Ton:** Sıcak yaz, güneşli, bakımlı cilt, lüks — beyaz zemin kuralı bu konseptte geçerli değil
-- **Renk:** Warm skin tones + mavi gökyüzü yansıması kontrast
+- **Kompozisyon:** Extreme close-up yüz, hafif eğik (dutch-angle), kafa geriye atılmış **kahkaha/gülüş** (dişler görünür), gözlük camı yansımasında el SPF tüpü tutuyor
+- **Gözlük (onaylı tip):** Slim **dikdörtgen rimless** (çerçevesiz) — ince altın metal köprü + köşe vidaları, **tortoise/leopar saplar**, **mavi degrade cam**; cam yansıması gerçekçi optik (kavisli cam distorsiyonu, doğru yansıtıcılık), yansımadaki ürün yazısı düz/okunur (mirror-flip yok)
+- **Model & cilt:** Çilsiz, pürüzsüz ama **hiper-gerçekçi cilt** (gözenek, ince tüy, doğal nem, gülerken ince çizgi); modaya uygun, bakımlı
+- **Arka plan (onaylı):** **Gökyüzü** — mavi yaz göğü + yumuşak bulut; üst üçte bir **bol boşluk** bırakılır (logo + metin için). Bu konseptte beyaz zemin kuralı geçerli değil
+- **Ton:** Sıcak yaz, güneşli, lüks — Warm skin tones + mavi gök kontrastı
+- **Metin:** Gökyüzü zemininde logo + yazılar **beyaz (#ffffff)**
 
 ## Reklam Görseli Yapısı
 
-**Canvas:** 1080 × 1920px (9:16 dikey / Story formatı)
+**Canvas:** 1080 × 1920px (9:16 dikey / Story) — ayrıca **1080 × 1080px (1:1 kare)** varyantı çıkarılır
+> Kare için görsel **kırpılmaz**: mevcut görsel referans verilip `nano_banana_pro` (1:1, 2k, unlimited) ile **sağa-sola genişletilir** (outpaint), öyle yerleştirilir.
 
 ### Zone Dağılımı
 - **Üst %40 (0–768px):** Logo + yazı alanı — ürün fotoğrafı GİRMEZ, temiz tutulur
@@ -68,6 +75,14 @@ Drive'dan ürün görseli yüklemek için:
 - Kum, taş, kumaş, ahşap gibi materyaller kullanılacaksa bunların **beyaz/nötr tonu** seçilmeli
 - Genel estetik: **lüks, temiz, akılda kalıcı** — minimal ve yüksek kontrast
 - Renkli veya koyu zemin yalnızca özellikle istendiğinde kullanılır
+
+### Figma'ya Yerleştirme (`INO Visuals` dosyası)
+- **Görsel ayrı katman:** Üretilen görsel frame'e **gömülmez** (frame fill yapılmaz) — frame içinde **ayrı bir rectangle katmanına** image-fill olarak konur; serbestçe taşınıp ölçeklenebilir
+- **Adlandırma:** `konu_model varsa model_ürün/set adı` formatı (ör. `gunesgozlugu_broadspectrum`); frame'lere boyut son eki: `_1080x1920`, `_1080x1080`
+- **Logo:** Dosyadaki mevcut INO logosu (vector node `5677:9493`, 225×90) klonlanır — açık zeminde #323232, koyu/gökyüzü zemininde #ffffff
+- **Font:** Marka fontu **Avenir Next** (Medium / Heavy Italic). Plugin runtime'ı Avenir Next'i yükleyemezse en yakın eş **Inter** (Medium / Black Italic) ile kurulur, sonra elde Avenir Next'e çevrilir
+- **Görsel yükleme:** `upload_assets` ile hedef katmanın `nodeId`'sine FILL olarak basılır; katman adını korumak için **raw bytes** (multipart değil) POST edilir
+- Figma host'u (`www.figma.com`) curl allowlist'inde değil → screenshot doğrulaması `get_screenshot` + `enableBase64Response:true` ile yapılır
 
 ---
 
