@@ -2,11 +2,13 @@
 
 ## Görsel Üretim Kuralları
 
+> **ÖNCE KURALLARI OKU:** Her `generate_image` çağrısından ÖNCE bu kural listesi baştan gözden geçirilecek — özellikle **referans, marka paleti, ürün ölçeği ve kadraj** kuralları. Hiçbir görsel kuralları atlayarak üretilmez.
+
 - **Model:** Her zaman `nano_banana_pro` kullanılacak — başka model yasak
 - **Gerçekçilik:** Her görsel ultra-photorealistic olmalı — fotoğraftan ayırt edilemez kalite, hipergerçekçi cilt dokusu, doğal ışık, lens/cam/yüzey şeffaflıkları fizik kurallarına uygun; prompt'a her zaman şu eklenir: *"ultra photorealistic, hyperrealistic, indistinguishable from a real photograph, 8K detail"*
 - **Çözünürlük:** Her zaman `2k` — `"resolution": "2k"` parametresi açıkça yazılacak
 - **Mod:** `unlimited`
-- **Referans zorunlu:** Referanssız görsel üretmek yasak — kullanıcının verdiği her görsel önce analiz edilecek, ardından o görsel referans alınarak üretim yapılacak
+- **Referans zorunlu:** Referanssız görsel üretmek yasak — kullanıcının verdiği her görsel önce analiz edilecek, ardından o görsel **gerçek media/`media_id` olarak** üretime referans verilecek (sadece sözle tarif etmek YETMEZ). Chat'e eklenen yerel görseller `media_upload_widget` ile Higgsfield'a alınıp `generate_image`'a referans geçilecek; ürün için `broad.png` vb. raw URL → `media_import_url` ile alınır
 - **Analiz önce:** Kullanıcı görsel paylaşırsa şunlar detaylı analiz edilecek, onay alındıktan sonra üretime geçilecek:
   - **Kamera açısı:** Hangi açıdan çekilmiş, lens mesafesi, alan derinliği
   - **Model duruşu:** Vücut pozisyonu, yüz açısı, el/kol konumu, ifade
@@ -15,6 +17,9 @@
   - Bu 4 unsur prompt'a birebir yansıtılacak — referans görsel sadece "ilham" değil, teknik şablon olarak kullanılacak
 - **Ürün yazıları:** Üretilen görsellerde ürün üzerindeki tüm yazılar (ürün adı, içerik, SPF değeri vb.) hatasız ve tam okunur olmalı — bulanık, bozuk veya eksik metin kabul edilmez; prompt'a her zaman şu eklenir: *"all product text must be perfectly legible, sharp, and accurate — no blurry or distorted letters"*
 - **Ürün tasarımı:** Ürün görseli referans fotoğrafla birebir eşleşmeli — etiket, renk, form, logo ve yazı düzeni referanstan sapmamalı; prompt'a her zaman şu eklenir: *"The product design must exactly match the reference image provided — same label layout, colors, typography, and logo"*
+- **Ürün ölçeği:** Ürünler gerçek dünya oranında gösterilir. Broad Spectrum tüpünün boyu, **yüzle kıyaslandığında çeneden kaşa kadar** (~12cm / 50ml) olmalı — ne minik ne dev. Diğer ürünler bu tüpe göre orantılı ölçeklenir (katalogdaki gerçek boyutlar; Pocket allık kısa, Normal allık uzun vb.)
+- **Marka paleti (siyah-beyaz):** Görsel **renkli foto** olur (doğal ten, doğal ortam) — ama **kırmızı/canlı renk kullanılmaz**; tekstil/prop/kıyafet siyah-beyaz tutulur (havlu beyaz + siyah çizgi, bikini siyah ipli/beyaz panel vb.). Fotoğraf **komple grayscale YAPILMAZ**, renkli kalır. Renk yalnızca özellikle istenirse kullanılır
+- **Kadraj / modesty:** Fazla vücut/açıklık gösterilmez — sıkı, modest kadraj tercih edilir (baş-omuz gibi); dekolte/çıplaklık vurgusu yok
 
 ## Teknik Pipeline (Drive → Higgsfield)
 
@@ -41,6 +46,14 @@ Drive'dan ürün görseli yüklemek için:
 - **Arka plan (onaylı):** **Gökyüzü** — mavi yaz göğü + yumuşak bulut; üst üçte bir **bol boşluk** bırakılır (logo + metin için). Bu konseptte beyaz zemin kuralı geçerli değil
 - **Ton:** Sıcak yaz, güneşli, lüks — Warm skin tones + mavi gök kontrastı
 - **Metin:** Gökyüzü zemininde logo + yazılar **beyaz (#ffffff)**
+
+### Poolside Sunbathing (Broad Spectrum için, lansman)
+- **İlham:** Alleyoop poolside ad — havuz kenarında güneşlenen model, ürün havluda
+- **Kompozisyon:** Tepeden (high-angle) **sıkı baş-omuz** kadrajı — model çizgili havluda uzanmış, gözler kapalı, dingin gülüş, bir kol başının üstünde; Broad Spectrum tüpü havluda yüzün yanında
+- **Modesty:** Fazla vücut gösterilmez — sadece yüz, saç, omuz, havlu (torso/dekolte yok)
+- **Palet:** Renkli foto (bronz ten + yeşil-mavi havuz) ama **siyah-beyaz tekstil** — havlu beyaz + ince siyah çizgi, **siyah ipli/biyeli beyaz bikini**; kırmızı yok, grayscale değil
+- **Ürün ölçeği:** Tüp boyu = çene-kaş mesafesi
+- **Boşluk:** Üst (havuz suyu/havlu) metin+logo için boş bırakılır
 
 ## Reklam Görseli Yapısı
 
