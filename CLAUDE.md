@@ -171,7 +171,7 @@ Tüp formu aynı kategoride, ton numaraları farklı.
 | Dosya | Açıklama |
 |---|---|
 | `kese.png` | Siyah çanta/kese |
-| `canvas çanta.png` | Bez çanta |
+| `canvas çanta.png` | Bez canvas poşet — beyaz kanvas kumaş, üzerinde büyük siyah INO logosu baskılı, çıtçıt/snap button kapaklı; **zarf/clutch tipi düz yapı** — içi dolunca dahi şişmez, yüzeyde düz yatar, hacimli veya yapısal değil. Prompt'ta: *"flat envelope-style canvas pouch lying flat on the surface, white canvas with large black INO logo print and snap button closure — no volume, no puffing, not a structured bag"* |
 | `all products.png` | Tüm ürünler oran referansı |
 
 ---
