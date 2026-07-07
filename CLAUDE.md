@@ -2,11 +2,13 @@
 
 ## Görsel Üretim Kuralları
 
+> **ÖNCE KURALLARI OKU:** Her `generate_image` çağrısından ÖNCE bu kural listesi baştan gözden geçirilecek — özellikle **referans, marka paleti, ürün ölçeği ve kadraj** kuralları. Hiçbir görsel kuralları atlayarak üretilmez.
+
 - **Model:** Her zaman `nano_banana_pro` kullanılacak — başka model yasak
 - **Gerçekçilik:** Her görsel ultra-photorealistic olmalı — fotoğraftan ayırt edilemez kalite, hipergerçekçi cilt dokusu, doğal ışık, lens/cam/yüzey şeffaflıkları fizik kurallarına uygun; prompt'a her zaman şu eklenir: *"ultra photorealistic, hyperrealistic, indistinguishable from a real photograph, 8K detail"*
 - **Çözünürlük:** Her zaman `2k` — `"resolution": "2k"` parametresi açıkça yazılacak
 - **Mod:** `unlimited`
-- **Referans zorunlu:** Referanssız görsel üretmek yasak — kullanıcının verdiği her görsel önce analiz edilecek, ardından o görsel referans alınarak üretim yapılacak
+- **Referans zorunlu:** Referanssız görsel üretmek yasak — kullanıcının verdiği her görsel önce analiz edilecek, ardından o görsel **gerçek media/`media_id` olarak** üretime referans verilecek (sadece sözle tarif etmek YETMEZ). Chat'e eklenen yerel görseller `media_upload_widget` ile Higgsfield'a alınıp `generate_image`'a referans geçilecek; ürün için `broad.png` vb. raw URL → `media_import_url` ile alınır
 - **Analiz önce:** Kullanıcı görsel paylaşırsa şunlar detaylı analiz edilecek, onay alındıktan sonra üretime geçilecek:
   - **Kamera açısı:** Hangi açıdan çekilmiş, lens mesafesi, alan derinliği
   - **Model duruşu:** Vücut pozisyonu, yüz açısı, el/kol konumu, ifade
@@ -15,6 +17,9 @@
   - Bu 4 unsur prompt'a birebir yansıtılacak — referans görsel sadece "ilham" değil, teknik şablon olarak kullanılacak
 - **Ürün yazıları:** Üretilen görsellerde ürün üzerindeki tüm yazılar (ürün adı, içerik, SPF değeri vb.) hatasız ve tam okunur olmalı — bulanık, bozuk veya eksik metin kabul edilmez; prompt'a her zaman şu eklenir: *"all product text must be perfectly legible, sharp, and accurate — no blurry or distorted letters"*
 - **Ürün tasarımı:** Ürün görseli referans fotoğrafla birebir eşleşmeli — etiket, renk, form, logo ve yazı düzeni referanstan sapmamalı; prompt'a her zaman şu eklenir: *"The product design must exactly match the reference image provided — same label layout, colors, typography, and logo"*
+- **Ürün ölçeği:** Ürünler gerçek dünya oranında gösterilir. Broad Spectrum tüpünün boyu, **yüzle kıyaslandığında çeneden kaşa kadar** (~12cm / 50ml) olmalı — ne minik ne dev. Diğer ürünler bu tüpe göre orantılı ölçeklenir (katalogdaki gerçek boyutlar; Pocket allık kısa, Normal allık uzun vb.)
+- **Marka paleti (siyah-beyaz):** Görsel **renkli foto** olur (doğal ten, doğal ortam) — ama **kırmızı/canlı renk kullanılmaz**; tekstil/prop/kıyafet siyah-beyaz tutulur (havlu beyaz + siyah çizgi, bikini siyah ipli/beyaz panel vb.). Fotoğraf **komple grayscale YAPILMAZ**, renkli kalır. Renk yalnızca özellikle istenirse kullanılır
+- **Kadraj / modesty:** Fazla vücut/açıklık gösterilmez — sıkı, modest kadraj tercih edilir (baş-omuz gibi); dekolte/çıplaklık vurgusu yok
 
 ## Teknik Pipeline (Drive → Higgsfield)
 
@@ -27,18 +32,33 @@ Drive'dan ürün görseli yüklemek için:
 5. `generate_image` çağrısında `media_id` kullan
 
 > Not: Bash ortamında `upload.higgsfield.ai` doğrudan erişilemiyor; GitHub raw URL yöntemi kullanılacak.
+> **Önemli:** Branch adında `/` (slash) olduğu için branch'li raw URL 404 verir → raw URL'de **tam commit SHA** kullanılacak:
+> `https://raw.githubusercontent.com/ufukkyavuz/inocosmetic-ad/<commit-sha>/<dosya.png>` (`git rev-parse origin/<branch>` ile alınır).
+> Bir önceki üretimin çıktısı tekrar referans gerekiyorsa `generate_image` içinde `media` değeri olarak o işin **job_id**'si de geçilebilir (yeniden upload gerekmez).
 
 ## Reklam Konsept Kütüphanesi
 
 ### Güneş Gözlüğü Yansıması (Broad Spectrum için onaylı)
 - **İlham:** Skol beer ad — ürün kadrajda değil, güneş gözlüğü yansımasında saklı
-- **Kompozisyon:** Extreme close-up yüz, mirror-lens gözlük, yansımada eller SPF tüpü tutuyor, backdrop açık gökyüzü
-- **Ton:** Sıcak yaz, güneşli, bakımlı cilt, lüks — beyaz zemin kuralı bu konseptte geçerli değil
-- **Renk:** Warm skin tones + mavi gökyüzü yansıması kontrast
+- **Kompozisyon:** Extreme close-up yüz, hafif eğik (dutch-angle), kafa geriye atılmış **kahkaha/gülüş** (dişler görünür), gözlük camı yansımasında el SPF tüpü tutuyor
+- **Gözlük (onaylı tip):** Slim **dikdörtgen rimless** (çerçevesiz) — ince altın metal köprü + köşe vidaları, **tortoise/leopar saplar**, **mavi degrade cam**; cam yansıması gerçekçi optik (kavisli cam distorsiyonu, doğru yansıtıcılık), yansımadaki ürün yazısı düz/okunur (mirror-flip yok)
+- **Model & cilt:** Çilsiz, pürüzsüz ama **hiper-gerçekçi cilt** (gözenek, ince tüy, doğal nem, gülerken ince çizgi); modaya uygun, bakımlı
+- **Arka plan (onaylı):** **Gökyüzü** — mavi yaz göğü + yumuşak bulut; üst üçte bir **bol boşluk** bırakılır (logo + metin için). Bu konseptte beyaz zemin kuralı geçerli değil
+- **Ton:** Sıcak yaz, güneşli, lüks — Warm skin tones + mavi gök kontrastı
+- **Metin:** Gökyüzü zemininde logo + yazılar **beyaz (#ffffff)**
+
+### Poolside Sunbathing (Broad Spectrum için, lansman)
+- **İlham:** Alleyoop poolside ad — havuz kenarında güneşlenen model, ürün havluda
+- **Kompozisyon:** Tepeden (high-angle) **sıkı baş-omuz** kadrajı — model çizgili havluda uzanmış, gözler kapalı, dingin gülüş, bir kol başının üstünde; Broad Spectrum tüpü havluda yüzün yanında
+- **Modesty:** Fazla vücut gösterilmez — sadece yüz, saç, omuz, havlu (torso/dekolte yok)
+- **Palet:** Renkli foto (bronz ten + yeşil-mavi havuz) ama **siyah-beyaz tekstil** — havlu beyaz + ince siyah çizgi, **siyah ipli/biyeli beyaz bikini**; kırmızı yok, grayscale değil
+- **Ürün ölçeği:** Tüp boyu = çene-kaş mesafesi
+- **Boşluk:** Üst (havuz suyu/havlu) metin+logo için boş bırakılır
 
 ## Reklam Görseli Yapısı
 
-**Canvas:** 1080 × 1920px (9:16 dikey / Story formatı)
+**Canvas:** 1080 × 1920px (9:16 dikey / Story) — ayrıca **1080 × 1080px (1:1 kare)** varyantı çıkarılır
+> Kare için görsel **kırpılmaz**: mevcut görsel referans verilip `nano_banana_pro` (1:1, 2k, unlimited) ile **sağa-sola genişletilir** (outpaint), öyle yerleştirilir.
 
 ### Zone Dağılımı
 - **Üst %40 (0–768px):** Logo + yazı alanı — ürün fotoğrafı GİRMEZ, temiz tutulur
@@ -68,6 +88,14 @@ Drive'dan ürün görseli yüklemek için:
 - Kum, taş, kumaş, ahşap gibi materyaller kullanılacaksa bunların **beyaz/nötr tonu** seçilmeli
 - Genel estetik: **lüks, temiz, akılda kalıcı** — minimal ve yüksek kontrast
 - Renkli veya koyu zemin yalnızca özellikle istendiğinde kullanılır
+
+### Figma'ya Yerleştirme (`INO Visuals` dosyası)
+- **Görsel ayrı katman:** Üretilen görsel frame'e **gömülmez** (frame fill yapılmaz) — frame içinde **ayrı bir rectangle katmanına** image-fill olarak konur; serbestçe taşınıp ölçeklenebilir
+- **Adlandırma:** `konu_model varsa model_ürün/set adı` formatı (ör. `gunesgozlugu_broadspectrum`); frame'lere boyut son eki: `_1080x1920`, `_1080x1080`
+- **Logo:** Dosyadaki mevcut INO logosu (vector node `5677:9493`, 225×90) klonlanır — açık zeminde #323232, koyu/gökyüzü zemininde #ffffff
+- **Font:** Marka fontu **Avenir Next** (Medium / Heavy Italic). Plugin runtime'ı Avenir Next'i yükleyemezse en yakın eş **Inter** (Medium / Black Italic) ile kurulur, sonra elde Avenir Next'e çevrilir
+- **Görsel yükleme:** `upload_assets` ile hedef katmanın `nodeId`'sine FILL olarak basılır; katman adını korumak için **raw bytes** (multipart değil) POST edilir
+- Figma host'u (`www.figma.com`) curl allowlist'inde değil → screenshot doğrulaması `get_screenshot` + `enableBase64Response:true` ile yapılır
 
 ---
 
@@ -143,7 +171,7 @@ Tüp formu aynı kategoride, ton numaraları farklı.
 | Dosya | Açıklama |
 |---|---|
 | `kese.png` | Siyah çanta/kese |
-| `canvas çanta.png` | Bez çanta |
+| `canvas çanta.png` | Bez canvas poşet — beyaz kanvas kumaş, üzerinde büyük siyah INO logosu baskılı, çıtçıt/snap button kapaklı; **zarf/clutch tipi düz yapı** — içi dolunca dahi şişmez, yüzeyde düz yatar, hacimli veya yapısal değil. Prompt'ta: *"flat envelope-style canvas pouch lying flat on the surface, white canvas with large black INO logo print and snap button closure — no volume, no puffing, not a structured bag"* |
 | `all products.png` | Tüm ürünler oran referansı |
 
 ---
