@@ -15,18 +15,24 @@
   - Bu 4 unsur prompt'a birebir yansıtılacak — referans görsel sadece "ilham" değil, teknik şablon olarak kullanılacak
 - **Ürün yazıları:** Üretilen görsellerde ürün üzerindeki tüm yazılar (ürün adı, içerik, SPF değeri vb.) hatasız ve tam okunur olmalı — bulanık, bozuk veya eksik metin kabul edilmez; prompt'a her zaman şu eklenir: *"all product text must be perfectly legible, sharp, and accurate — no blurry or distorted letters"*
 - **Ürün tasarımı:** Ürün görseli referans fotoğrafla birebir eşleşmeli — etiket, renk, form, logo ve yazı düzeni referanstan sapmamalı; prompt'a her zaman şu eklenir: *"The product design must exactly match the reference image provided — same label layout, colors, typography, and logo"*
+- **Referans önce incelenir:** Prompt yazmadan önce referans/element görseli mutlaka açılıp gerçek malzeme/renk/form doğrulanır — varsayımla ("muhtemelen cam tüptür" gibi) prompt yazmak yasak, bu yanlış üretime yol açar.
 
-## Teknik Pipeline (Drive → Higgsfield)
+## Higgsfield Elements (Cinema Studio) — Referans Yönetimi
 
-Drive'dan ürün görseli yüklemek için:
-1. `mcp__Google_Drive__download_file_content` ile base64 indir → `/tmp/` dosyaya decode et
-2. `mcp__Higgsfield__media_upload` ile presigned URL al
-3. Görseli repo'ya push et → GitHub raw URL üret:
-   `https://raw.githubusercontent.com/ufukkyavuz/inocosmetic-ad/claude/youthful-shannon-jop96g/<dosya.png>`
-4. `mcp__Higgsfield__media_import_url` ile o URL'den import et → `media_id` al
-5. `generate_image` çağrısında `media_id` kullan
+- Proje: `ufo` (Cinema Studio, projectId: `fd22466c-94aa-4687-a02c-e10d377038a8`)
+- Her ürün/varyant için ayrı bir Element tanımlanır (`@urun-adi` şeklinde prompt içinde çağrılır), tek bir Element içine birden fazla farklı görsel karıştırılmaz — karışırsa üretim tutarsız/yanlış çıkar.
+- Element oluştururken kısa açıklama (description) alanı, ürünün gerçek görünümünü (malzeme, renk gradyanı, logo/yazı yerleşimi) özetlemeli.
+- Element'in prompt'ta doğru şekilde referans alındığını (thumbnail'in genereation panelinde göründüğünü) her seferinde görsel olarak doğrula.
 
-> Not: Bash ortamında `upload.higgsfield.ai` doğrudan erişilemiyor; GitHub raw URL yöntemi kullanılacak.
+## Teknik Pipeline (Drive → Higgsfield, alternatif/API yolu)
+
+Tarayıcı üzerinden dosya yükleme çalışmazsa (native file picker izin vermiyor):
+1. `mcp__Higgsfield__media_upload` ile presigned URL al
+2. `curl -X PUT` ile dosyayı presigned URL'e yükle
+3. `mcp__Higgsfield__media_confirm` ile onayla → `media_id` al
+4. `generate_image` çağrısında `medias: [{value: media_id, role: "image"}]` kullan
+
+> Not: `Unlimited` modu sadece taraycıdaki kuyruk/faturalama tercihidir (kredi harcamaz, standart kuyruğa girer); API üzerinden `generate_image` her zaman kredi düşer (nano_banana_pro 2k ~2 kredi/görsel), `unlimited` parametresi API'de desteklenmiyor.
 
 ## Reklam Konsept Kütüphanesi
 
@@ -73,13 +79,17 @@ Drive'dan ürün görseli yüklemek için:
 
 ## Ürün Kataloğu
 
-### CATCH BLOOM (allık / ruj çubuğu)
+> Kaynak: [inobeauty.com.tr](https://inobeauty.com.tr) (canlı site) + INO Kozmetik resmi claims dosyaları (proje kök dizininde `*Claims.docx`). Aşağıdaki fonksiyon/içerik açıklamaları bu kaynaklardan alınmıştır.
+
+### CATCH BLOOM (Lip & Cheek Stick, SPF 30+)
+Makyaj ve cilt bakımını bir arada sunan çok amaçlı stick. Tek adımda renk + bakım + SPF 30+ koruma. Dudak ve yanaklara doğal renk, yoğun nem ve ışıltı kazandırır. Saf hidrolize deniz kolajeni içerir — cilt elastikiyetini artırır, ince çizgi görünümünü azaltmaya destek olur. Parmak veya fırçayla uygulanır, kat kat sürülerek yoğunlaştırılabilir.
+
 | Ürün | Boy | Gramaj | Dosya |
 |---|---|---|---|
 | Scarlet | **Pocket** (küçük boy) | 4.5g | `scarlet.png`, `scarlet realistic.jpg` |
 | Hibiscus | **Pocket** (küçük boy) | 4.5g | `hibiscus.png`, `hibiscus tone.PNG` |
-| Peony | **Normal** (büyük boy) | 8.77g | `peony.png` |
-| Daylily | **Normal** (büyük boy) | 8.77g | `daylily.png`, `daylily realistic.jpg` |
+| Peony | **Normal/Full** (büyük boy, Pocket de mevcut) | 8.77g (Full) | `peony.png` |
+| Daylily | **Normal/Full** (büyük boy, Pocket de mevcut) | 8.77g (Full) | `daylily.png`, `daylily realistic.jpg` |
 
 > Pocket vs Normal: Kompozisyonda Scarlet/Hibiscus daha kısa, Peony/Daylily daha uzun gösterilmeli.
 
@@ -87,55 +97,66 @@ Drive'dan ürün görseli yüklemek için:
 
 ---
 
-### CATCH GLOW (aydınlatıcı nemlendirici krem)
-Her biri **ayrı ürün** — farklı tüp etiketi, farklı krem rengi, farklı ürün adı.
+### CATCH GLOW (Multi-Use Beauty Booster Illuminating Cream, SPF 15+)
+Işıltı ve bakımı birleştiren çok amaçlı krem — nemlendirici, makyaj bazı ve highlighter olarak kullanılabilir. Saf hidrolize deniz kolajeni ile 48 saate kadar nemlendirme, cilt bariyeri desteği ve ince çizgi azaltımı sağlar. Yüz, boyun ve vücutta kullanılabilir. Her biri **ayrı ürün** — farklı tüp etiketi, farklı krem rengi, farklı ürün adı.
 
-| Ürün | Etiket | Dosya |
+| Ürün | Etiket | İçerik/His | Dosya |
+|---|---|---|---|
+| **Catch Glow Ruby Gold** | "CATCH GLOW / RUBY GOLD / Multi-Use Beauty Booster / Illuminating Cream / SPF 15+" | Altın-bronz yansımalı sıcak ışıltı | `ruby gold.png`, `catch glow realistic.jpg` |
+| **Catch Glow Pink Quartz** | "CATCH GLOW / PINK QUARTZ / Multi-Use Beauty Booster / Illuminating Cream / SPF 15+" | Pembe-gümüş yansımalı glow | `pink quartz.png` |
+
+---
+
+### CATCH SCULPT (Bronzer & Contour Stick)
+Doğal bronzlaşma ve kontürü tek üründe sunan çok amaçlı stick. (Önceki isimlendirme "Contour & Bronzer" yanlıştı — sitedeki resmi isim **Catch Sculpt**.)
+
+| Ürün | Tip | Dosya |
 |---|---|---|
-| **Catch Glow Ruby Gold** | "CATCH GLOW / RUBY GOLD / Multi-Use Beauty Booster / Illuminating Cream / SPF 15+" | `ruby gold.png`, `catch glow realistic.jpg` |
-| **Catch Glow Pink Quartz** | "CATCH GLOW / PINK QUARTZ / Multi-Use Beauty Booster / Illuminating Cream / SPF 15+" | `pink quartz.png` |
+| Sand | Bronzer Stick | `sand.png` |
+| Dune | Contour Stick | `dune.png`, `dune realistic.jpg` |
 
 ---
 
-### CONTOUR & BRONZER (stick)
-| Ürün | Dosya |
-|---|---|
-| Dune | `dune.png`, `dune realistic.jpg` |
-| Sand | `sand.png` |
-
----
-
-### BROAD SPECTRUM SUNSCREEN (SPF 50+)
-Tüp formu aynı kategoride, ton numaraları farklı.
+### BROAD SPECTRUM SUNSCREEN (SPF 50+, PA++++)
+Geniş spektrum SPF 50+ / PA++++ koruma + cilt bakımını bir arada sunar, UVA ve UVB'ye karşı korur. Beyaz iz bırakmaz, hızla emilir, makyaj bazı olarak kullanılabilir. Deniz kolajeni, siyah yulaf ekstresi, frenk üzümü çekirdeği yağı ve biberiye ekstresi ile nemlendirir, yatıştırır, antioksidan korur. 01/02/03 varyantları ton eşitleyici pigment içerir.
 
 | Ürün | Dosya |
 |---|---|
-| 00 Clean | `broad.png` + `Broad/` klasörü |
+| 00 Clear | `broad.png` + `Broad/` klasörü |
 | 01 Light | `Broad/` klasörü |
 | 02 Medium | `Broad/` klasörü |
+| 03 Tan | *(görsel henüz eklenmedi)* |
 
 ---
 
-### BEAUTY SHOT (içecek supplement)
+### BEAUTY SHOT (içecek supplement) — Pure Marine Collagen
+Hidrolize balık kolajeni içeren, portakal-lime aromalı içilebilir güzellik takviyesi. İçerik: Elastin, Hyaluronik Asit, Vitamin C, Vitamin E, Çinko, Biotin, Selenyum. "Twist, sip, glow."
+
 | Ürün | Dosya |
 |---|---|
 | Pure Marine Collagen | `Collagen Shot Dekupe.png` |
 
 ---
 
+### CATCH BALM — henüz lanse edilmemiş, yakında çıkacak ürün
+Bare / Haze / Bubble / Ice adlı 4 varyantı var (metalik sıkma tüp, gümüşten renkli tona geçen gradyan, `Products/Catch Balm/` klasöründe referans görseller mevcut). **Sitede yayında değil, resmi claims/içerik bilgisi yok — üretim promptlarında fonksiyon/vaat metni uydurulmayacak, sadece kullanıcıdan gelen bilgi kullanılacak.**
+
+---
+
 ### SETLER
-| Set Adı | Dosya |
-|---|---|
-| Full Glam Set | `Full Glam Set.png` |
-| Ultimate Set | `Ultimate Set.png` |
-| All-in-one Set | `All-in-one Set.png` |
-| Glow & Shield Set | `Glow & Shield Set.png` |
-| Color & Glow Set | `Color & Glow Set.png` |
-| Color & Shield Set | `Color & Shield Set.png` |
-| Your Everyday Set | `Your Everyday Set.png` |
-| Bloom + Sculpt + Broad + Glow | `bloom_sculpt_broad_glow.png` |
-| Bloom + Glow | `bloom_glow.png` |
-| Bloom + Sculpt + Broad + Glow + Beauty Shot | `bloom_sculpt_broad_glow_beautyshot.png` |
+> Kaynak: canlı site (`inobeauty.com.tr`). Setlerdeki ürün varyantları (renk/ton) müşteri tarafından seçilebilir — set açıklamasında ayrıca belirtilmez.
+
+| Set Adı | İçerik | Dosya |
+|---|---|---|
+| Color & Glow Set | 1 Catch Bloom + 1 Catch Glow + INO makyaj çantası | `Color & Glow Set.png` |
+| Color & Shield Set | 1 Catch Bloom + 1 Broad Spectrum + INO makyaj çantası | `Color & Shield Set.png` |
+| Your Everyday Set | 1 Catch Bloom + 1 Catch Glow + 1 Broad Spectrum + INO makyaj çantası | `Your Everyday Set.png` |
+| Ultimate Set | 1 Catch Bloom + 1 Catch Glow + 1 Broad Spectrum + 1 Catch Sculpt + INO makyaj çantası | `Ultimate Set.png` |
+| Full Glam Set | 1 Catch Bloom + 1 Catch Glow + 1 Broad Spectrum + 2 Catch Sculpt + INO makyaj çantası | `Full Glam Set.png` |
+| All-in-one Set | 3 Catch Bloom Pocket + 2 Catch Glow + 1 Broad Spectrum + 2 Catch Sculpt + INO makyaj çantası | `All-in-one Set.png` |
+
+> ~~Glow & Shield Set~~ — sitede bu isimde bir ürün yok, önceki liste hatalıydı, kaldırıldı.
+> `bloom_sculpt_broad_glow.png`, `bloom_glow.png`, `bloom_sculpt_broad_glow_beautyshot.png` gibi dosyalar resmi/isimli bir set ürününe karşılık gelmiyor, sadece görsel dosya adları.
 
 ---
 
