@@ -24,15 +24,27 @@
 - Element oluştururken kısa açıklama (description) alanı, ürünün gerçek görünümünü (malzeme, renk gradyanı, logo/yazı yerleşimi) özetlemeli.
 - Element'in prompt'ta doğru şekilde referans alındığını (thumbnail'in genereation panelinde göründüğünü) her seferinde görsel olarak doğrula.
 
-## Teknik Pipeline (Drive → Higgsfield, alternatif/API yolu)
+## Higgsfield Üretim İş Akışı — ZORUNLU TARAYICI
 
-Tarayıcı üzerinden dosya yükleme çalışmazsa (native file picker izin vermiyor):
-1. `mcp__Higgsfield__media_upload` ile presigned URL al
-2. `curl -X PUT` ile dosyayı presigned URL'e yükle
-3. `mcp__Higgsfield__media_confirm` ile onayla → `media_id` al
-4. `generate_image` çağrısında `medias: [{value: media_id, role: "image"}]` kullan
+- **Üretim her zaman tarayıcı üzerinden yapılır** (`claude-in-chrome` / Browser pane → higgsfield.ai, Cinema Studio). Doğrudan `generate_image` API çağrısı **yasak** — API kredi düşürür ve `unlimited` parametresini desteklemez, tarayıcı ise kuyruğa girer ve kredi harcamaz.
+- **Unlimited toggle her fresh sayfa yüklemesinde sıfırlanır** — sessiz şekilde OFF olabilir. Her üretimden önce: toggle'a tıkla → yeşil/ON olduğunu zoom-screenshot ile doğrula → Generate butonunun "UNLIMITED" yazdığını doğrula. Bu adımı atlama.
+- **Referans ekleme:** Composer'daki "+" butonu → Uploads/Elements/Image Generations/Liked sekmeleri → thumbnail'e tıkla → prompt içinde `@Image N` olarak eklenir. Alternatif: bir asset'in detay panelini aç → sağdaki "Reference" butonuna tıkla → aktif composer'a eklenir.
+- **Referans çıkarma:** Composer şeridindeki küçük thumbnail'in üzerine gel → beliren "×" işaretine tıkla.
+- **Yerel dosya yükleme:** Sadece bu oturuma chat üzerinden paylaşılmış dosyalar `file_upload` ile yüklenebilir — Drive/Products klasöründeki veya scratchpad'deki dosyalar (chat'e ek olarak paylaşılmamışsa) kabul edilmez. `media_upload`/`media_confirm` API'siyle yüklenen görseller de tarayıcının Uploads sekmesinde görünmez — bu yüzden yeni bir referans görseli tarayıcıya sokmanın güvenilir yolu yok; böyle durumlarda ürün/sahne detaylarını prompt'a metin olarak daha ayrıntılı yazmak gerekir.
+- **İndirme → Figma pipeline:** Üretilen görsel için detay panelinde "Download" → `~/Downloads/hf_{timestamp}_{uuid}.png` olarak iner → `mv` ile proje scratchpad'ine taşı (Downloads klasörünü kirletmemek için) → gerekirse Figma'ya `upload_assets` ile çek.
+- **Prompt dengesi:** Ne aşırı kısa ne aşırı ayrıntılı — sadece ürün sadakati + fiziksel bağlantı noktası + kadraj + oran gibi çekirdek kısıtları yaz. Referansı "bozma" demek çoğu zaman yeterli; gereksiz uzun geometri anlatımı eklemek gereksiz (kullanıcı geri bildirimi: "çok basit, referansı bozma diyip geçecen").
+- **Çoklu Chrome bağlantısı hatası** ("Multiple Chrome browsers are connected") çıkarsa `list_connected_browsers` ile güncel deviceId'i al, `select_browser` ile seç — hata mesajındaki eski deviceId'e güvenme.
 
-> Not: `Unlimited` modu sadece taraycıdaki kuyruk/faturalama tercihidir (kredi harcamaz, standart kuyruğa girer); API üzerinden `generate_image` her zaman kredi düşer (nano_banana_pro 2k ~2 kredi/görsel), `unlimited` parametresi API'de desteklenmiyor.
+## Ürün Aksesuar Fiziği — Catch Balm Anahtarlık/Charm Sahneleri
+
+Çanta/anahtarlık temalı Catch Balm sahnelerinde (ör. çanta sapına asılı tüp+ayna charm) ürünün gerçek fiziksel bağlantı noktası şu şekildedir — bu noktayı yanlış kurmak tekrar tekrar aynı hataya yol açtı:
+
+- **Tüpün TEK gerçek metal halkası, kapağın TERSİ olan uç (nozul/tip) tarafında kalıba dökülü şekilde bulunur** — kaburgalı/yivli vidalı kapak tarafında DEĞİL. Referans: `Products/Catch Balm/bare.png`, `bare kanca.png`.
+- Asılı halde: **halka + ayna charm kümesi YUKARIDA** (çanta sapına bağlı), **kaburgalı kapak ise serbestçe AŞAĞIDA sarkar**, hiçbir yere bağlı değildir. Tersi (kapaktan bağlamak) fiziksel olarak yanlıştır ve kullanıcı tarafından defalarca reddedildi.
+- Halka SADECE bir tane olmalı — hem çantaya hem charm'a aynı halka bağlanır; kapağa ikinci bir halka/zincir eklenmesi hatalıdır ("ekstra hardware yok" diye özellikle belirt).
+- Çanta sapının gövdeye bağlantı noktası **yuvarlak metal halka/perçin** olmalı (dikişle/deriyle doğrudan değil) — gerçek tasarımcı çanta donanımına benzemeli.
+- "Ürünün renginde çanta" istenirse: çantanın deri rengi, öne çıkan varyantın kendi tüp rengiyle (ör. Bare için toz pembe/nude) eşleşmeli — kahverengi/siyah gibi jenerik tonlar kullanılmamalı.
+- Metin alanı kuralı (Zone Dağılımı, üst ~%40-45 temiz) bu sahnelerde de geçerli — geniş açı, çanta sapı + boş arka plan üstte, ürün altta.
 
 ## Reklam Konsept Kütüphanesi
 
