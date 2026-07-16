@@ -42,29 +42,33 @@ Bu format mevcut kurallarla (Görsel Üretim Kuralları, Zemin/Arka Plan Kuralı
 - Element'in prompt'ta doğru şekilde referans alındığını (thumbnail'in genereation panelinde göründüğünü) her seferinde görsel olarak doğrula.
 - **Element isimleri ürün kataloğundaki resmi set adlarından TAHMİN EDİLMEZ** — Cinema Studio panelindeki gerçek `@tag` her zaman doğrudan kontrol edilir/kullanıcıya sorulur. Resmi set adı ("Color & Glow Set") ile Element tag'i ("@bloom_glow") birebir örtüşmeyebilir.
 
-### Doğrulanmış Element Envanteri (kullanıcı ekran görüntüsü, 2026-07-16)
-Aşağıdaki tag'ler tarayıcıdaki Elements panelinde birebir bu şekilde görüldü — yeni bir tarama/onay olmadan değiştirilmez:
+### Doğrulanmış Element Envanteri (Higgsfield `show_reference_elements` API, 2026-07-16 — tam liste, 28 kayıt)
+Kullanıcı ekran görüntüsünden yapılan ilk tarama eksikti (sayfa kaydırılmadığı için bazı Element'ler görünmüyordu) — bu yüzden **artık kaynak olarak doğrudan API kullanılıyor**, ekran görüntüsü değil. Aşağıdaki liste `show_reference_elements(action:'list', size:100)` çağrısının tam (next_cursor: null) çıktısıdır — yeni Element eklenmediği sürece güncel kabul edilir, ama her generation öncesi hızlıca tekrar `list` çağrısıyla teyit etmek zarar vermez:
 
 | Tag | Tip | İçerik |
 |---|---|---|
-| `@hibiscus`, `@daylily`, `@peony`, `@scarlet` | Prop | Catch Bloom tekil tüpler |
-| `@bare`, `@haze`, `@bubble`, `@ice` | Prop | Catch Balm tekil tüpler |
+| `@all-in-one-set` | Prop | All-in-one Set |
+| `@ultimate-set` | Prop | Ultimate Set |
+| `@color-glow-set` | Prop | **Color & Glow Set** — doğrulandı, gerçekten var |
+| `@color-shield-set` | Prop | **Color & Shield Set** — doğrulandı, gerçekten var |
+| `@full-glam-set` | Prop | **Full Glam Set** — doğrulandı, gerçekten var |
+| `@your-everyday-set` | Prop | Your Everyday Set |
+| `@bloom_glow` | Prop | Bloom + Glow kombinasyonu (alt çizgili yazım, `@color-glow-set`'ten ayrı bir Element — hangisinin pouch içerdiği/hangi sahne için daha uygun olduğu görsel olarak karşılaştırılabilir) |
+| `@bloom-sculpt-broad-glow`, `@bloom-sculpt-broad-glow-beautyshot` | Prop | Bloom+Sculpt+Broad+Glow kombinasyonu, iki ayrı varyant (resmi bir sete isim olarak karşılık gelmiyor, `@ultimate-set`/`@full-glam-set`'ten farklı Element'ler) |
+| `@glow-and-shield` | Prop | **Kullanılmaz** — "Glow & Shield Set" sitede resmi bir ürün değil, muhtemelen eski/hatalı bir Element |
+| `@hibiscus`, `@daylily`, `@peony`, `@scarlet` | Prop | Catch Bloom tekil tüpler (not: "Catch Bloom" kendisi bir Element değil, sadece kategori adı — tag'ler varyant isimleridir) |
+| `@ruby-gold`, `@pink-quartz` | Prop | Catch Glow tekil tüpler (not: "Catch Glow" kendisi bir Element değil, sadece kategori adı — tag'ler varyant isimleridir) |
 | `@sand`, `@dune` | Prop | Catch Sculpt tekil stickler |
-| `@ruby-gold`, `@pink-quartz` | Prop | Catch Glow tekil tüpler |
-| `@broad-spectrum-sunsc…` *(isim ekranda kesik — tam hali doğrulanmalı, muhtemelen `@broad-spectrum-sunscreen`)* | Prop | Broad Spectrum tekil tüp |
-| `@your-every…` *(isim ekranda kesik — muhtemelen `@your-everyday-set`)* | Prop | Your Everyday Set |
-| `@ultimate-set` | Prop | Ultimate Set — **tam isim, doğrulandı** |
-| `@all-in-one-set` | Prop | All-in-one Set — **tam isim, doğrulandı** |
-| `@bloom_glow` | Prop | Bloom + Glow kombinasyonu (alt çizgili yazım — Color & Glow Set için en yakın eşleşme, ama pouch dahil mi görsel olarak doğrulanmalı) |
-| `@bloom-sculpt-broad-gl…` *(2 farklı Element, ikisi de aynı kesik isimle görünüyor)* | Prop | Bloom+Sculpt+Broad+Glow kombinasyonu — CLAUDE.md ürün kataloğunda bu isimdeki dosyaların ("bloom_sculpt_broad_glow.png", "..._beautyshot.png") resmi bir sete karşılık gelmediği not edilmişti; **Full Glam Set veya Ultimate Set'e 1:1 karşılık geldiği doğrulanmamıştır** — kullanmadan önce kullanıcıya sorulmalı |
-| `@glow-and-shield` | Prop | **Kullanılmaz** — "Glow & Shield Set" sitede resmi bir ürün değil (bkz. Setler tablosu notu), bu muhtemelen eski/hatalı bir Element |
-| `@canvas-çanta` | Prop | INO logolu kanvas/bez çanta (dış prop, sahneye eklenecekse bu Element referans alınır, jenerik "tote bag" tarif edilmez) |
+| `@bare`, `@haze`, `@bubble`, `@ice` | Prop | Catch Balm tekil tüpler |
+| `@broad-spectrum-sunscreen` | Prop | Broad Spectrum tekil tüp |
+| `@beauty-shot` | Prop | Beauty Shot (Pure Marine Collagen) |
+| `@canvas-çanta` | Prop | INO logolu kanvas/bez çanta |
 | `@termal-çanta` | Prop | Termal/soğutucu çanta |
 | `@ayna` | Prop | Catch Balm anahtarlık ayna charm |
-| `@scarlet-flower` | Character | Scarlet çiçek görseli (not: "Character" tipinde kayıtlı) |
 | `@all-products` | Prop | Tüm ürünler oran referansı |
+| `@scarlet-flower` | Character | Scarlet çiçek görseli ("Character" tipinde kayıtlı) |
 
-**Full Glam Set ve Color & Shield Set için şu an doğrulanmış özel bir Element görülmedi** — bu setler için prompt yazılacaksa önce Elements panelinde arama yapılmalı veya kullanıcıdan doğru tag istenmeli, resmi set adından tag türetilmemeli.
+**Element doğrulama artık ekran görüntüsü yerine `show_reference_elements` API'siyle yapılır** — resmi set adından tag türetmek veya kırpık/kaydırılmamış bir ekran görüntüsünden "bu Element yok" sonucu çıkarmak yasak.
 
 ## Higgsfield Üretim İş Akışı — ZORUNLU TARAYICI
 
