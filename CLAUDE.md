@@ -70,6 +70,12 @@ Kullanıcı ekran görüntüsünden yapılan ilk tarama eksikti (sayfa kaydırı
 
 **Element doğrulama artık ekran görüntüsü yerine `show_reference_elements` API'siyle yapılır** — resmi set adından tag türetmek veya kırpık/kaydırılmamış bir ekran görüntüsünden "bu Element yok" sonucu çıkarmak yasak.
 
+## Kampanya/Konsept Fikirlendirmede Gerçek Fotoğraf Referansı Zorunlu (kullanıcı geri bildirimi 2026-07-16: "hiç fotoğrafik mantık yok")
+
+Sadece ürün tasarımı referansı yetmez — bir konsept icat edilmeden önce (kamera açısı, ışık, kompozisyon, doku için) gerçek bir fotoğraf/stok görsel bulunup **indirilip gözle incelenmeli** (metin arama sonucu yetmez, görselin kendisi açılmalı). Analiz "Analiz önce" bölümündeki 4 unsuru (kamera açısı, duruş/yerleşim, ortam, hissiyat) kapsamalı. Konsept ve ürün seçimi bu incelemeden SONRA yapılır — önce sahne icat edip sonra referans aranmaz. Her konseptte hangi referanstan hangi kararın çıktığı (kamera açısı, ışık yönü/sertliği, doku, kompozisyon) açıkça belirtilir; INO'nun sabit marka kuralları (beyaz zemin, logo alanı, 9:16 kadraj) referanstan bağımsız korunur — referanstan sadece fotoğrafik gerçekçilik (ışık fiziği, gölge, doku, DOF) alınır, marka renk/zemin kuralları değil, aksi halde bu bir "onay gerekli" sapma olarak işaretlenir.
+
+**Devasa/oversized ürün ölçeği (ürünün gerçek boyutundan çok büyük gösterilmesi) hiçbir zaman kullanılmaz** — kullanıcı tarafından açıkça yasaklandı, ilham/mood referansı olarak dahi görülse konsept veya prompt'a bu ölçek fikri taşınmaz.
+
 ## Higgsfield Üretim İş Akışı — ZORUNLU TARAYICI
 
 - **Üretim her zaman tarayıcı üzerinden yapılır** (`claude-in-chrome` / Browser pane → higgsfield.ai, Cinema Studio). Doğrudan `generate_image` API çağrısı **yasak** — API kredi düşürür ve `unlimited` parametresini desteklemez, tarayıcı ise kuyruğa girer ve kredi harcamaz.
