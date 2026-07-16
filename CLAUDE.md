@@ -4,6 +4,7 @@
 
 - **Model:** Her zaman `nano_banana_pro` kullanılacak — başka model yasak
 - **Gerçekçilik:** Her görsel ultra-photorealistic olmalı — fotoğraftan ayırt edilemez kalite, hipergerçekçi cilt dokusu, doğal ışık, lens/cam/yüzey şeffaflıkları fizik kurallarına uygun; prompt'a her zaman şu eklenir: *"ultra photorealistic, hyperrealistic, indistinguishable from a real photograph, 8K detail"*
+- **Stüdyo/render hissi yasak (kullanıcı geri bildirimi 2026-07-16: "çok beyaz arkaplan, aşırı stüdyo çekimi gibi duruyor"):** Beyaz zemin kuralı korunur ama görsel asla düz/steril bir 3D render veya vektör gibi durmamalı. Gerçek bir fotoğraf stüdyosunda çekilmiş izlenimi şart: ürünün altında yumuşak, gerçekçi bir temas gölgesi (contact shadow) olmalı — ürün "havada asılı" gibi gölgesiz durmamalı; hafif derinlik/alan derinliği (makro lens hissi, kenarlarda hafif bokeh); gerçek fotoğraf grenine/dokusuna yakın yüzey — aşırı pürüzsüz, plastik/render parlaklığından kaçınılmalı; ışık tamamen düz/beyaz değil, hafif yönlü (key + fill softbox) ve ~5000K sıcaklığında olmalı. prompt'a her zaman şu eklenir: *"shot on a real camera with a macro lens at f/4, soft directional studio lighting (key + fill softbox, ~5000K), a visible soft contact shadow beneath the product, subtle depth of field, realistic photographic grain — not a 3D render, not CGI, not a flat vector illustration, not an overexposed flat-white studio look"*
 - **Çözünürlük:** Her zaman `2k` — `"resolution": "2k"` parametresi açıkça yazılacak
 - **Mod:** `unlimited`
 - **Referans zorunlu:** Referanssız görsel üretmek yasak — kullanıcının verdiği her görsel önce analiz edilecek, ardından o görsel referans alınarak üretim yapılacak
@@ -83,8 +84,9 @@
 
 ### Zemin / Arka Plan Kuralı (aksi belirtilmedikçe)
 - Görsellerde **zemin ve arka plan her zaman beyaz** olmalı
+- Ama bu beyaz, **düz dijital/render beyazı değil, gerçek fotoğraf stüdyosu backdrop kağıdı gibi** olmalı: hafif radial gradyan (#ffffff merkez → #f5f5f5 kenar) + ürünün altında yumuşak gerçekçi gölge + minimal doku/ışık kırılımı görünür olmalı. Aşırı parlak, gölgesiz, "temiz render" görünümü kabul edilmez (bkz. yukarıdaki "Stüdyo/render hissi yasak" kuralı — mandatory fotoğraf-gerçekçiliği ifadesi her promptta yer almalı)
 - Kum, taş, kumaş, ahşap gibi materyaller kullanılacaksa bunların **beyaz/nötr tonu** seçilmeli
-- Genel estetik: **lüks, temiz, akılda kalıcı** — minimal ve yüksek kontrast
+- Genel estetik: **lüks, temiz, akılda kalıcı** — minimal ve yüksek kontrast, ama steril değil
 - Renkli veya koyu zemin yalnızca özellikle istendiğinde kullanılır
 
 ---
