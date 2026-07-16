@@ -18,6 +18,22 @@
 - **Ürün tasarımı:** Ürün görseli referans fotoğrafla birebir eşleşmeli — etiket, renk, form, logo ve yazı düzeni referanstan sapmamalı; prompt'a her zaman şu eklenir: *"The product design must exactly match the reference image provided — same label layout, colors, typography, and logo"*
 - **Referans önce incelenir:** Prompt yazmadan önce referans/element görseli mutlaka açılıp gerçek malzeme/renk/form doğrulanır — varsayımla ("muhtemelen cam tüptür" gibi) prompt yazmak yasak, bu yanlış üretime yol açar.
 
+## Prompt Yapısı — Zorunlu 9 Maddelik Format
+
+Her Higgsfield Composer prompt'u aşağıdaki 9 maddeyi bu sırayla içermeli (tek akan paragraf halinde yazılır, madde numaraları prompt'un içine yazılmaz — sadece planlama/dokümantasyon aşamasında bu başlıklarla ayrılır). Hiçbir madde atlanmaz:
+
+1. **Genel format / estetik tanımı** — örn. "luxury, minimal, high-contrast Instagram Story ad product photography"
+2. **Ana özne** — ürün/set/çanta/model; referans Element etiketiyle (`@urun-adi`) çağrılır, tasarım referanstan sapmaz
+3. **Aksiyon/poz/yerleşim** — ürün/model nasıl duruyor, nasıl tutuluyor/yerleştiriliyor
+4. **Ortam/zemin/arka plan** — varsayılan: beyaz radial gradyan (#ffffff merkez → #f5f5f5 kenar); onaylı istisna yoksa değiştirilmez (bkz. Zemin/Arka Plan Kuralı)
+5. **Kadraj/kompozisyon** — 1080×1920 (9:16), üst %40 logo/yazı için boş, alt %60 ürün full-bleed (bkz. Zone Dağılımı)
+6. **Kamera** — açı, lens (örn. makro lens, f/4), alan derinliği
+7. **Işık** — yönlü stüdyo ışığı (key + fill softbox), ~5000K sıcaklık
+8. **Stil/kalite** — zorunlu ifadeler birebir eklenir: *"ultra photorealistic, hyperrealistic, indistinguishable from a real photograph, 8K detail"* — *"all product text must be perfectly legible, sharp, and accurate — no blurry or distorted letters"* — *"The product design must exactly match the reference image provided — same label layout, colors, typography, and logo"*
+9. **Negatifler** — *"not a 3D render, not CGI, not a flat vector illustration, not an overexposed flat-white studio look"*; ürün gölgesiz/havada asılı durmamalı — altında görünür yumuşak temas gölgesi olmalı; referans dışı ekstra hardware/aksesuar eklenmez
+
+Bu format mevcut kurallarla (Görsel Üretim Kuralları, Zemin/Arka Plan Kuralı, Stüdyo/render hissi yasak) çelişmez — hepsini tek bir sabit yazım sırasına oturtur. "Prompt dengesi" kuralı (gereksiz uzun geometri anlatımı yok) her madde için geçerlidir — kısa ve öz yazılır, madde başına 1 cümleyi geçmemeye çalışılır.
+
 ## Higgsfield Elements (Cinema Studio) — Referans Yönetimi
 
 - Proje: `ufo` (Cinema Studio, projectId: `fd22466c-94aa-4687-a02c-e10d377038a8`)
