@@ -40,6 +40,31 @@ Bu format mevcut kurallarla (Görsel Üretim Kuralları, Zemin/Arka Plan Kuralı
 - Her ürün/varyant için ayrı bir Element tanımlanır (`@urun-adi` şeklinde prompt içinde çağrılır), tek bir Element içine birden fazla farklı görsel karıştırılmaz — karışırsa üretim tutarsız/yanlış çıkar.
 - Element oluştururken kısa açıklama (description) alanı, ürünün gerçek görünümünü (malzeme, renk gradyanı, logo/yazı yerleşimi) özetlemeli.
 - Element'in prompt'ta doğru şekilde referans alındığını (thumbnail'in genereation panelinde göründüğünü) her seferinde görsel olarak doğrula.
+- **Element isimleri ürün kataloğundaki resmi set adlarından TAHMİN EDİLMEZ** — Cinema Studio panelindeki gerçek `@tag` her zaman doğrudan kontrol edilir/kullanıcıya sorulur. Resmi set adı ("Color & Glow Set") ile Element tag'i ("@bloom_glow") birebir örtüşmeyebilir.
+
+### Doğrulanmış Element Envanteri (kullanıcı ekran görüntüsü, 2026-07-16)
+Aşağıdaki tag'ler tarayıcıdaki Elements panelinde birebir bu şekilde görüldü — yeni bir tarama/onay olmadan değiştirilmez:
+
+| Tag | Tip | İçerik |
+|---|---|---|
+| `@hibiscus`, `@daylily`, `@peony`, `@scarlet` | Prop | Catch Bloom tekil tüpler |
+| `@bare`, `@haze`, `@bubble`, `@ice` | Prop | Catch Balm tekil tüpler |
+| `@sand`, `@dune` | Prop | Catch Sculpt tekil stickler |
+| `@ruby-gold`, `@pink-quartz` | Prop | Catch Glow tekil tüpler |
+| `@broad-spectrum-sunsc…` *(isim ekranda kesik — tam hali doğrulanmalı, muhtemelen `@broad-spectrum-sunscreen`)* | Prop | Broad Spectrum tekil tüp |
+| `@your-every…` *(isim ekranda kesik — muhtemelen `@your-everyday-set`)* | Prop | Your Everyday Set |
+| `@ultimate-set` | Prop | Ultimate Set — **tam isim, doğrulandı** |
+| `@all-in-one-set` | Prop | All-in-one Set — **tam isim, doğrulandı** |
+| `@bloom_glow` | Prop | Bloom + Glow kombinasyonu (alt çizgili yazım — Color & Glow Set için en yakın eşleşme, ama pouch dahil mi görsel olarak doğrulanmalı) |
+| `@bloom-sculpt-broad-gl…` *(2 farklı Element, ikisi de aynı kesik isimle görünüyor)* | Prop | Bloom+Sculpt+Broad+Glow kombinasyonu — CLAUDE.md ürün kataloğunda bu isimdeki dosyaların ("bloom_sculpt_broad_glow.png", "..._beautyshot.png") resmi bir sete karşılık gelmediği not edilmişti; **Full Glam Set veya Ultimate Set'e 1:1 karşılık geldiği doğrulanmamıştır** — kullanmadan önce kullanıcıya sorulmalı |
+| `@glow-and-shield` | Prop | **Kullanılmaz** — "Glow & Shield Set" sitede resmi bir ürün değil (bkz. Setler tablosu notu), bu muhtemelen eski/hatalı bir Element |
+| `@canvas-çanta` | Prop | INO logolu kanvas/bez çanta (dış prop, sahneye eklenecekse bu Element referans alınır, jenerik "tote bag" tarif edilmez) |
+| `@termal-çanta` | Prop | Termal/soğutucu çanta |
+| `@ayna` | Prop | Catch Balm anahtarlık ayna charm |
+| `@scarlet-flower` | Character | Scarlet çiçek görseli (not: "Character" tipinde kayıtlı) |
+| `@all-products` | Prop | Tüm ürünler oran referansı |
+
+**Full Glam Set ve Color & Shield Set için şu an doğrulanmış özel bir Element görülmedi** — bu setler için prompt yazılacaksa önce Elements panelinde arama yapılmalı veya kullanıcıdan doğru tag istenmeli, resmi set adından tag türetilmemeli.
 
 ## Higgsfield Üretim İş Akışı — ZORUNLU TARAYICI
 
