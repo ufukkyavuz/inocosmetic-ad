@@ -173,6 +173,7 @@ Tüp formu aynı kategoride, ton numaraları farklı.
 | `kese.png` | Siyah çanta/kese |
 | `canvas çanta.png` | Bez canvas poşet — beyaz kanvas kumaş, üzerinde büyük siyah INO logosu baskılı, çıtçıt/snap button kapaklı; **zarf/clutch tipi düz yapı** — içi dolunca dahi şişmez, yüzeyde düz yatar, hacimli veya yapısal değil. Prompt'ta: *"flat envelope-style canvas pouch lying flat on the surface, white canvas with large black INO logo print and snap button closure — no volume, no puffing, not a structured bag"* |
 | `all products.png` | Tüm ürünler oran referansı |
+| `termal_canta.png` | Termal yaz çantası (set hediyesi) — doğal ten rengi kaba dokulu jüt/çuval kumaş, üst kenarda siyah fermuar, ön yüzün sağ alt köşesinde küçük siyah INO logosu baskılı; **düz dikdörtgen poşet yapısı** — yapısal değil, düz durur. Prompt'ta: *"flat rectangular jute burlap zipper pouch, natural tan coarse-woven jute texture, black zipper along top edge, small black INO logo on bottom right corner — no volume, no puffing, stands or lies flat"* |
 
 ---
 
@@ -203,6 +204,9 @@ Ana Klasör (16e9UkJRf7KCiGw0Vs7QcACjeKv2qKNZY)
 
 Products Klasörü (1k8UEup-_bzVWusNpCAsfipHUqf2x7Byz)
 — Tüm ürün PNG/JPG görselleri burada
+
+Termal Yaz Çantası Hediye Klasörü (1Q9uc3DYJY2Pu-YJZzriZe2h0v7H1eAFP)
+— Termal çanta referans görselleri + tamamlanmış set görselleri
 ```
 
 ## Figma Dosyası
