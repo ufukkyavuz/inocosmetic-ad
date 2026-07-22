@@ -2,13 +2,14 @@
 
 ## Görsel Üretim Kuralları
 
-> **ÖNCE KURALLARI OKU:** Her `generate_image` çağrısından ÖNCE bu kural listesi baştan gözden geçirilecek — özellikle **referans, marka paleti, ürün ölçeği ve kadraj** kuralları. Hiçbir görsel kuralları atlayarak üretilmez.
+> **ÖNCE KURALLARI OKU:** Her üretimden ÖNCE bu kural listesi baştan gözden geçirilecek — özellikle **referans, marka paleti, ürün ölçeği ve kadraj** kuralları. Hiçbir görsel kuralları atlayarak üretilmez.
 
 - **Model:** Her zaman `nano_banana_pro` kullanılacak — başka model yasak
 - **Gerçekçilik:** Her görsel ultra-photorealistic olmalı — fotoğraftan ayırt edilemez kalite, hipergerçekçi cilt dokusu, doğal ışık, lens/cam/yüzey şeffaflıkları fizik kurallarına uygun; prompt'a her zaman şu eklenir: *"ultra photorealistic, hyperrealistic, indistinguishable from a real photograph, 8K detail"*
+- **Stüdyo/render hissi yasak:** Beyaz zemin korunur ama görsel asla düz/steril bir 3D render veya vektör gibi durmamalı. Gerçek fotoğraf stüdyosunda çekilmiş izlenimi şart: ürünün altında yumuşak gerçekçi temas gölgesi olmalı — ürün "havada asılı" gibi gölgesiz durmamalı; hafif alan derinliği (makro lens hissi, kenarlarda hafif bokeh); gerçek fotoğraf grenine/dokusuna yakın yüzey — aşırı pürüzsüz, plastik/render parlaklığından kaçınılmalı; ışık tamamen düz/beyaz değil, hafif yönlü (key + fill softbox) ve ~5000K sıcaklığında olmalı. Prompt'a her zaman şu eklenir: *"shot on a real camera with a macro lens at f/4, soft directional studio lighting (key + fill softbox, ~5000K), a visible soft contact shadow beneath the product, subtle depth of field, realistic photographic grain — not a 3D render, not CGI, not a flat vector illustration, not an overexposed flat-white studio look"*
 - **Çözünürlük:** Her zaman `2k` — `"resolution": "2k"` parametresi açıkça yazılacak
 - **Mod:** `unlimited`
-- **Referans zorunlu:** Referanssız görsel üretmek yasak — kullanıcının verdiği her görsel önce analiz edilecek, ardından o görsel **gerçek media/`media_id` olarak** üretime referans verilecek (sadece sözle tarif etmek YETMEZ). Chat'e eklenen yerel görseller `media_upload_widget` ile Higgsfield'a alınıp `generate_image`'a referans geçilecek; ürün için `broad.png` vb. raw URL → `media_import_url` ile alınır
+- **Referans zorunlu:** Referanssız görsel üretmek yasak — kullanıcının verdiği her görsel önce analiz edilecek, ardından o görsel **gerçek media/`media_id` olarak** üretime referans verilecek (sadece sözle tarif etmek YETMEZ). Chat'e eklenen yerel görseller `media_upload_widget` ile Higgsfield'a alınıp referans geçilecek; ürün için `broad.png` vb. raw URL → `media_import_url` ile alınır
 - **Analiz önce:** Kullanıcı görsel paylaşırsa şunlar detaylı analiz edilecek, onay alındıktan sonra üretime geçilecek:
   - **Kamera açısı:** Hangi açıdan çekilmiş, lens mesafesi, alan derinliği
   - **Model duruşu:** Vücut pozisyonu, yüz açısı, el/kol konumu, ifade
@@ -17,24 +18,95 @@
   - Bu 4 unsur prompt'a birebir yansıtılacak — referans görsel sadece "ilham" değil, teknik şablon olarak kullanılacak
 - **Ürün yazıları:** Üretilen görsellerde ürün üzerindeki tüm yazılar (ürün adı, içerik, SPF değeri vb.) hatasız ve tam okunur olmalı — bulanık, bozuk veya eksik metin kabul edilmez; prompt'a her zaman şu eklenir: *"all product text must be perfectly legible, sharp, and accurate — no blurry or distorted letters"*
 - **Ürün tasarımı:** Ürün görseli referans fotoğrafla birebir eşleşmeli — etiket, renk, form, logo ve yazı düzeni referanstan sapmamalı; prompt'a her zaman şu eklenir: *"The product design must exactly match the reference image provided — same label layout, colors, typography, and logo"*
-- **Ürün ölçeği:** Ürünler gerçek dünya oranında gösterilir. Broad Spectrum tüpünün boyu, **yüzle kıyaslandığında çeneden kaşa kadar** (~12cm / 50ml) olmalı — ne minik ne dev. Diğer ürünler bu tüpe göre orantılı ölçeklenir (katalogdaki gerçek boyutlar; Pocket allık kısa, Normal allık uzun vb.)
+- **Referans önce incelenir:** Prompt yazmadan önce referans/element görseli mutlaka açılıp gerçek malzeme/renk/form doğrulanır — varsayımla prompt yazmak yasak, bu yanlış üretime yol açar.
+- **Ürün ölçeği:** Ürünler gerçek dünya oranında gösterilir. Broad Spectrum tüpünün boyu, **yüzle kıyaslandığında çeneden kaşa kadar** (~12cm / 50ml) olmalı — ne minik ne dev. Diğer ürünler bu tüpe göre orantılı ölçeklenir (katalogdaki gerçek boyutlar; Pocket allık kısa, Normal allık uzun vb.). **Devasa/oversized ürün ölçeği hiçbir zaman kullanılmaz.**
 - **Marka paleti (siyah-beyaz):** Görsel **renkli foto** olur (doğal ten, doğal ortam) — ama **kırmızı/canlı renk kullanılmaz**; tekstil/prop/kıyafet siyah-beyaz tutulur (havlu beyaz + siyah çizgi, bikini siyah ipli/beyaz panel vb.). Fotoğraf **komple grayscale YAPILMAZ**, renkli kalır. Renk yalnızca özellikle istenirse kullanılır
 - **Kadraj / modesty:** Fazla vücut/açıklık gösterilmez — sıkı, modest kadraj tercih edilir (baş-omuz gibi); dekolte/çıplaklık vurgusu yok
 
-## Teknik Pipeline (Drive → Higgsfield)
+## Prompt Yapısı — Zorunlu 9 Maddelik Format
 
-Drive'dan ürün görseli yüklemek için:
+Her Higgsfield Composer prompt'u aşağıdaki 9 maddeyi bu sırayla içermeli (tek akan paragraf halinde yazılır, madde numaraları prompt içine yazılmaz — sadece planlama/dokümantasyon aşamasında bu başlıklarla ayrılır). Hiçbir madde atlanmaz:
+
+1. **Genel format / estetik tanımı** — örn. "luxury, minimal, high-contrast Instagram Story ad product photography"
+2. **Ana özne** — ürün/set/çanta/model; Element tag'iyle (`@urun-adi`) çağrılır, tasarım referanstan sapmaz
+3. **Aksiyon/poz/yerleşim** — ürün/model nasıl duruyor, nasıl tutuluyor/yerleştiriliyor
+4. **Ortam/zemin/arka plan** — varsayılan: beyaz radial gradyan (#ffffff merkez → #f5f5f5 kenar); onaylı istisna yoksa değiştirilmez
+5. **Kadraj/kompozisyon** — 1080×1920 (9:16), üst %40 logo/yazı için boş, alt %60 ürün full-bleed
+6. **Kamera** — açı, lens (örn. makro lens, f/4), alan derinliği
+7. **Işık** — yönlü stüdyo ışığı (key + fill softbox), ~5000K sıcaklık
+8. **Stil/kalite** — zorunlu ifadeler birebir eklenir: *"ultra photorealistic, hyperrealistic, indistinguishable from a real photograph, 8K detail"* + *"all product text must be perfectly legible, sharp, and accurate — no blurry or distorted letters"* + *"The product design must exactly match the reference image provided — same label layout, colors, typography, and logo"* + *"shot on a real camera with a macro lens at f/4, soft directional studio lighting (key + fill softbox, ~5000K), a visible soft contact shadow beneath the product, subtle depth of field, realistic photographic grain — not a 3D render, not CGI, not a flat vector illustration"*
+9. **Negatifler** — *"not a 3D render, not CGI, not a flat vector illustration, not an overexposed flat-white studio look"*; ürün gölgesiz/havada asılı durmamalı; referans dışı ekstra aksesuar eklenmez
+
+> **Prompt dengesi:** Ne aşırı kısa ne aşırı ayrıntılı — sadece ürün sadakati + fiziksel bağlantı noktası + kadraj + oran gibi çekirdek kısıtları yaz. Madde başına 1 cümleyi geçmemeye çalışılır.
+
+## Higgsfield Elements (Cinema Studio) — Referans Yönetimi
+
+- Proje: `ufo` (Cinema Studio, projectId: `fd22466c-94aa-4687-a02c-e10d377038a8`)
+- Her ürün/varyant için ayrı bir Element tanımlanır (`@urun-adi` şeklinde prompt içinde çağrılır), tek bir Element içine birden fazla farklı görsel karıştırılmaz.
+- **Element isimleri ürün kataloğundaki resmi set adlarından TAHMİN EDİLMEZ** — Cinema Studio panelindeki gerçek `@tag` her zaman doğrudan kontrol edilir. Resmi set adı ("Color & Glow Set") ile Element tag'i birebir örtüşmeyebilir.
+
+### Doğrulanmış Element Envanteri (`show_reference_elements` API, 2026-07-16 — tam liste)
+
+| Tag | Tip | İçerik |
+|---|---|---|
+| `@all-in-one-set` | Prop | All-in-one Set |
+| `@ultimate-set` | Prop | Ultimate Set |
+| `@color-glow-set` | Prop | Color & Glow Set |
+| `@color-shield-set` | Prop | Color & Shield Set |
+| `@full-glam-set` | Prop | Full Glam Set |
+| `@your-everyday-set` | Prop | Your Everyday Set |
+| `@bloom_glow` | Prop | Bloom + Glow kombinasyonu |
+| `@bloom-sculpt-broad-glow` | Prop | Bloom+Sculpt+Broad+Glow |
+| `@bloom-sculpt-broad-glow-beautyshot` | Prop | Bloom+Sculpt+Broad+Glow+Beauty Shot |
+| `@glow-and-shield` | Prop | **Kullanılmaz** — sitede resmi ürün değil |
+| `@hibiscus`, `@daylily`, `@peony`, `@scarlet` | Prop | Catch Bloom tekil tüpler |
+| `@ruby-gold`, `@pink-quartz` | Prop | Catch Glow tekil tüpler |
+| `@sand`, `@dune` | Prop | Catch Sculpt tekil stickler |
+| `@bare`, `@haze`, `@bubble`, `@ice` | Prop | Catch Balm tekil tüpler |
+| `@broad-spectrum-sunscreen` | Prop | Broad Spectrum tekil tüp |
+| `@beauty-shot` | Prop | Beauty Shot (Pure Marine Collagen) |
+| `@canvas-çanta` | Prop | INO logolu kanvas/bez çanta |
+| `@termal-çanta` | Prop | Termal/soğutucu çanta |
+| `@ayna` | Prop | Catch Balm anahtarlık ayna charm |
+| `@all-products` | Prop | Tüm ürünler oran referansı |
+| `@scarlet-flower` | Character | Scarlet çiçek görseli |
+
+> Element doğrulama her zaman `show_reference_elements` API'siyle yapılır — resmi set adından tag türetmek veya ekran görüntüsünden "bu Element yok" sonucu çıkarmak yasak.
+
+## Kampanya/Konsept Fikirlendirmede Gerçek Fotoğraf Referansı Zorunlu
+
+Sadece ürün tasarımı referansı yetmez — bir konsept icat edilmeden önce (kamera açısı, ışık, kompozisyon, doku için) gerçek bir fotoğraf/stok görsel bulunup **indirilip gözle incelenmeli** (metin arama sonucu yetmez, görselin kendisi açılmalı). Analiz "Analiz önce" bölümündeki 4 unsuru kapsamalı. Konsept bu incelemeden SONRA yapılır — önce sahne icat edip sonra referans aranmaz. INO'nun sabit marka kuralları referanstan bağımsız korunur — referanstan sadece fotoğrafik gerçekçilik alınır, marka renk/zemin kuralları değil.
+
+## Higgsfield Üretim İş Akışı — ZORUNLU TARAYICI
+
+- **Üretim her zaman tarayıcı üzerinden yapılır** (`claude-in-chrome` / Browser pane → higgsfield.ai, Cinema Studio). Doğrudan `generate_image` API çağrısı **yasak** — API kredi düşürür ve `unlimited` parametresini desteklemez, tarayıcı ise kuyruğa girer ve kredi harcamaz.
+- **Unlimited toggle her fresh sayfa yüklemesinde sıfırlanır** — sessiz şekilde OFF olabilir. Her üretimden önce: toggle'a tıkla → yeşil/ON olduğunu zoom-screenshot ile doğrula → Generate butonunun "UNLIMITED" yazdığını doğrula. Bu adımı atlama.
+- **Referans ekleme:** Composer'daki "+" butonu → Uploads/Elements/Image Generations/Liked sekmeleri → thumbnail'e tıkla → prompt içinde `@Image N` olarak eklenir. Alternatif: asset detay paneli → sağdaki "Reference" butonu → aktif composer'a eklenir.
+- **Referans çıkarma:** Composer şeridindeki küçük thumbnail'in üzerine gel → beliren "×" işaretine tıkla.
+- **Yerel dosya yükleme:** Sadece bu oturuma chat üzerinden paylaşılmış dosyalar `file_upload` ile yüklenebilir — Drive/Products klasöründeki dosyalar (chat'e ek olarak paylaşılmamışsa) kabul edilmez.
+- **İndirme → Figma pipeline:** Detay panelinde "Download" → `~/Downloads/hf_{timestamp}_{uuid}.png` → `mv` ile proje scratchpad'ine taşı → gerekirse Figma'ya `upload_assets` ile çek.
+- **Çoklu Chrome bağlantısı hatası** çıkarsa `list_connected_browsers` ile güncel deviceId'i al, `select_browser` ile seç.
+
+## Teknik Pipeline (Drive → GitHub raw URL)
+
+Drive'dan ürün görseli yüklemek için (API yöntemi, browser mümkün değilse):
 1. `mcp__Google_Drive__download_file_content` ile base64 indir → `/tmp/` dosyaya decode et
-2. `mcp__Higgsfield__media_upload` ile presigned URL al
-3. Görseli repo'ya push et → GitHub raw URL üret:
-   `https://raw.githubusercontent.com/ufukkyavuz/inocosmetic-ad/claude/youthful-shannon-jop96g/<dosya.png>`
-4. `mcp__Higgsfield__media_import_url` ile o URL'den import et → `media_id` al
-5. `generate_image` çağrısında `media_id` kullan
+2. Görseli repo'ya push et → GitHub raw URL üret commit SHA ile:
+   `https://raw.githubusercontent.com/ufukkyavuz/inocosmetic-ad/<commit-sha>/<dosya.png>`
+   (`git rev-parse origin/<branch>` ile alınır; branch'li URL 404 verir çünkü branch adında `/` var)
+3. `mcp__Higgsfield__media_import_url` ile o URL'den import et → `media_id` al
+4. Bir önceki üretimin çıktısı tekrar referans gerekiyorsa `generate_image` içinde o işin **job_id**'si geçilebilir (yeniden upload gerekmez)
 
-> Not: Bash ortamında `upload.higgsfield.ai` doğrudan erişilemiyor; GitHub raw URL yöntemi kullanılacak.
-> **Önemli:** Branch adında `/` (slash) olduğu için branch'li raw URL 404 verir → raw URL'de **tam commit SHA** kullanılacak:
-> `https://raw.githubusercontent.com/ufukkyavuz/inocosmetic-ad/<commit-sha>/<dosya.png>` (`git rev-parse origin/<branch>` ile alınır).
-> Bir önceki üretimin çıktısı tekrar referans gerekiyorsa `generate_image` içinde `media` değeri olarak o işin **job_id**'si de geçilebilir (yeniden upload gerekmez).
+## Ürün Aksesuar Fiziği — Catch Balm Anahtarlık/Charm Sahneleri
+
+Çanta/anahtarlık temalı Catch Balm sahnelerinde ürünün gerçek fiziksel bağlantı noktası:
+
+- **Tüpün TEK gerçek metal halkası, kapağın TERSİ olan uç (nozul/tip) tarafındadır** — kaburgalı/yivli vidalı kapak tarafında DEĞİL. Referans: `Products/Catch Balm/bare.png`, `bare kanca.png`.
+- Asılı halde: **halka + ayna charm kümesi YUKARIDA** (çanta sapına bağlı), **kaburgalı kapak AŞAĞIDA serbestçe sarkar** — kapaktan bağlamak fiziksel olarak yanlıştır.
+- Halka SADECE bir tane olmalı — hem çantaya hem charm'a aynı halka bağlanır; kapağa ikinci halka/zincir eklenmesi hatalıdır.
+- Çanta sapının gövdeye bağlantı noktası **yuvarlak metal halka/perçin** olmalı.
+- "Ürünün renginde çanta" istenirse: çantanın deri rengi öne çıkan varyantın kendi tüp rengiyle eşleşmeli.
+- Metin alanı kuralı (üst ~%40-45 temiz) bu sahnelerde de geçerli.
 
 ## Reklam Konsept Kütüphanesi
 
@@ -84,9 +156,9 @@ Drive'dan ürün görseli yüklemek için:
 - Badge/rozet varsa: Sağ kenara, fotoğrafın üst köşesine, hafif döndürülmüş (+15°)
 
 ### Zemin / Arka Plan Kuralı (aksi belirtilmedikçe)
-- Görsellerde **zemin ve arka plan her zaman beyaz** olmalı
+- Görsellerde **zemin ve arka plan her zaman beyaz** olmalı — ama bu beyaz, **düz dijital/render beyazı değil, gerçek fotoğraf stüdyosu backdrop kağıdı gibi** olmalı: hafif radial gradyan (#ffffff merkez → #f5f5f5 kenar) + ürünün altında yumuşak gerçekçi gölge + minimal doku/ışık kırılımı görünür olmalı
 - Kum, taş, kumaş, ahşap gibi materyaller kullanılacaksa bunların **beyaz/nötr tonu** seçilmeli
-- Genel estetik: **lüks, temiz, akılda kalıcı** — minimal ve yüksek kontrast
+- Genel estetik: **lüks, temiz, akılda kalıcı** — minimal ve yüksek kontrast, ama steril değil
 - Renkli veya koyu zemin yalnızca özellikle istendiğinde kullanılır
 
 ### Figma'ya Yerleştirme (`INO Visuals` dosyası)
@@ -101,13 +173,17 @@ Drive'dan ürün görseli yüklemek için:
 
 ## Ürün Kataloğu
 
-### CATCH BLOOM (allık / ruj çubuğu)
+> Kaynak: [inobeauty.com.tr](https://inobeauty.com.tr) (canlı site) + INO Kozmetik resmi claims dosyaları (proje kök dizininde `*Claims.docx`).
+
+### CATCH BLOOM (Lip & Cheek Stick, SPF 30+)
+Makyaj ve cilt bakımını bir arada sunan çok amaçlı stick. Tek adımda renk + bakım + SPF 30+ koruma. Dudak ve yanaklara doğal renk, yoğun nem ve ışıltı kazandırır. Saf hidrolize deniz kolajeni içerir. Parmak veya fırçayla uygulanır, kat kat sürülerek yoğunlaştırılabilir.
+
 | Ürün | Boy | Gramaj | Dosya |
 |---|---|---|---|
 | Scarlet | **Pocket** (küçük boy) | 4.5g | `scarlet.png`, `scarlet realistic.jpg` |
 | Hibiscus | **Pocket** (küçük boy) | 4.5g | `hibiscus.png`, `hibiscus tone.PNG` |
-| Peony | **Normal** (büyük boy) | 8.77g | `peony.png` |
-| Daylily | **Normal** (büyük boy) | 8.77g | `daylily.png`, `daylily realistic.jpg` |
+| Peony | **Normal/Full** (büyük boy, Pocket de mevcut) | 8.77g (Full) | `peony.png` |
+| Daylily | **Normal/Full** (büyük boy, Pocket de mevcut) | 8.77g (Full) | `daylily.png`, `daylily realistic.jpg` |
 
 > Pocket vs Normal: Kompozisyonda Scarlet/Hibiscus daha kısa, Peony/Daylily daha uzun gösterilmeli.
 
@@ -115,36 +191,54 @@ Drive'dan ürün görseli yüklemek için:
 
 ---
 
-### CATCH GLOW (aydınlatıcı nemlendirici krem)
-Her biri **ayrı ürün** — farklı tüp etiketi, farklı krem rengi, farklı ürün adı.
+### CATCH GLOW (Multi-Use Beauty Booster Illuminating Cream, SPF 15+)
+Işıltı ve bakımı birleştiren çok amaçlı krem — nemlendirici, makyaj bazı ve highlighter olarak kullanılabilir. Saf hidrolize deniz kolajeni ile 48 saate kadar nemlendirme sağlar. Yüz, boyun ve vücutta kullanılabilir. Her biri **ayrı ürün** — farklı tüp etiketi, farklı krem rengi, farklı ürün adı.
 
-| Ürün | Etiket | Dosya |
+| Ürün | Etiket | İçerik/His | Dosya |
+|---|---|---|---|
+| **Catch Glow Ruby Gold** | "CATCH GLOW / RUBY GOLD / Multi-Use Beauty Booster / Illuminating Cream / SPF 15+" | Altın-bronz yansımalı sıcak ışıltı | `ruby gold.png`, `catch glow realistic.jpg` |
+| **Catch Glow Pink Quartz** | "CATCH GLOW / PINK QUARTZ / Multi-Use Beauty Booster / Illuminating Cream / SPF 15+" | Pembe-gümüş yansımalı glow | `pink quartz.png` |
+
+---
+
+### CATCH SCULPT (Bronzer & Contour Stick)
+Doğal bronzlaşma ve kontürü tek üründe sunan çok amaçlı stick.
+> ⚠️ Önceki isimlendirme "Contour & Bronzer" yanlıştı — sitedeki resmi isim **Catch Sculpt**.
+
+| Ürün | Tip | Dosya |
 |---|---|---|
-| **Catch Glow Ruby Gold** | "CATCH GLOW / RUBY GOLD / Multi-Use Beauty Booster / Illuminating Cream / SPF 15+" | `ruby gold.png`, `catch glow realistic.jpg` |
-| **Catch Glow Pink Quartz** | "CATCH GLOW / PINK QUARTZ / Multi-Use Beauty Booster / Illuminating Cream / SPF 15+" | `pink quartz.png` |
+| Sand | Bronzer Stick | `sand.png` |
+| Dune | Contour Stick | `dune.png`, `dune realistic.jpg` |
 
 ---
 
-### CONTOUR & BRONZER (stick)
-| Ürün | Dosya |
-|---|---|
-| Dune | `dune.png`, `dune realistic.jpg` |
-| Sand | `sand.png` |
-
----
-
-### BROAD SPECTRUM SUNSCREEN (SPF 50+)
-Tüp formu aynı kategoride, ton numaraları farklı.
+### BROAD SPECTRUM SUNSCREEN (SPF 50+, PA++++)
+Geniş spektrum SPF 50+ / PA++++ koruma + cilt bakımı. Beyaz iz bırakmaz, hızla emilir, makyaj bazı olarak kullanılabilir. Deniz kolajeni, siyah yulaf ekstresi, frenk üzümü çekirdeği yağı ve biberiye ekstresi içerir. 01/02/03 varyantları ton eşitleyici pigment içerir.
 
 | Ürün | Dosya |
 |---|---|
-| 00 Clean | `broad.png` + `Broad/` klasörü |
+| 00 Clear | `broad.png` + `Broad/` klasörü |
 | 01 Light | `Broad/` klasörü |
 | 02 Medium | `Broad/` klasörü |
+| 03 Tan | *(görsel henüz eklenmedi)* |
 
 ---
 
-### BEAUTY SHOT (içecek supplement)
+### CATCH BALM — henüz lanse edilmemiş, yakında çıkacak ürün
+Metalik sıkma tüp, gümüşten renkli tona geçen gradyan, `Products/Catch Balm/` klasöründe referans görseller mevcut. **Sitede yayında değil — üretim promptlarında fonksiyon/vaat metni uydurulmayacak, sadece kullanıcıdan gelen bilgi kullanılacak.**
+
+| Varyant | Tag |
+|---|---|
+| Bare | `@bare` |
+| Haze | `@haze` |
+| Bubble | `@bubble` |
+| Ice | `@ice` |
+
+---
+
+### BEAUTY SHOT (içecek supplement) — Pure Marine Collagen
+Hidrolize balık kolajeni içeren, portakal-lime aromalı içilebilir güzellik takviyesi. İçerik: Elastin, Hyaluronik Asit, Vitamin C, Vitamin E, Çinko, Biotin, Selenyum. "Twist, sip, glow."
+
 | Ürün | Dosya |
 |---|---|
 | Pure Marine Collagen | `Collagen Shot Dekupe.png` |
@@ -152,18 +246,19 @@ Tüp formu aynı kategoride, ton numaraları farklı.
 ---
 
 ### SETLER
-| Set Adı | Dosya |
-|---|---|
-| Full Glam Set | `Full Glam Set.png` |
-| Ultimate Set | `Ultimate Set.png` |
-| All-in-one Set | `All-in-one Set.png` |
-| Glow & Shield Set | `Glow & Shield Set.png` |
-| Color & Glow Set | `Color & Glow Set.png` |
-| Color & Shield Set | `Color & Shield Set.png` |
-| Your Everyday Set | `Your Everyday Set.png` |
-| Bloom + Sculpt + Broad + Glow | `bloom_sculpt_broad_glow.png` |
-| Bloom + Glow | `bloom_glow.png` |
-| Bloom + Sculpt + Broad + Glow + Beauty Shot | `bloom_sculpt_broad_glow_beautyshot.png` |
+> Kaynak: canlı site (`inobeauty.com.tr`). Setlerdeki ürün varyantları (renk/ton) müşteri tarafından seçilebilir.
+
+| Set Adı | İçerik | Dosya |
+|---|---|---|
+| Color & Glow Set | 1 Catch Bloom + 1 Catch Glow + INO makyaj çantası | `Color & Glow Set.png` |
+| Color & Shield Set | 1 Catch Bloom + 1 Broad Spectrum + INO makyaj çantası | `Color & Shield Set.png` |
+| Your Everyday Set | 1 Catch Bloom + 1 Catch Glow + 1 Broad Spectrum + INO makyaj çantası | `Your Everyday Set.png` |
+| Ultimate Set | 1 Catch Bloom + 1 Catch Glow + 1 Broad Spectrum + 1 Catch Sculpt + INO makyaj çantası | `Ultimate Set.png` |
+| Full Glam Set | 1 Catch Bloom + 1 Catch Glow + 1 Broad Spectrum + 2 Catch Sculpt + INO makyaj çantası | `Full Glam Set.png` |
+| All-in-one Set | 3 Catch Bloom Pocket + 2 Catch Glow + 1 Broad Spectrum + 2 Catch Sculpt + INO makyaj çantası | `All-in-one Set.png` |
+
+> ~~Glow & Shield Set~~ — sitede bu isimde resmi ürün yok, listeden kaldırıldı.
+> `bloom_sculpt_broad_glow.png`, `bloom_glow.png`, `bloom_sculpt_broad_glow_beautyshot.png` dosyaları resmi isimli bir sete karşılık gelmiyor, sadece görsel dosya adları.
 
 ---
 
