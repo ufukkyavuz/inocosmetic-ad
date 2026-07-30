@@ -27,15 +27,23 @@
 ## Higgsfield Üretim İş Akışı — ZORUNLU TARAYICI
 
 - **Üretim her zaman tarayıcı üzerinden yapılır** (`claude-in-chrome` / Browser pane → higgsfield.ai, Cinema Studio). Doğrudan `generate_image` API çağrısı **yasak** — API kredi düşürür ve `unlimited` parametresini desteklemez, tarayıcı ise kuyruğa girer ve kredi harcamaz.
-- **Unlimited toggle her fresh sayfa yüklemesinde sıfırlanır** — sessiz şekilde OFF olabilir. Her üretimden önce: toggle'a tıkla → yeşil/ON olduğunu zoom-screenshot ile doğrula → Generate butonunun "UNLIMITED" yazdığını doğrula. Bu adımı atlama.
-- **Referans ekleme:** Composer'daki "+" butonu → Uploads/Elements/Image Generations/Liked sekmeleri → thumbnail'e tıkla → prompt içinde `@Image N` olarak eklenir. Alternatif: bir asset'in detay panelini aç → sağdaki "Reference" butonuna tıkla → aktif composer'a eklenir.
-- **Referans çıkarma:** Composer şeridindeki küçük thumbnail'in üzerine gel → beliren "×" işaretine tıkla.
+- **Referans ekleme — sadece prompt metnine `@elementadı` yaz.** Composer'da "+"/"@" butonuyla tek tek arayıp thumbnail'e tıklayıp "Use" ile ekleme akışı **kullanılmayacak** — bu yavaş ve gereksiz, kullanıcı defalarca bunu durdurdu. Higgsfield, prompt içine yazılan `@bare`, `@peony` gibi mention'ları kendi kendine tanıyıp bağlıyor. Prompt'u yazarken tüm ürün referanslarını `@` ile doğrudan metne göm, composer'a yapıştır, bitir.
+  - İstisna: bir mention'ın isim çakışması yüzünden (ör. `@scarlet` / `@scarlet-flower`) yanlış/referanssız çıktı verdiği somut olarak gözlemlenirse, sadece o tekil ürün için manuel seçime dönülebilir — bunu bütün ürünler için varsayılan yönteme çevirme.
+- **Hız kuralları — bunlar zorunlu, atlanmaz:**
+  - Gereksiz ekran görüntüsü alma — prompt'u yazdıktan/yapıştırdıktan sonra tekrar analiz etme, "doğru mu" diye kontrol etme.
+  - Akış sadece şu: prompt alanına tıkla → hazırlanmış prompt'u yapıştır → Generate'e bas.
+  - Model, oran, çözünürlük veya diğer composer ayarlarını değiştirme (zaten nano_banana_pro / 2K / Unlimited olarak ayarlı kalmalı).
+  - Generate'e bastıktan sonra sonucu bekleme, kontrol etme, ekran görüntüsü alıp analiz etme — üretilen görseli değerlendirme.
+  - Generate'e bastıktan hemen sonra görevi tamamlanmış say.
+  - Bir adım gerçekten başarısız olmadıkça (ör. prompt yanlış yere yazıldıysa) hiçbir adımı tekrarlama.
 - **Yerel dosya yükleme:** Sadece bu oturuma chat üzerinden paylaşılmış dosyalar `file_upload` ile yüklenebilir — Drive/Products klasöründeki veya scratchpad'deki dosyalar (chat'e ek olarak paylaşılmamışsa) kabul edilmez. `media_upload`/`media_confirm` API'siyle yüklenen görseller de tarayıcının Uploads sekmesinde görünmez — bu yüzden yeni bir referans görseli tarayıcıya sokmanın güvenilir yolu yok; böyle durumlarda ürün/sahne detaylarını prompt'a metin olarak daha ayrıntılı yazmak gerekir.
 - **İndirme → Figma pipeline:** Üretilen görsel için detay panelinde "Download" → `~/Downloads/hf_{timestamp}_{uuid}.png` olarak iner → `mv` ile proje scratchpad'ine taşı (Downloads klasörünü kirletmemek için) → gerekirse Figma'ya `upload_assets` ile çek.
 - **Prompt dengesi:** Ne aşırı kısa ne aşırı ayrıntılı — sadece ürün sadakati + fiziksel bağlantı noktası + kadraj + oran gibi çekirdek kısıtları yaz. Referansı "bozma" demek çoğu zaman yeterli; gereksiz uzun geometri anlatımı eklemek gereksiz (kullanıcı geri bildirimi: "çok basit, referansı bozma diyip geçecen").
-- **Çoklu Chrome bağlantısı hatası** ("Multiple Chrome browsers are connected") çıkarsa `list_connected_browsers` ile güncel deviceId'i al, `select_browser` ile seç — hata mesajındaki eski deviceId'e güvenme.
+- **Çoklu Chrome bağlantısı hatası** ("Multiple Chrome browsers are connected") çıkarsa `list_connected_browsers` ile güncel deviceId'i al, `select_browser` ile seç — hata mesajındaki eski deviceId'e güvenme. Aynı Higgsfield hesabı/proje ("ufo") her bağlı tarayıcıda görünmeyebilir — proje listede yoksa diğer bağlı tarayıcıyı dene.
 
 ## Ürün Aksesuar Fiziği — Catch Balm Anahtarlık/Charm Sahneleri
+
+**Varsayılan: halka/ayna charm YOK.** Kullanıcı açıkça "çantaya asılı", "anahtarlık" gibi bir sahne istemediği sürece Catch Balm tüpüne halka veya charm eklenmez — özellikle **set/dizilim görsellerinde asla eklenmez**. `@haze`, `@bare` gibi element'lerin referans görselinde charm/halka görünmesi bunu otomatik olarak her sahneye taşıma gerekçesi değildir; bu bölümdeki kurallar sadece kullanıcının özellikle istediği çanta/anahtarlık sahnesinde uygulanır.
 
 Çanta/anahtarlık temalı Catch Balm sahnelerinde (ör. çanta sapına asılı tüp+ayna charm) ürünün gerçek fiziksel bağlantı noktası şu şekildedir — bu noktayı yanlış kurmak tekrar tekrar aynı hataya yol açtı:
 
@@ -86,6 +94,16 @@
 - Kum, taş, kumaş, ahşap gibi materyaller kullanılacaksa bunların **beyaz/nötr tonu** seçilmeli
 - Genel estetik: **lüks, temiz, akılda kalıcı** — minimal ve yüksek kontrast
 - Renkli veya koyu zemin yalnızca özellikle istendiğinde kullanılır
+
+### Ürün Boyutu — Yüz ile Kompozisyonlarda (Catch Bloom vb. stick ürünler)
+Model yüzüyle birlikte çekilen stick ürün görsellerinde ürün defalarca gerçekçi olmayan şekilde BÜYÜK çıktı — "chin to nose/lip mesafesi kadar" gibi genel anatomik kıyas ifadeleri bile yetersiz kaldı, somut santimetre değeri yazılmalı:
+- **Daylily ve Peony (Normal/Full boy):** ucu açık (kapak çıkarılmış, aplikatör görünür) haliyle toplam uzunluk **6 cm** — çene ile burun alt çizgisi arası mesafeye yakın
+- **Scarlet ve Hibiscus (Pocket boy):** ucu açık haliyle toplam uzunluk **5 cm** — çene ile üst dudak arası mesafeye yakın
+- Prompt'a mutlaka şu şekilde somut ölçü yazılmalı: *"the product, uncapped, is exactly 6cm long"* (Daylily/Peony) veya *"the product, uncapped, is exactly 5cm long"* (Scarlet/Hibiscus) — sadece yüz oranı kıyaslaması yeterli gelmiyor, model tekrar tekrar büyük çiziyor.
+- **Ağız açıkken (gülerken) ölçü referansı kayar:** Model kahkaha atarken/ağzı açıkken çene-dudak veya çene-burun mesafesi görsel olarak değişir, bu da modelin ürünü yine büyük çizmesine yol açıyor. Bu durumda prompt'a şunu ekle: *"use her closed-mouth facial proportions as the size reference for the product, even though her mouth is open in this shot — do not enlarge the product just because her jaw is open."*
+- **El ile tutulan kompozisyonlarda denenen yöntemler hâlâ tam çözmüyor:** cm değeri, parmak kıyaslaması (index finger, thumb) ve yüz-landmark sıkıştırma (ağız kenarı–çene çizgisi) hepsi denendi — her seferinde ürün yine de gözle görülür şekilde büyük çıkıyor. Bu, modelin (nano_banana_pro) close-up güzellik çekimlerinde "elde tutulan ürün" için eğitim verisindeki alışılmış (büyük lipstick/tüp) oranına çekilme eğiliminden kaynaklanıyor olabilir — salt metinle boyut talimatı vermek tek başına güvenilir değil.
+- **Sıradaki denenecek yöntem:** ürünü bilinen, küçük, çok tanıdık bir nesneyle kıyaslamak (ör. "a standard lip balm/chapstick tube" boyutunda) + kadraja göre yüzde vermek (ör. "no more than ~1/5 of total frame height"). Soyut yüz oranı yerine modelin eğitiminde bol örneği olan tanıdık bir nesneye çapalamak daha güvenilir olabilir.
+- **Eğer prompt-only yaklaşım birkaç denemeden sonra da tutmazsa:** üretim sonrası crop/resize (üretilen görselde ürünü manuel küçültüp yeniden yerleştirme) ya da image-to-image ile önceden ölçekli bir mockup'ı reference olarak sokma gibi post-processing çözümlerine geçmeyi düşün — bu, salt prompt'la çözülemeyen bir sınırlama olabilir.
 
 ---
 
