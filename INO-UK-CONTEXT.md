@@ -68,9 +68,29 @@ UK Temmuz 2026 "%30 indirim" kampanyası için iki Slides dosyası kullanılıyo
   - Ürün dekupesi x=506'da (dikişi 34px aşar), alt paydan 60px yukarıda biter; yükseklik sınırı 1920→620, 1350→470, 1080→350.
 - Aynı sayfada x=48169–51549 arasında **daha eski, farklı formatta** (beyaz zemin + ürün + yıldızlı yorum) 15 adet `... review - isim 1080x1080` frame'i var — slayt 17'nin ilk denemesi. Silinmedi; slaytta istenen format yeni settir. Bu setteki isimsiz sculpt frame'i "Jane N." olarak tamamlandı.
 
+**Sculpt frame'lerinin özel düzeni:** Sculpt yorumlarında sol panelde **TR dosyasındaki gerçek Catch Sculpt çekimleri** kullanılıyor (aşağıdaki "Dosyalar arası görsel taşıma"ya bak). Bu fotoğraflar beyaz/aydınlık olduğu için iki sapma var:
+- **Logo beyaz değil koyu (#323232) ve sol ALT köşede** (y = frame yüksekliği − logo − 100) — üstte modelin yüzüne/saçına denk gelip okunmuyordu.
+- **Ürün dekupesi sadece fotoğrafta ürün görünmüyorsa** konuyor. Fotoğrafta ürün varsa (elde tutulan / uygulama çekimi) dekupe kaldırılıp metin bloğu dikeyde ortalanıyor (`panel.primaryAxisAlignItems = 'CENTER'`). Şu an sadece Emma K. (dune kontur çizgileri, üründe yok) dekupe taşıyor.
+
+**Dikkat — sağ panel auto-layout:** `catch glow toast` şablonundaki sağ panel **VERTICAL auto-layout** (paddingTop 183, itemSpacing 32). Metin düğümlerine `y` atamak İŞE YARAMAZ, sessizce yok sayılır — dikey konum `primaryAxisAlignItems` / padding / itemSpacing ile ayarlanır.
+
 **Açık iş / dikkat:**
 - Slayt 17 yorumları 50+/olgun cilt odaklı ama dosyadaki tüm model fotoğrafları genç modeller — ideali Higgsfield'de olgun ciltli model görselleri üretip sol paneldeki fotoğrafları değiştirmek.
-- Dosyada **modelli Catch Sculpt görseli yok** (sadece beyaz zemin ürün çekimi + latte flat-lay). Sculpt frame'lerinde geçici olarak nötr yüz yakın planları kullanıldı; sculpt'lu model görseli üretilince değiştirilmeli.
+
+## Dosyalar Arası Görsel Taşıma (TR → UK)
+
+**`imageHash` iki dosya arasında doğrudan çalışıyor.** TR dosyasındaki bir görselin fill'indeki `imageHash`'i alıp UK dosyasında bir rect'in `fills`'ine yazmak yeterli — görsel sorunsuz render oluyor. Yeniden yükleme, export/import gerekmiyor.
+
+- `download_assets` / `upload_assets` yolu bu ortamda **kullanılamıyor**: agent proxy `www.figma.com`'a CONNECT'i 403 ile kesiyor, dolayısıyla ne export indirilebiliyor ne de upload URL'ine byte POST'lanabiliyor. Hash kopyalama tek pratik yöntem.
+- Bir görselin üst üste iki IMAGE fill'i olabiliyor (gizli orijinal + görünür rötuşlu) — **`visible: true` olan hash'i** al.
+
+**Catch Sculpt gerçek çekim görselleri** — TR dosyası (`ej8JpbRaZU1qH7rdYxLvGP`), `ARALIK- cont` sayfası, "CATCH SCULPT / SHAPE YOUR GLOW" postları:
+
+| Çekim | imageHash (görünür fill) | İçerik |
+|---|---|---|
+| INO_2025_04_25_01_1377 | `29f5c080fcc021d4585635a7045f64b74f05d5fa` | Model elinde iki stick, yüz yakın plan (SAND) |
+| INO_2025_04_25_01_0680 | `745ea4c3b70131472156ca23352cb8ee9b13932c` | Model stick'i yanağına uyguluyor, kontur çizgileri (SAND) |
+| INO_2025_04_25_03_1104 | `7400eb25aabb789614f3c2ab0b76c1e19e5f07af` | Kızıl saçlı model, dune kontur çizgileri (DUNE) |
 
 ## Üretim/Tasarım Kuralları (UK'ye özel, TR kurallarına ek)
 
