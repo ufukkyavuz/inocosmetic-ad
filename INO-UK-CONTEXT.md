@@ -68,9 +68,9 @@ UK Temmuz 2026 "%30 indirim" kampanyası için iki Slides dosyası kullanılıyo
   - Ürün dekupesi x=506'da (dikişi 34px aşar), alt paydan 60px yukarıda biter; yükseklik sınırı 1920→620, 1350→470, 1080→350.
 - Aynı sayfada x=48169–51549 arasında **daha eski, farklı formatta** (beyaz zemin + ürün + yıldızlı yorum) 15 adet `... review - isim 1080x1080` frame'i var — slayt 17'nin ilk denemesi. Silinmedi; slaytta istenen format yeni settir. Bu setteki isimsiz sculpt frame'i "Jane N." olarak tamamlandı.
 
-**Sculpt frame'lerinin özel düzeni:** Sculpt yorumlarında sol panelde **TR dosyasındaki gerçek Catch Sculpt çekimleri** kullanılıyor (aşağıdaki "Dosyalar arası görsel taşıma"ya bak). Bu fotoğraflar beyaz/aydınlık olduğu için iki sapma var:
-- **Logo beyaz değil koyu (#323232) ve sol ALT köşede** (y = frame yüksekliği − logo − 100) — üstte modelin yüzüne/saçına denk gelip okunmuyordu.
-- **Ürün dekupesi sadece fotoğrafta ürün görünmüyorsa** konuyor. Fotoğrafta ürün varsa (elde tutulan / uygulama çekimi) dekupe kaldırılıp metin bloğu dikeyde ortalanıyor (`panel.primaryAxisAlignItems = 'CENTER'`). Şu an sadece Emma K. (dune kontur çizgileri, üründe yok) dekupe taşıyor.
+**Yapı sabittir — logo ve metin yerleri değiştirilmez (kullanıcı geri bildirimi):** Logo her zaman fotoğrafın **sol ÜST** köşesinde (x=91; y: 1920→184, 1350→129, 1080→103), metin bloğu sağ panelin **üstünden** başlar, ürün dekupesi dikişin üstünde altta durur. Okunurluk sorunu çıksa bile logo/metin taşınmaz — çözüm renk seçiminde aranır.
+
+**Logo rengi kuralı:** **Koyu arka planda BEYAZ, açık arka planda SİYAH (#323232)** logo. Bu, frame bazında logonun ARKASINA denk gelen alana bakılarak belirlenir — aynı konseptin farklı boyutlarında kırpma değiştiği için renk de değişebilir. Sculpt setindeki mevcut dağılım: Samantha G. + Jane N. (saç → beyaz, 3 boyut), Emma K. (beyaz fon → siyah, 3 boyut), Catherine L. + Lisa F. (1920'de saç → beyaz, 1350/1080'de ağırlıklı beyaz fon → siyah).
 
 **Dikkat — sağ panel auto-layout:** `catch glow toast` şablonundaki sağ panel **VERTICAL auto-layout** (paddingTop 183, itemSpacing 32). Metin düğümlerine `y` atamak İŞE YARAMAZ, sessizce yok sayılır — dikey konum `primaryAxisAlignItems` / padding / itemSpacing ile ayarlanır.
 
