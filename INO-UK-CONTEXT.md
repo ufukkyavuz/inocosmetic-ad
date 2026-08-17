@@ -44,9 +44,12 @@ Bu 334px boşluk kalıbını yeni konseptler eklerken de kullan. Yan yana (farkl
 
 ## Font Kısıtı (Figma Plugin API / MCP sandbox)
 
-**Avenir Next** bu ortamda (`use_figma` / `loadFontAsync`) YÜKLENEMİYOR — `listAvailableFontsAsync()` sonucunda yok. Eski frame'ler bu fontu insan tarafından yerel Figma'da oluşturduğu için görüntüler, ama API üzerinden yeni metin oluşturulurken kullanılamaz.
+**"Avenir Next"** bu ortamda (`use_figma` / `loadFontAsync`) YÜKLENEMİYOR — `listAvailableFontsAsync()` sonucunda yok. Eski frame'ler bu fontu insan tarafından yerel Figma'da oluşturduğu için görüntüler, ama API üzerinden yeni metin oluşturulurken kullanılamaz.
 
-- **Başlık/alt yazı ikamesi:** Inter (Black Italic / Semi Bold Italic)
+**AMA "Avenir Next W1G" API'de MEVCUT ve yüklenebiliyor** — pratikte aynı tipografi. Yeni metinlerde varsayılan olarak bunu kullan, Inter'e düşme:
+- Stiller: `Bold`, `Demi`, `Medium`, `Regular`, `Light`, `Heavy` (+ Italic varyantları). Dikkat: `Demi Bold` DEĞİL, sadece `Demi`.
+- **Başlık:** Avenir Next W1G Bold · **Gövde:** Medium · **İmza/atıf:** Demi veya Regular
+- Inter yalnızca W1G'nin de yetmediği durumlarda ikame edilir.
 - **Typewriter tarzı ürün etiketleri:** Courier Prime (Regular)
 
 ## Kampanya Brief Kaynakları (Google Slides)
@@ -54,7 +57,20 @@ Bu 334px boşluk kalıbını yeni konseptler eklerken de kullan. Yan yana (farkl
 UK Temmuz 2026 "%30 indirim" kampanyası için iki Slides dosyası kullanılıyor, her slaytta bir marka referans görseli + Türkçe üretim açıklaması var:
 
 1. **"30%off_July"** — `https://docs.google.com/presentation/d/1GCHyV1DpmMhRM-EvVjl_Yuc8yDJb0chC1NtLcUjFfxA` (9 slayt). Referans markalar: MERIT, rhode, ILIA (x3), mascara stat-claim örneği. **Slide 1 tamamlandı** (bulanık deniz arka planı + 1 Bloom + 1 Glow + 1 Sculpt + typewriter etiketler, → TEMMUZ-2026 sayfası).
-2. **"Content"** — `https://docs.google.com/presentation/d/1X1WRWgABRaUeQLvdfc74MD6W0aCtbR78-j_2RQ_rpRA` (9 slayt). Referans stiller: Pinterest yaz/plaj sahneleri, "CASA MARGUO" tabela konsepti (→ INO yazısıyla), REFY (ürün dizilimi + deniz manzarası), ILIA ("powder that makes your skin better" → Catch Bloom versiyonu), MERIT tinted sunscreen (claim listesi → Catch Bloom/Catch Glow versiyonu), Glossier Cloud Paint (yoğun allık yakın çekim → "meet catch bloom, a super-balm" versiyonu). **Henüz işlenmedi.**
+2. **"Content"** — `https://docs.google.com/presentation/d/1X1WRWgABRaUeQLvdfc74MD6W0aCtbR78-j_2RQ_rpRA` (**17 slayt** — müşteri zaman zaman sonuna yeni slayt ekliyor, her seferinde slayt sayısını tekrar kontrol et). Referans stiller: Pinterest yaz/plaj sahneleri, "CASA MARGUO" tabela konsepti (→ INO yazısıyla), REFY (ürün dizilimi + deniz manzarası), ILIA ("powder that makes your skin better" → Catch Bloom versiyonu), MERIT tinted sunscreen (claim listesi → Catch Bloom/Catch Glow versiyonu), Glossier Cloud Paint (yoğun allık yakın çekim → "meet catch bloom, a super-balm" versiyonu).
+
+### Slaytların Figma karşılığı (Content deck)
+
+- **Slayt 15** → `catch glow toast perf. N` seti (AĞUSTOS-2026, x=33012/34528/36044): sol yarım model fotoğrafı + logo, sağ yarım başlık & yorum, dikişin üstünde ürün dekupesi. 10 konsept × 3 boyut.
+- **Slayt 17** ("yandaki formatın aynısı sadece yazılar daha belirgin olursa müthiş olur") → **`{bloom|glow|sculpt} review - {isim}` seti**, aynı split format, yazılar büyütülmüş: başlık 54→64 (Demi Bold→**Bold**), yorum 40→44 Medium, altına `— İsim` atıf satırı. 15 konsept (5 Bloom, 5 Glow, 5 Sculpt — hepsi 50+/olgun cilt temalı yorumlar) × 3 boyut = 45 frame.
+  - Konumlar: 1080x1920 → x=53000, 1080x1350 → x=54516, 1080x1080 → x=56032; satırlar y = sıra × 2254 (sıra: Bloom Sarah T. → Joanne W. → Helen R. → Claire M. → Nicola P., Glow Victoria S. → Amanda H. → Louise B. → Rachel C. → Michelle D., Sculpt Catherine L. → Emma K. → Samantha G. → Lisa F. → Jane N.).
+  - Boyut bazlı tipografi: 1920 → 64/44/34, 1350 → 56/38/30, 1080 → 50/32/28 (başlık/yorum/atıf), metin kolonu 432px, sol pay 60px.
+  - Ürün dekupesi x=506'da (dikişi 34px aşar), alt paydan 60px yukarıda biter; yükseklik sınırı 1920→620, 1350→470, 1080→350.
+- Aynı sayfada x=48169–51549 arasında **daha eski, farklı formatta** (beyaz zemin + ürün + yıldızlı yorum) 15 adet `... review - isim 1080x1080` frame'i var — slayt 17'nin ilk denemesi. Silinmedi; slaytta istenen format yeni settir. Bu setteki isimsiz sculpt frame'i "Jane N." olarak tamamlandı.
+
+**Açık iş / dikkat:**
+- Slayt 17 yorumları 50+/olgun cilt odaklı ama dosyadaki tüm model fotoğrafları genç modeller — ideali Higgsfield'de olgun ciltli model görselleri üretip sol paneldeki fotoğrafları değiştirmek.
+- Dosyada **modelli Catch Sculpt görseli yok** (sadece beyaz zemin ürün çekimi + latte flat-lay). Sculpt frame'lerinde geçici olarak nötr yüz yakın planları kullanıldı; sculpt'lu model görseli üretilince değiştirilmeli.
 
 ## Üretim/Tasarım Kuralları (UK'ye özel, TR kurallarına ek)
 
