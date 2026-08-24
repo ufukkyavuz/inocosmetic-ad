@@ -97,3 +97,5 @@ UK Temmuz 2026 "%30 indirim" kampanyası için iki Slides dosyası kullanılıyo
 - Set/dizilim görsellerinde ürün karışıklığını önlemek için **varsayılan olarak her üründen sadece 1 tane** kullan (1 Bloom + 1 Glow + 1 Sculpt) — kullanıcı özellikle "hepsini kullan" demediği sürece.
 - Kullanıcının Figma'ya önceden yerleştirdiği referans ürün kırpmaları (TEMMUZ-2026 sayfasında negatif y koordinatlarında: dune, sand, daylily, hibiscus, peony, scarlet, pink quartz, ruby gold) **gerçek UK ambalaj görselleri ve doğru birbirine oranları** — yeni üretimlerde ürün kullanmadan önce bunları `download_assets` ile çekip referans al, TR Products klasöründeki eşdeğerlerini varsayılan olarak kullanma.
 - Higgsfield promptlarında 3+ ürün birlikte referans verilince model tasarımı/etiketi sıkça bozuyor — üretim sonrası ürün etiketinin/logosunun gerçek tasarımla eşleştiğini kontrol et, uydurma/generic yazı çıkarsa yeniden dene.
+
+- **Görsel üretimi:** Claude yalnızca **prompt hazırlar** — üretimi kullanıcı kendi tarafında yapar. Claude tarayıcıdan/API'den üretim başlatmaz, promptu kopyala-yapıştıra hazır tam metin olarak verir (placeholder/"ortak blok" bırakmadan).
