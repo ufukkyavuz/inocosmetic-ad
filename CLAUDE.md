@@ -22,6 +22,7 @@
 - **Ürün ölçeği:** Ürünler gerçek dünya oranında gösterilir. Broad Spectrum tüpünün boyu, **yüzle kıyaslandığında çeneden kaşa kadar** (~12cm / 50ml) olmalı — ne minik ne dev. Diğer ürünler bu tüpe göre orantılı ölçeklenir (katalogdaki gerçek boyutlar; Pocket allık kısa, Normal allık uzun vb.). **Devasa/oversized ürün ölçeği hiçbir zaman kullanılmaz.**
 - **Marka paleti (siyah-beyaz):** Görsel **renkli foto** olur (doğal ten, doğal ortam) — ama **kırmızı/canlı renk kullanılmaz**; tekstil/prop/kıyafet siyah-beyaz tutulur (havlu beyaz + siyah çizgi, bikini siyah ipli/beyaz panel vb.). Fotoğraf **komple grayscale YAPILMAZ**, renkli kalır. Renk yalnızca özellikle istenirse kullanılır
 - **Kadraj / modesty:** Fazla vücut/açıklık gösterilmez — sıkı, modest kadraj tercih edilir (baş-omuz gibi); dekolte/çıplaklık vurgusu yok
+- **Model etnik köken:** Model her zaman açık tenli Avrupalı/Akdenizli tipte olmalı — koyu tenli veya Doğu Asyalı model **kullanılmaz**, aksi özellikle istenmedikçe
 
 ## Prompt Yapısı — Zorunlu 9 Maddelik Format
 
@@ -72,6 +73,30 @@ Her Higgsfield Composer prompt'u aşağıdaki 9 maddeyi bu sırayla içermeli (t
 | `@scarlet-flower` | Character | Scarlet çiçek görseli |
 
 > Element doğrulama her zaman `show_reference_elements` API'siyle yapılır — resmi set adından tag türetmek veya ekran görüntüsünden "bu Element yok" sonucu çıkarmak yasak.
+
+### Element Tag Ek Türleri (suffix konvansiyonları)
+
+Bazı ürünlerin birden fazla referans Element'i vardır, her biri farklı amaç için:
+
+- **`-dudak`** — üründen sadece dudakta/tende sürülmüş renk sonucunu gösteren referans (ambalaj değil, sadece renk/doku sonucu)
+- **`-brush`** — fırça/aplikatör üzerindeki renk sürüntüsü/swatch referansı (renk kodu değil, gerçek pigment görünümü buradan alınır)
+- **`-açık`** — ürünün kapağı açık/kullanım halindeki hali (kapalı ambalaj değil)
+
+Bu suffix'li tag'ler ana ürün tag'inin YERİNE değil, ihtiyaca göre EK olarak kullanılır — hangi suffix'in var olduğu yine `show_reference_elements` ile doğrulanır, tahmin edilmez.
+
+### Çoklu Referans Aşırı Yüklenmesi — Ürün Sadakati Riski
+
+- **3-4'ten fazla Element + bir kompozisyon/ilham fotoğrafı aynı anda referans verildiğinde** model ürünleri karıştırır/icat eder/renk değiştirir/eksik-fazla sayıda üretir. Bu tekrarlayan bir hata deseniydi (ör. 4 ürün istenirken 6 farklı renkte ürün çıkması).
+- **Azaltma stratejileri:**
+  - Mümkünse **tek bir birleşik (combined) Element** (ör. `@bloom-sculpt-broad-glow-beautyshot`) kullanılır — aynı sahnede aynı ürünleri tek tek saymak yerine.
+  - Prompt'un EN BAŞINA "PRODUCT ACCURACY — READ FIRST" / "THE MOST IMPORTANT RULE" gibi bir blok eklenir; ürün sayısı, renk varyantı olmadığı, hangi ürünün hangi Element'ten geldiği madde madde sayılır.
+  - Ürünlerin kendi prosa tarifi prompt'a EKLENMEZ (kafa karıştırır) — sadece Element tag'i çağrılır, açıklama Element referansına bırakılır.
+- **Fiziksel mantık kontrolü:** Sahnede bir ürün başka bir objeye yaslanıyor/dayanıyorsa o obje MUTLAKA kendi içinde stabil tarif edilmeli (devrilmiş/eğik olarak tarif edilen bir objeye yaslanma isteği modelin talimatı sessizce görmezden gelmesine yol açar).
+
+### Grid/Panel Üretimlerinde Sayı Güvenilirliği
+
+- Higgsfield'dan **N×M grid** (ör. 3×3 = 9 panel) istenmesi, panel sayısının tutarlı çıkacağını garanti etmez — bu oturumda 3×3 istenip 3×4 (12 panel) iki kez teslim edildi.
+- **Fallback:** Kesin panel sayısı kritikse, her paneli **ayrı ayrı üretip Figma'da manuel composite** etmek daha güvenilir.
 
 ## Kampanya/Konsept Fikirlendirmede Gerçek Fotoğraf Referansı Zorunlu
 
@@ -168,6 +193,7 @@ Drive'dan ürün görseli yüklemek için (API yöntemi, browser mümkün değil
 - **Font:** Marka fontu **Avenir Next** (Medium / Heavy Italic). Plugin runtime'ı Avenir Next'i yükleyemezse en yakın eş **Inter** (Medium / Black Italic) ile kurulur, sonra elde Avenir Next'e çevrilir
 - **Görsel yükleme:** `upload_assets` ile hedef katmanın `nodeId`'sine FILL olarak basılır; katman adını korumak için **raw bytes** (multipart değil) POST edilir
 - Figma host'u (`www.figma.com`) curl allowlist'inde değil → screenshot doğrulaması `get_screenshot` + `enableBase64Response:true` ile yapılır
+- **`use_figma` (Plugin API) ile metin düzenlerken font ortam kısıtı:** Bazı uzak/otomasyon ortamlarında gerçek "Avenir Next" ailesi yüklenemez (`figma.loadFontAsync` hata verir — sadece "Avenir Next W1G" gibi bir varyant mevcuttur). Font yüklenemeden `characters`, `fontSize`, `letterSpacing`, `fills` (setter), `textAlignHorizontal`, `textAutoResize` gibi metin özellikleri değiştirilemez (yalnızca `x`/`y` gibi konum özellikleri çalışır). **Çözüm:** stil isimleri birebir eşleşen mevcut varyantı (`Avenir Next W1G`) yükleyip geçici olarak o aileye geçmek — fontSize/letterSpacing/renk/pozisyon korunur. Bu bir ikame olduğundan kullanıcıya açıkça belirtilir; kullanıcı kendi makinesinde gerçek Avenir Next yüklüyse orada tekrar doğru fonta çevirebilir. Mixed-style bir text node'un sadece bir kısmı değiştirilecekse `node.getStyledTextSegments(['fontName'])` ile mevcut segment fontları okunup `node.setRangeFontName(start, end, fontName)` ile korunur.
 
 ---
 
