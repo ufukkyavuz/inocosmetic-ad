@@ -173,7 +173,7 @@ Hidrolize balık kolajeni içeren, portakal-lime aromalı içilebilir güzellik 
 ---
 
 ### CATCH BALM — henüz lanse edilmemiş, yakında çıkacak ürün
-Bare / Haze / Bubble / Ice adlı 4 varyantı var (metalik sıkma tüp, gümüşten renkli tona geçen gradyan, `Products/Catch Balm/` klasöründe referans görseller mevcut). **Sitede yayında değil, resmi claims/içerik bilgisi yok — üretim promptlarında fonksiyon/vaat metni uydurulmayacak, sadece kullanıcıdan gelen bilgi kullanılacak.**
+Bare / Haze / Bubble / Ice adlı 4 varyantı var (metalik sıkma tüp, gümüşten renkli tona geçen gradyan, `Products/Catch Balm/` klasöründe referans görseller mevcut). **Sitede yayında değil, resmi claims/içerik bilgisi yok — üretim promptlarında fonksiyon/vaat metni uydurulmayacak, sadece kullanıcıdan gelen bilgi kullanılacak.** 15ml, kapaklı haliyle **tüp uzunluğu 9 cm** (kullanıcı onaylı — el ile tutulan/yakın çekim sahnelerinde bu değeri prompt'a somut olarak yaz, aksi halde ürün büyük çıkıyor).
 
 ---
 
