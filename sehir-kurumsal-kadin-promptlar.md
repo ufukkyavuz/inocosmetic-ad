@@ -182,3 +182,42 @@ Held upright near her cheek with the cap on is @ruby-gold — the only hero prod
 Dominant colours: ["#f0e9e0", "#e9ddcb", "#caa46f", "#8a5a3c", "#1a1a1a", "#c9a15a"] — warm pale desk and wall, golden lamp light, dark blazer, ash-brown hair, warm bokeh, with the product's label colours blending into the golden accent. Mood: warm, calm, end-of-day glow.
 
 Vertical 9:16 composition; keep the upper 40% of the frame as low-detail negative space (dark window with soft warm bokeh) so logo and copy can sit over it — the woman and product sit in the lower two-thirds. Ultra photorealistic, hyperrealistic, indistinguishable from a real photograph, 8K detail. Resolution 2k.
+
+---
+
+## 9 — Çanta flat-lay ("what's in my bag") · INO Ultimate Set + Catch Balm charm
+
+Referans: kullanıcı flat-lay (cognac crescent bag + anahtarlık + gözlük + parfüm + tinler, yaya geçidi zemin). Marka gözükmeyecek, anahtarlık fob'u yerine INO ayna charm + Catch Balm tüpü, ürünler = Ultimate Set (aile başına 1).
+
+```
+Overhead flat-lay shot, camera pointing straight down from directly above, mounted on an overhead copy-stand rig, shot on a 35–50mm lens at a moderate aperture around f/8 for even front-to-back sharpness across the whole arrangement; a deliberate, styled "what's in my bag" editorial flat-lay, not a casual snapshot.
+
+The ground is dark grey asphalt road with one broad diagonal white crosswalk stripe running across the upper third of the frame; the texture is real and matte. At the very bottom edge, a pair of plain black square-toe leather flats enters the frame, toes just visible, as if the owner is standing over her things.
+
+Centred in the lower two-thirds is a structured cognac-brown leather shoulder bag with a smooth crescent / half-moon silhouette, a row of evenly spaced gold dome studs tracing its lower curved edge and side panels, a top zip closure with a small leather zip-pull, and a thin adjustable leather shoulder strap with a gold-tone buckle and keeper. Quality full-grain leather with a soft satin sheen, clean minimal lines. There are NO logos, brand names, monograms, embossed initials or hardware stamps anywhere on the bag or strap — the leather is plain and unmarked where any branding would normally sit.
+
+The long shoulder strap arcs up and loops around in a wide relaxed curve, framing the items laid out inside the loop above the bag:
+- upper-left: a small split key-ring with two or three plain metal keys; hanging from the same ring, the INO round mirror charm — a polished mirror-finish metal disc engraved with the INO mark — and, attached by the metal loop moulded into its nozzle/tip end, a @ice Catch Balm tube lying flat on its side (the ribbed screw-cap end hangs free and is never used as the attachment point).
+- top-centre: a pair of plain black round-frame sunglasses, folded, with no visible branding.
+- upper-right: @broad-spectrum-sunscreen lying flat on its side.
+- left of centre, just below the keys: @ruby-gold lying flat.
+- centre, below the sunglasses: the INO makeup pouch — a small flat zip pouch in soft nude-pink coated canvas with the INO wordmark, lying flat and closed.
+- right of centre: @dune lying flat.
+- lower-right, near the bag's edge: @scarlet lying flat.
+
+Together these are the contents of the INO "Ultimate Set" — one Catch Bloom pocket stick, one Catch Glow, one Broad Spectrum Sunscreen, one Catch Sculpt, and the INO pouch — plus the keys and the Catch Balm charm. Every product's packaging must exactly match its INO reference element: same label layout, colours, typography and logo; do not invent, rename or alter any packaging, and all product text must be perfectly legible and sharp.
+
+Product sizes, all judged against the bag (about 30 cm across at its widest) and kept deliberately SMALL — these are drawn too big by default:
+- @broad-spectrum-sunscreen and @ruby-gold: slim tubes about 12 cm long, no more than about 40% of the bag's width, roughly the size of a slim highlighter pen.
+- @ice Catch Balm: a small metal squeeze tube about 9 cm long, clearly shorter than the sunscreen, about 30% of the bag's width.
+- @dune: a short stick about 6 cm long, about 20% of the bag's width.
+- @scarlet: a tiny pocket stick about 5 cm long, about 17% of the bag's width, clearly smaller than a standard lipstick.
+- the INO pouch: a small flat pouch about 15 cm wide, about 50% of the bag's width.
+Nothing should look oversized next to the bag; if in doubt, make every product smaller, never bigger.
+
+Lit by soft, even overcast daylight from directly above, minimal shadow, flat true-colour rendering typical of outdoor flat-lay photography, with short soft contact shadows anchoring each object on the rough asphalt. The leather shows natural grain and a satin, not glossy, sheen; the gold studs catch a soft low highlight.
+
+Dominant colours: ["#8a5a3c", "#5c3a24", "#3a3a3a", "#c9c9c9", "#e9e4dc", "#c9a15a", "#d9b25a"] — warm cognac leather, dark asphalt, white crosswalk paint, black sunglasses and shoes, gold hardware, with the products' own label colours as small accents. Mood: stylish, editorial, casually luxurious — a street-style "what's in my bag".
+
+Vertical 9:16 composition; keep the upper ~40% of the frame (asphalt and the top of the strap loop) clean and uncluttered for logo and copy — the bag and the arranged items sit in the lower two-thirds. Ultra photorealistic, hyperrealistic, indistinguishable from a real photograph, 8K detail. Resolution 2k.
+```
