@@ -187,17 +187,19 @@ Vertical 9:16 composition; keep the upper 40% of the frame as low-detail negativ
 
 ## 9 — Çanta flat-lay ("what's in my bag") · `@bloom-sculpt-broad-glow-beautyshot-balm` + charm
 
-Referans kompozisyonu KORUNUYOR: cognac crescent bag (markasız) + anahtarlar + siyah yuvarlak gözlük + siyah babet + yaya geçidi zemin. Ürünler tek birleşik element'ten. Anahtarlık fob'u → INO ayna charm (Catch Balm nozul ucuna bağlı). Ekstra INO pouch / ikinci çanta YOK.
+Ref 1 = dizilim + asfalt/yaya geçidi zemin. Ref 2 = SİYAH deri çanta stili (markasız — Coach logosu yok). Ürünler tek birleşik element'ten, ref 1 dizilimine. INO ayna charm, çantanın yan askı halkasına asılı (ref 2'deki kiraz charm konumu), Catch Balm tüpü aynı halkaya bağlı. Ekstra pouch / ikinci çanta YOK.
 
 ```
 Overhead flat-lay shot, camera pointing straight down from directly above, mounted on an overhead copy-stand rig, shot on a 35–50mm lens at a moderate aperture around f/8 for even front-to-back sharpness across the whole arrangement; a deliberately styled "what's in my bag" editorial flat-lay, not a casual snapshot.
 
 The ground is dark grey asphalt road with one broad diagonal white crosswalk stripe running across the upper third of the frame; the texture is real and matte. At the very bottom edge, a pair of plain black square-toe leather flats enters the frame, toes just visible, as if the owner is standing over her things.
 
-Centred in the lower two-thirds is a structured cognac-brown leather shoulder bag with a smooth crescent / half-moon silhouette, a row of evenly spaced gold dome studs tracing its lower curved edge and side panels, a top zip closure with a small leather zip-pull, and a thin adjustable leather shoulder strap with a gold-tone buckle and keeper. Quality full-grain leather with a soft satin sheen, clean minimal lines. There are NO logos, brand names, monograms, embossed initials or hardware stamps anywhere on the bag or strap — the leather is plain and unmarked where any branding would normally sit.
+Centred in the lower two-thirds is a structured BLACK smooth leather shoulder bag with a clean crescent / half-moon silhouette, a top zip closure with a small leather zip-pull, slim gold-tone strap rings and buckle, and a thin adjustable black leather shoulder strap. Supple full-grain black leather with a soft satin sheen, minimal hardware, clean lines. There are NO logos, brand names, monograms, embossed initials, hangtags or hardware stamps anywhere on the bag or strap — the leather is plain and unmarked where any branding would normally sit.
 
-The long shoulder strap arcs up and loops around in a wide relaxed curve, framing the items laid out inside the loop above the bag. All products are from @bloom-sculpt-broad-glow-beautyshot-balm and their packaging must match that reference exactly — same label layout, colours, typography and logo; do not invent, rename, add or drop any product, and all product text must be perfectly legible and sharp. Arrange them into the reference layout:
-- upper-left: a small split key-ring with two or three plain metal keys; the keychain fob is the INO mirror charm — a small polished mirror-finish metal disc engraved with the INO mark — hanging from the ring, and clipped to the same ring by the metal loop moulded into its nozzle / tip end is the Catch Balm squeeze tube, lying flat on its side (its ribbed screw-cap end hangs free and is never used as the attachment point).
+Hanging from the bag's right-side strap ring is the INO mirror charm — a small polished mirror-finish metal disc engraved with the INO mark — on a short gold clasp; clipped to the same ring by the metal loop moulded into its nozzle / tip end is the Catch Balm squeeze tube, resting flat on the asphalt just below the charm (its ribbed screw-cap end hangs free and is never used as the attachment point).
+
+The long shoulder strap arcs up and loops around in a wide relaxed curve, framing the rest of the items laid out inside the loop above the bag. All products are from @bloom-sculpt-broad-glow-beautyshot-balm and their packaging must match that reference exactly — same label layout, colours, typography and logo; do not invent, rename, add or drop any product, and all product text must be perfectly legible and sharp. Arrange them into this layout:
+- upper-left: a small split key-ring with two or three plain metal keys.
 - top-centre: a pair of plain black round-frame sunglasses, folded, with no visible branding.
 - upper-right: the Broad Spectrum Sunscreen tube, lying flat on its side.
 - centre, below the sunglasses: the Beauty Shot collagen drink bottle, lying flat.
@@ -213,9 +215,9 @@ Product sizes, all judged against the bag (about 30 cm across at its widest) and
 - Catch Bloom: a tiny pocket stick about 5 cm long, about 17% of the bag's width, clearly smaller than a standard lipstick.
 Nothing should look oversized next to the bag; if in doubt, make every product smaller, never bigger.
 
-Lit by soft, even overcast daylight from directly above, minimal shadow, flat true-colour rendering typical of outdoor flat-lay photography, with short soft contact shadows anchoring each object on the rough asphalt. The leather shows natural grain and a satin, not glossy, sheen; the gold studs catch a soft low highlight.
+Lit by soft, even overcast daylight from directly above, minimal shadow, flat true-colour rendering typical of outdoor flat-lay photography, with short soft contact shadows anchoring each object on the rough asphalt. The black leather shows natural grain and a satin, not glossy, sheen; the gold hardware catches a soft low highlight.
 
-Dominant colours: ["#8a5a3c", "#5c3a24", "#3a3a3a", "#c9c9c9", "#e9e4dc", "#c9a15a", "#d9b25a"] — warm cognac leather, dark asphalt, white crosswalk paint, black sunglasses and shoes, gold hardware, with the products' own label colours as small accents. Mood: stylish, editorial, casually luxurious — a street-style "what's in my bag".
+Dominant colours: ["#141414", "#2f2f2f", "#3a3a3a", "#c9c9c9", "#e9e4dc", "#c9a15a"] — black leather bag, sunglasses and shoes, dark asphalt, white crosswalk paint, warm gold hardware, with the products' own label colours as the only bright accents against the black-and-grey scene. Mood: sleek, editorial, city street-style — a monochrome "what's in my bag".
 
 Vertical 9:16 composition; keep the upper ~40% of the frame (asphalt and the top of the strap loop) clean and uncluttered for logo and copy — the bag and the arranged items sit in the lower two-thirds. Ultra photorealistic, hyperrealistic, indistinguishable from a real photograph, 8K detail. Resolution 2k.
 ```
