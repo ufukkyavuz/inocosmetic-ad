@@ -116,6 +116,11 @@ Model yüzüyle birlikte çekilen stick ürün görsellerinde ürün defalarca g
 - **El ile tutulan kompozisyonlarda denenen yöntemler hâlâ tam çözmüyor:** cm değeri, parmak kıyaslaması (index finger, thumb) ve yüz-landmark sıkıştırma (ağız kenarı–çene çizgisi) hepsi denendi — her seferinde ürün yine de gözle görülür şekilde büyük çıkıyor. Bu, modelin (nano_banana_pro) close-up güzellik çekimlerinde "elde tutulan ürün" için eğitim verisindeki alışılmış (büyük lipstick/tüp) oranına çekilme eğiliminden kaynaklanıyor olabilir — salt metinle boyut talimatı vermek tek başına güvenilir değil.
 - **Sıradaki denenecek yöntem:** ürünü bilinen, küçük, çok tanıdık bir nesneyle kıyaslamak (ör. "a standard lip balm/chapstick tube" boyutunda) + kadraja göre yüzde vermek (ör. "no more than ~1/5 of total frame height"). Soyut yüz oranı yerine modelin eğitiminde bol örneği olan tanıdık bir nesneye çapalamak daha güvenilir olabilir.
 - **Eğer prompt-only yaklaşım birkaç denemeden sonra da tutmazsa:** üretim sonrası crop/resize (üretilen görselde ürünü manuel küçültüp yeniden yerleştirme) ya da image-to-image ile önceden ölçekli bir mockup'ı reference olarak sokma gibi post-processing çözümlerine geçmeyi düşün — bu, salt prompt'la çözülemeyen bir sınırlama olabilir.
+- **STANDART (2026-08-28 sonrası): her ürün boyutu 3 katmanla yazılır** — (a) sıkı yüz/el landmark'ı, (b) kadraj yüzdesi, (c) tanıdık nesne çapası + *"if in doubt, make it smaller, never bigger"*. Landmark'ları bilerek küçült (model şişiriyor):
+  - **Broad Spectrum / Catch Glow (12 cm):** çene–kaş altı DEĞİL → **çene ile burun dibi arası**; kadrajın **≤ 1/6'sı**; "slim highlighter-pen / travel-size tube" boyutunda.
+  - **Catch Balm (9 cm):** **çene ile burun ucu arası**; kadrajın **≤ 1/7'si**; "travel hand-cream / hotel toiletry tube" boyutunda.
+  - **Hibiscus / Scarlet / Daylily / Peony / Sculpt (5–6 cm):** **serçe parmağı boyundan uzun değil**; kadrajın **≤ 1/9'u**; "clearly smaller than a standard lipstick".
+  - Elde tutulan tüpler için ek: *"in her hand it runs only from the base of her fingers to her fingertips and is shorter than her palm is long."*
 
 ---
 
