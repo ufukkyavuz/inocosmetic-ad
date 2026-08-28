@@ -185,26 +185,37 @@ Vertical 9:16 composition; keep the upper 40% of the frame as low-detail negativ
 
 ---
 
-## 9 — Ürün flat-lay · `@bloom-sculpt-broad-glow-beautyshot-balm` + charm
+## 9 — Çanta flat-lay ("what's in my bag") · `@bloom-sculpt-broad-glow-beautyshot-balm` + charm
 
-Tek birleşik element kullanılıyor, ekstra prop yok (çanta / anahtar / gözlük / ayakkabı / pouch yok). Tek ekstra: INO ayna charm, Catch Balm tüpünün nozul ucundaki halkaya bağlı. Zemin: asfalt + yaya geçidi şeridi.
+Referans kompozisyonu KORUNUYOR: cognac crescent bag (markasız) + anahtarlar + siyah yuvarlak gözlük + siyah babet + yaya geçidi zemin. Ürünler tek birleşik element'ten. Anahtarlık fob'u → INO ayna charm (Catch Balm nozul ucuna bağlı). Ekstra INO pouch / ikinci çanta YOK.
 
 ```
-Overhead flat-lay shot, camera pointing straight down from directly above, mounted on an overhead copy-stand rig, shot on a 35–50mm lens at a moderate aperture around f/8 for even front-to-back sharpness across the whole arrangement; a clean, deliberately styled editorial product flat-lay.
+Overhead flat-lay shot, camera pointing straight down from directly above, mounted on an overhead copy-stand rig, shot on a 35–50mm lens at a moderate aperture around f/8 for even front-to-back sharpness across the whole arrangement; a deliberately styled "what's in my bag" editorial flat-lay, not a casual snapshot.
 
-The ground is dark grey asphalt road with one broad diagonal white crosswalk stripe running across the upper third of the frame; the texture is real and matte. Nothing else is in the scene — no bag, no keys, no sunglasses, no shoes, no pouch, no props of any kind.
+The ground is dark grey asphalt road with one broad diagonal white crosswalk stripe running across the upper third of the frame; the texture is real and matte. At the very bottom edge, a pair of plain black square-toe leather flats enters the frame, toes just visible, as if the owner is standing over her things.
 
-Laid out on the asphalt is the full INO product line-up from @bloom-sculpt-broad-glow-beautyshot-balm — the Catch Bloom stick, the Catch Sculpt stick, the Broad Spectrum Sunscreen tube, the Catch Glow tube, the Beauty Shot collagen drink, and the Catch Balm squeeze tube — arranged in a relaxed, evenly spaced editorial cluster, each item lying flat on its side (nothing standing upright), gently fanned so every label faces the camera and no product overlaps another.
+Centred in the lower two-thirds is a structured cognac-brown leather shoulder bag with a smooth crescent / half-moon silhouette, a row of evenly spaced gold dome studs tracing its lower curved edge and side panels, a top zip closure with a small leather zip-pull, and a thin adjustable leather shoulder strap with a gold-tone buckle and keeper. Quality full-grain leather with a soft satin sheen, clean minimal lines. There are NO logos, brand names, monograms, embossed initials or hardware stamps anywhere on the bag or strap — the leather is plain and unmarked where any branding would normally sit.
 
-The only extra element is the INO mirror charm: a small polished mirror-finish metal disc engraved with the INO mark, attached by the metal loop moulded into the nozzle / tip end of the Catch Balm tube and lying flat right beside it — the ribbed screw-cap end of the balm is free and unattached.
+The long shoulder strap arcs up and loops around in a wide relaxed curve, framing the items laid out inside the loop above the bag. All products are from @bloom-sculpt-broad-glow-beautyshot-balm and their packaging must match that reference exactly — same label layout, colours, typography and logo; do not invent, rename, add or drop any product, and all product text must be perfectly legible and sharp. Arrange them into the reference layout:
+- upper-left: a small split key-ring with two or three plain metal keys; the keychain fob is the INO mirror charm — a small polished mirror-finish metal disc engraved with the INO mark — hanging from the ring, and clipped to the same ring by the metal loop moulded into its nozzle / tip end is the Catch Balm squeeze tube, lying flat on its side (its ribbed screw-cap end hangs free and is never used as the attachment point).
+- top-centre: a pair of plain black round-frame sunglasses, folded, with no visible branding.
+- upper-right: the Broad Spectrum Sunscreen tube, lying flat on its side.
+- centre, below the sunglasses: the Beauty Shot collagen drink bottle, lying flat.
+- left of centre: the Catch Glow tube, lying flat.
+- right of centre: the Catch Sculpt stick, lying flat.
+- lower-right, near the bag's edge: the Catch Bloom stick, lying flat.
 
-Every product's packaging must exactly match its reference in @bloom-sculpt-broad-glow-beautyshot-balm: same label layout, colours, typography and logo; do not invent, rename, add or drop any product, and all product text must be perfectly legible and sharp.
+Product sizes, all judged against the bag (about 30 cm across at its widest) and kept deliberately SMALL — these are drawn too big by default:
+- Broad Spectrum Sunscreen and Catch Glow: slim tubes about 12 cm long, no more than about 40% of the bag's width, roughly the size of a slim highlighter pen.
+- Beauty Shot bottle: about the same height as the sunscreen, about 40% of the bag's width.
+- Catch Balm: a small metal squeeze tube about 9 cm long, clearly shorter than the sunscreen, about 30% of the bag's width.
+- Catch Sculpt: a short stick about 6 cm long, about 20% of the bag's width.
+- Catch Bloom: a tiny pocket stick about 5 cm long, about 17% of the bag's width, clearly smaller than a standard lipstick.
+Nothing should look oversized next to the bag; if in doubt, make every product smaller, never bigger.
 
-Relative sizes must be correct and kept deliberately SMALL — these are drawn too big by default. Using the Broad Spectrum Sunscreen and Catch Glow tubes as the 100% reference at about 12 cm long: the Beauty Shot bottle is about the same height; the Catch Balm tube is about 70% of that (roughly 9 cm); the Catch Sculpt stick is about 50% (roughly 6 cm); the Catch Bloom stick is about 40% (roughly 5 cm, clearly smaller than a standard lipstick). No single product should span more than about one third of the frame width. If in doubt, make every product smaller, never bigger.
+Lit by soft, even overcast daylight from directly above, minimal shadow, flat true-colour rendering typical of outdoor flat-lay photography, with short soft contact shadows anchoring each object on the rough asphalt. The leather shows natural grain and a satin, not glossy, sheen; the gold studs catch a soft low highlight.
 
-Lit by soft, even overcast daylight from directly above, minimal shadow, flat true-colour rendering typical of outdoor flat-lay photography, with short soft contact shadows anchoring each object on the rough asphalt.
+Dominant colours: ["#8a5a3c", "#5c3a24", "#3a3a3a", "#c9c9c9", "#e9e4dc", "#c9a15a", "#d9b25a"] — warm cognac leather, dark asphalt, white crosswalk paint, black sunglasses and shoes, gold hardware, with the products' own label colours as small accents. Mood: stylish, editorial, casually luxurious — a street-style "what's in my bag".
 
-Dominant colours: ["#3a3a3a", "#c9c9c9", "#e9e4dc", "#8a5a3c", "#1a1a1a"] — dark asphalt, white crosswalk paint, warm neutral highlights, with the products' own label colours as the only saturated accents. Mood: clean, editorial, street-style minimal.
-
-Vertical 9:16 composition; keep the upper ~40% of the frame (plain asphalt and crosswalk stripe) clean and uncluttered for logo and copy — the product cluster sits in the lower two-thirds. Ultra photorealistic, hyperrealistic, indistinguishable from a real photograph, 8K detail. Resolution 2k.
+Vertical 9:16 composition; keep the upper ~40% of the frame (asphalt and the top of the strap loop) clean and uncluttered for logo and copy — the bag and the arranged items sit in the lower two-thirds. Ultra photorealistic, hyperrealistic, indistinguishable from a real photograph, 8K detail. Resolution 2k.
 ```
