@@ -47,9 +47,11 @@
 - **"Fuller/rounder face" ifadesi modeli şişman/tombul çiziyor:** Yüzü referanstan farklılaştırmak için "rounder fuller face shape" gibi ifadeler kullanma — model bunu kilolu/tombul olarak yorumluyor. Bunun yerine "beautiful, slim, attractive editorial model" gibi çekicilik/incelik vurgusu ekle, yüz farkını "high cheekbones", saç dokusu/rengi, cilt tonu gibi kiloyla ilgisi olmayan özelliklerle ver.
 - **Çoklu Chrome bağlantısı hatası** ("Multiple Chrome browsers are connected") çıkarsa `list_connected_browsers` ile güncel deviceId'i al, `select_browser` ile seç — hata mesajındaki eski deviceId'e güvenme. Aynı Higgsfield hesabı/proje ("ufo") her bağlı tarayıcıda görünmeyebilir — proje listede yoksa diğer bağlı tarayıcıyı dene.
 
-## Ürün Aksesuar Fiziği — Catch Balm Anahtarlık/Charm Sahneleri
+## Ürün Aksesuar Fiziği — Catch Balm (dik durma + charm)
 
-**Varsayılan: halka/ayna charm YOK.** Kullanıcı açıkça "çantaya asılı", "anahtarlık" gibi bir sahne istemediği sürece Catch Balm tüpüne halka veya charm eklenmez — özellikle **set/dizilim görsellerinde asla eklenmez**. `@haze`, `@bare` gibi element'lerin referans görselinde charm/halka görünmesi bunu otomatik olarak her sahneye taşıma gerekçesi değildir; bu bölümdeki kurallar sadece kullanıcının özellikle istediği çanta/anahtarlık sahnesinde uygulanır.
+**Dik durma fiziği:** Catch Balm tüpü bir yüzeyin (masa, raf, zemin) üstünde **kendi başına dik/dikey DURAMAZ** — nozul/kapak ucu bu ağırlığı taşıyacak formda değil. Yüzey üstü sahnelerde tüp **daima yan yatar**. Ancak **el ile tutulurken dik de yatay da tutulabilir** (el desteklediği için fiziksel sorun yok) — "elde asla dik tutulmaz" diye bir kural YOK. Yani yasak olan tek şey: desteksiz bir yüzeyde dikine durması.
+
+**Charm/halka:** Zorunlu değil, yasak da değil — sahneye göre karar verilir. Çanta/anahtarlık sahnesi olmasa bile, uygun düştüğünde tüpün nozul ucundaki halkaya küçük bir ayna charm eklenebilir. Sadece **set/dizilim (birden çok ürün yan yana) görsellerinde** eklenmez, orada tüp sade kalır. `@haze`/`@bare` referansındaki charm'ı otomatik her sahneye taşıma — bilinçli seç.
 
 Çanta/anahtarlık temalı Catch Balm sahnelerinde (ör. çanta sapına asılı tüp+ayna charm) ürünün gerçek fiziksel bağlantı noktası şu şekildedir — bu noktayı yanlış kurmak tekrar tekrar aynı hataya yol açtı:
 
