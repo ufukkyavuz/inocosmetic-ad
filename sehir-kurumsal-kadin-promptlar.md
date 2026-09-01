@@ -264,7 +264,7 @@ Dominant colours: ["#ffffff", "#f4f4f4", "#e6e6e6", "#e9c3a6", "#f2ded0", "#eef3
 Vertical 9:16 composition; the upper ~40% is clean empty white studio background reserved for logo and copy — the hand and product sit in the lower two-thirds. Ultra photorealistic, hyperrealistic, indistinguishable from a real photograph, 8K detail. Resolution 2k.
 ```
 
-### 10c — Catch Balm (`@ice`)
+### 10c — Catch Balm Bare (`@bare`)
 
 ```
 Medium close-up product shot in vertical portrait orientation, camera straight-on at roughly the height of the raised hand, shot on a professional camera with an 85mm lens at a moderate aperture around f/4; the product sits sharp and centred, a clean minimalist beauty-brand studio campaign frame, not a candid snapshot.
@@ -275,9 +275,9 @@ Seamless white studio background with a soft radial falloff — bright white at 
 
 Large soft key light from the front-upper-left with a broad even fill from the right, high-key overall; soft-edged, low-contrast shadows and a bright soft specular glint along one edge of the metallic tube. Skin reads healthy and clean with fine natural texture. Neutral colour temperature around 5500K.
 
-She holds @ice upright in a relaxed grip — the hand supports it so vertical is fine — with the ribbed screw-cap end down and the label turned fully to camera. @ice must match its reference element exactly — same label layout, colours, typography and logo; all product text perfectly legible, sharp and accurate, no blurry or distorted letters. @ice is a small metal squeeze tube about 9 cm long — about 70% the height of a 12 cm Broad Spectrum / Catch Glow tube; in her hand it runs only from the base of her fingers to just past her fingertips and takes up no more than about one quarter of the total image height — travel hand-cream size, not oversized. If in doubt, make it smaller, never bigger.
+She holds @bare upright in a relaxed grip — the hand supports it so vertical is fine — with the ribbed screw-cap end down and the label turned fully to camera. @bare must match its reference element exactly — same silver-to-nude-pink gradient, label layout, colours, typography and logo; all product text perfectly legible, sharp and accurate, no blurry or distorted letters. @bare is a small metal squeeze tube about 9 cm long — about 70% the height of a 12 cm Broad Spectrum / Catch Glow tube; in her hand it runs only from the base of her fingers to just past her fingertips and takes up no more than about one quarter of the total image height — travel hand-cream size, not oversized. If in doubt, make it smaller, never bigger.
 
-Dominant colours: ["#ffffff", "#f4f4f4", "#e6e6e6", "#e9c3a6", "#f2ded0", "#cfd8de"] — white-to-pale-grey studio background, natural fair skin, silver-to-tinted metallic tube, with the balm's own gradient as the cool focal accent. Mood: clean, minimal, premium — a studio skin campaign frame.
+Dominant colours: ["#ffffff", "#f4f4f4", "#e6e6e6", "#e9c3a6", "#f2ded0", "#e6c3c8"] — white-to-pale-grey studio background, natural fair skin, silver-to-dusty-pink metallic tube, with the balm's own nude-pink gradient as the soft focal accent. Mood: clean, minimal, premium — a studio skin campaign frame.
 
 Vertical 9:16 composition; the upper ~40% is clean empty white studio background reserved for logo and copy — the hand and product sit in the lower two-thirds. Ultra photorealistic, hyperrealistic, indistinguishable from a real photograph, 8K detail. Resolution 2k.
 ```
