@@ -221,3 +221,63 @@ Dominant colours: ["#141414", "#2f2f2f", "#3a3a3a", "#c9c9c9", "#e9e4dc", "#c9a1
 
 Vertical 9:16 composition; keep the upper ~40% of the frame (asphalt and the top of the strap loop) clean and uncluttered for logo and copy — the bag and the arranged items sit in the lower two-thirds. Ultra photorealistic, hyperrealistic, indistinguishable from a real photograph, 8K detail. Resolution 2k.
 ```
+
+---
+
+## 10 — El + mavi gökyüzü (OSEA formatı) · tek ürün · Hibiscus / Broad Spectrum / Catch Balm
+
+Ref: alttan yükselen el, ürünü dikey ortada tutuyor, arka plan sade mavi gökyüzü gradyanı, sıcak direkt güneş ışığı, lüks-minimal. Beyaz zemin kuralı burada geçerli değil (onaylı istisna). Üst %40 gökyüzü zaten boş → logo/yazı için ideal. Elde tutulduğu için Catch Balm dikey serbest.
+
+### 10a — Catch Bloom Hibiscus (`@hibiscus`)
+
+```
+Medium close-up product shot in vertical portrait orientation, camera straight-on at roughly the height of the raised hand, shot on a professional camera with an 85mm lens at a moderate aperture around f/4; the product sits sharp and centred, a clean minimalist beauty-brand campaign frame, not a candid snapshot.
+
+The hand and forearm of a young adult woman with smooth, warm fair Caucasian skin and a bare natural manicure rise into the frame from the bottom edge, wrist straight, holding the product upright at roughly the vertical centre of the frame. No face, hair or other part of the body is visible — only the hand and part of the forearm.
+
+Behind is nothing but a clear, cloudless summer sky in a smooth gradient — deeper cobalt blue at the top easing to a paler, brighter blue toward the bottom. No horizon, no clouds, no objects, no background detail of any kind.
+
+Bright direct midday sunlight from the upper front, warm and slightly golden on the skin, with crisp small shadows and healthy luminous skin showing fine natural texture; the product catches one clean soft highlight down its edge. Warm colour temperature around 5000K.
+
+She holds @hibiscus upright between her thumb and first two fingers in a light pinch grip, cap on, the label turned fully to camera. @hibiscus must match its reference element exactly — same label layout, colours, typography and logo; all product text perfectly legible, sharp and accurate, no blurry or distorted letters. @hibiscus is a tiny compact Pocket-size stick about 5 cm long — only about 20% the height of a 12 cm Broad Spectrum / Catch Glow tube, no longer than her pinky finger, taking up no more than about one sixth of the total image height, clearly smaller than a standard lipstick. Keep it small; if in doubt, make it smaller, never bigger.
+
+Dominant colours: ["#1f6fc4", "#3f8fd6", "#8fc3e8", "#e9c3a6", "#f2ded0", "#c94f4f"] — cobalt-to-pale blue sky gradient, warm sunlit skin, with the product's own label colour as the single saturated accent. Mood: sunny, fresh, luxe-minimal — a bright summer beauty moment.
+
+Vertical 9:16 composition; the upper ~40% is clean open sky reserved for logo and copy — the hand and product sit in the lower two-thirds. Ultra photorealistic, hyperrealistic, indistinguishable from a real photograph, 8K detail. Resolution 2k.
+```
+
+### 10b — Broad Spectrum Sunscreen (`@broad-spectrum-sunscreen`)
+
+```
+Medium close-up product shot in vertical portrait orientation, camera straight-on at roughly the height of the raised hand, shot on a professional camera with an 85mm lens at a moderate aperture around f/4; the product sits sharp and centred, a clean minimalist beauty-brand campaign frame, not a candid snapshot.
+
+The hand and forearm of a young adult woman with smooth, warm fair Caucasian skin and a bare natural manicure rise into the frame from the bottom edge, wrist straight, holding the product upright at roughly the vertical centre of the frame. No face, hair or other part of the body is visible — only the hand and part of the forearm.
+
+Behind is nothing but a clear, cloudless summer sky in a smooth gradient — deeper cobalt blue at the top easing to a paler, brighter blue toward the bottom. No horizon, no clouds, no objects, no background detail of any kind.
+
+Bright direct midday sunlight from the upper front, warm and slightly golden on the skin, with crisp small shadows and healthy luminous skin showing fine natural texture; the product catches one clean soft highlight down its edge. Warm colour temperature around 5000K.
+
+She holds @broad-spectrum-sunscreen upright, cap end down, fingers wrapped in a relaxed natural grip with the thumb along the front, the label turned fully to camera. @broad-spectrum-sunscreen must match its reference element exactly — same label layout, colours, typography and logo; all product text perfectly legible, sharp and accurate, no blurry or distorted letters. It is a slim tube about 12 cm long: in her hand it runs from the base of her fingers to about a thumb-length above her fingertips and takes up no more than about one third of the total image height — a slim travel-size tube, NOT an oversized studio prop. If in doubt, make it smaller, never bigger.
+
+Dominant colours: ["#1f6fc4", "#3f8fd6", "#8fc3e8", "#e9c3a6", "#f2ded0", "#eef3f6"] — cobalt-to-pale blue sky gradient, warm sunlit skin, cool white tube, with the product's own label colours as the accents. Mood: sunny, fresh, luxe-minimal — a bright summer sun-care moment.
+
+Vertical 9:16 composition; the upper ~40% is clean open sky reserved for logo and copy — the hand and product sit in the lower two-thirds. Ultra photorealistic, hyperrealistic, indistinguishable from a real photograph, 8K detail. Resolution 2k.
+```
+
+### 10c — Catch Balm (`@ice`)
+
+```
+Medium close-up product shot in vertical portrait orientation, camera straight-on at roughly the height of the raised hand, shot on a professional camera with an 85mm lens at a moderate aperture around f/4; the product sits sharp and centred, a clean minimalist beauty-brand campaign frame, not a candid snapshot.
+
+The hand and forearm of a young adult woman with smooth, warm fair Caucasian skin and a bare natural manicure rise into the frame from the bottom edge, wrist straight, holding the product upright at roughly the vertical centre of the frame. No face, hair or other part of the body is visible — only the hand and part of the forearm.
+
+Behind is nothing but a clear, cloudless summer sky in a smooth gradient — deeper cobalt blue at the top easing to a paler, brighter blue toward the bottom. No horizon, no clouds, no objects, no background detail of any kind.
+
+Bright direct midday sunlight from the upper front, warm and slightly golden on the skin, with crisp small shadows and healthy luminous skin showing fine natural texture; the metallic tube catches a bright specular glint along one edge. Warm colour temperature around 5000K.
+
+She holds @ice upright in a relaxed grip — the hand supports it so vertical is fine — with the ribbed screw-cap end down and the label turned fully to camera. @ice must match its reference element exactly — same label layout, colours, typography and logo; all product text perfectly legible, sharp and accurate, no blurry or distorted letters. @ice is a small metal squeeze tube about 9 cm long — about 70% the height of a 12 cm Broad Spectrum / Catch Glow tube; in her hand it runs only from the base of her fingers to just past her fingertips and takes up no more than about one quarter of the total image height — travel hand-cream size, not oversized. If in doubt, make it smaller, never bigger.
+
+Dominant colours: ["#1f6fc4", "#3f8fd6", "#8fc3e8", "#e9c3a6", "#f2ded0", "#cfd8de"] — cobalt-to-pale blue sky gradient, warm sunlit skin, silver-to-tinted metallic tube, with the balm's own gradient as the cool focal accent. Mood: sunny, fresh, luxe-minimal — a bright summer skin moment.
+
+Vertical 9:16 composition; the upper ~40% is clean open sky reserved for logo and copy — the hand and product sit in the lower two-thirds. Ultra photorealistic, hyperrealistic, indistinguishable from a real photograph, 8K detail. Resolution 2k.
+```
