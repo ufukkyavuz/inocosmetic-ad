@@ -281,3 +281,89 @@ Dominant colours: ["#1f6fc4", "#3f8fd6", "#8fc3e8", "#e9c3a6", "#f2ded0", "#cfd8
 
 Vertical 9:16 composition; the upper ~40% is clean open sky reserved for logo and copy — the hand and product sit in the lower two-thirds. Ultra photorealistic, hyperrealistic, indistinguishable from a real photograph, 8K detail. Resolution 2k.
 ```
+
+---
+
+## 11 — Termal çanta + setler · temiz stüdyo (beyaz zemin)
+
+Element: `@termal-çanta` (chip yeşile dönmezse `@termal-canta` dene). Zemin: CLAUDE.md varsayılanı — seamless beyaz→açık gri radial gradient, lüks/minimal. Üst %40 boş. Bloom rengi sette müşteri seçer → `@hibiscus` yazdım, `@scarlet` ile değiştirilebilir. "Glow & Shield Set" projede yok, atlandı.
+
+### 11a — Flat-lay · Your Everyday Set (Bloom + Glow + Broad)
+
+```
+Overhead flat-lay product photograph, camera pointing straight down from directly above, mounted on an overhead copy-stand rig, shot on a 35–50mm lens at a moderate aperture around f/8 for even front-to-back sharpness.
+
+Seamless white studio background with a soft radial falloff — bright white at the centre easing to a faint neutral grey at the edges. No props, no texture, no horizon.
+
+@termal-çanta lies flat in the lower-centre of the frame, turned a few degrees off-axis, its zip undone and the top flap folded open; the three products of the INO Your Everyday Set are arranged in a neat diagonal fan just beside the opening, two of them half-emerging from the bag — @broad-spectrum-sunscreen, @ruby-gold and @hibiscus — each lying flat on its side, label turned to camera, none overlapping.
+
+@termal-çanta and every product must match their reference elements exactly — same shape, material, colour, panels, zip, label layout, typography and logo; do not invent, rename or alter anything. All text on the bag and products is perfectly legible, sharp and accurate, no blurry or distorted letters.
+
+Sizes are judged against @termal-çanta (about 22 cm wide) and kept deliberately SMALL — products are drawn too big by default: @broad-spectrum-sunscreen and @ruby-gold are slim tubes about 12 cm long, roughly half the bag's width, the size of a slim highlighter pen; @hibiscus is a tiny pocket stick about 5 cm long, about 20% of the bag's width, clearly smaller than a standard lipstick. Nothing should look oversized next to the bag; if in doubt, make every product smaller, never bigger.
+
+Lit by soft, even, slightly overcast-style top light, minimal shadow, flat true-colour rendering, with short soft contact shadows grounding each object on the white. Materials read true — matte/satin bag fabric, the products' own finishes crisp. Clean neutral colour temperature around 5500K.
+
+Dominant colours: ["#ffffff", "#f4f4f4", "#e6e6e6", "#d8d8d8"] plus @termal-çanta's own colour and the products' label colours as the only saturated accents against the white. Mood: clean, premium, minimal — a skincare-campaign set shot.
+
+Vertical 9:16 composition; keep the upper ~40% as clean empty studio background for logo and copy — the bag and products sit in the lower two-thirds. Ultra photorealistic, hyperrealistic, indistinguishable from a real photograph, 8K detail. Resolution 2k.
+```
+
+### 11b — Ayakta grup · Color & Shield Set (Bloom + Broad)
+
+```
+Eye-level three-quarter product photograph, camera just above the tabletop line, shot on an 85mm lens at a moderate aperture around f/5.6; deliberate, symmetrical, a directed studio campaign frame.
+
+Seamless white studio sweep with a soft radial falloff — bright white centre easing to faint neutral grey at the edges. No props, no texture, no visible horizon seam.
+
+@termal-çanta stands upright and fully zipped, centred and set slightly back. In front of it, standing upright in a slight staggered row, are the two products of the INO Color & Shield Set — @broad-spectrum-sunscreen and @hibiscus (the Catch Bloom stick standing on its flat base) — labels turned to camera. A faint, true reflection sits beneath everything on a subtle glossy white riser.
+
+@termal-çanta and both products must match their reference elements exactly — same shape, material, colour, panels, zip, label layout, typography and logo; do not invent, rename or alter anything. All text is perfectly legible, sharp and accurate, no blurry or distorted letters.
+
+Sizes are judged against @termal-çanta (about 22 cm wide, standing about 18 cm tall) and kept deliberately SMALL — products are drawn too big by default: @broad-spectrum-sunscreen is a slim tube about 12 cm long, reaching only about two-thirds of the bag's standing height, the size of a slim highlighter pen; @hibiscus is a tiny pocket stick about 5 cm long, roughly a third of the sunscreen's height, clearly smaller than a standard lipstick. Nothing oversized next to the bag; if in doubt, make every product smaller, never bigger.
+
+Large soft key light from front-upper-left with a broad fill from the right keeps the look high-key; soft-edged, low-contrast shadows and a gentle contact shadow ground each object. Clean neutral colour temperature around 5500K.
+
+Dominant colours: ["#ffffff", "#f4f4f4", "#e6e6e6", "#d8d8d8"] plus @termal-çanta's own colour and the products' label colours as the only saturated accents. Mood: clean, premium, confident — a retail set hero.
+
+Vertical 9:16 composition; keep the upper ~40% as clean empty studio background for logo and copy — the bag and products sit in the lower two-thirds. Ultra photorealistic, hyperrealistic, indistinguishable from a real photograph, 8K detail. Resolution 2k.
+```
+
+### 11c — El çantaya ürün yerleştiriyor · Color & Glow Set (Bloom + Glow)
+
+```
+Medium close-up product photograph, camera at a slight downward angle, shot on an 85mm lens at a moderate aperture around f/4; a clean, directed campaign frame.
+
+Seamless white studio background with a soft radial falloff — bright white centre to faint neutral grey edges. No props, no texture, no horizon.
+
+@termal-çanta sits open and upright, turned three-quarters to camera in the lower-right of the frame, its zip undone and top eased open. The hand and forearm of a young adult woman with smooth, warm fair Caucasian skin and a bare natural manicure enter from the left and are lowering @ruby-gold down into the open bag; @hibiscus is already tucked inside with just its top showing above the zip line. Only the hand and part of the forearm are visible — no face, hair or other part of the body.
+
+@termal-çanta and both products must match their reference elements exactly — same shape, material, colour, panels, zip, label layout, typography and logo; do not invent, rename or alter anything. All text is perfectly legible, sharp and accurate, no blurry or distorted letters.
+
+Sizes are judged against @termal-çanta (about 22 cm wide) and kept deliberately SMALL — products are drawn too big by default: @ruby-gold is a slim tube about 12 cm long, roughly half the bag's width and clearly slimmer than the hand is wide, the size of a slim highlighter pen; @hibiscus is a tiny pocket stick about 5 cm long, about 20% of the bag's width. In her hand @ruby-gold runs only from the base of her fingers to just past her fingertips. Nothing oversized; if in doubt, make it smaller, never bigger.
+
+Soft warm key light from front-upper-left with a gentle fill, high-key overall, soft low-contrast shadows, a light contact shadow under the bag. Skin reads healthy with fine natural texture. Warm-neutral colour temperature around 5200K.
+
+Dominant colours: ["#ffffff", "#f4f4f4", "#e9e9e9", "#e9c3a6"] plus @termal-çanta's own colour and the products' label colours as the only saturated accents. Mood: clean, tactile, everyday-premium — a "packing my essentials" moment.
+
+Vertical 9:16 composition; keep the upper ~40% as clean empty studio background for logo and copy — the hand, bag and products sit in the lower two-thirds. Ultra photorealistic, hyperrealistic, indistinguishable from a real photograph, 8K detail. Resolution 2k.
+```
+
+### 11d — Floating / editorial · Your Everyday Set (Bloom + Glow + Broad)
+
+```
+Straight-on eye-level product photograph, dead-clean symmetry, shot on a 100mm lens at a moderate aperture around f/8; a weightless, premium skincare-campaign levitation frame.
+
+Seamless white studio background with a soft radial falloff — bright white centre easing to faint neutral grey at the edges. No props, no texture, no horizon.
+
+Against the white, @termal-çanta and the three products of the INO Your Everyday Set — @broad-spectrum-sunscreen, @ruby-gold and @hibiscus — hover at slightly different heights in a loose vertical stagger, evenly spaced, each perfectly level, each casting a small soft drop shadow on the white below. No visible supports, strings or stands — clean levitation.
+
+@termal-çanta and every product must match their reference elements exactly — same shape, material, colour, panels, zip, label layout, typography and logo; do not invent, rename or alter anything. All text is perfectly legible, sharp and accurate, no blurry or distorted letters.
+
+Sizes are judged against @termal-çanta (about 22 cm wide) and kept deliberately SMALL — products are drawn too big by default: @broad-spectrum-sunscreen and @ruby-gold are slim tubes about 12 cm long, roughly half the bag's width, the size of a slim highlighter pen; @hibiscus is a tiny pocket stick about 5 cm long, about 20% of the bag's width, clearly smaller than a standard lipstick. Nothing oversized next to the bag; if in doubt, make every product smaller, never bigger.
+
+Crisp high-key lighting from front-upper-left with a strong fill, shadows defined but soft, a clean separate drop shadow beneath each floating object. Clean neutral colour temperature around 5500K.
+
+Dominant colours: ["#ffffff", "#f6f6f6", "#ececec", "#dcdcdc"] plus @termal-çanta's own colour and the products' label colours as the only saturated accents. Mood: clean, weightless, high-end — a modern skincare set campaign.
+
+Vertical 9:16 composition; keep the upper ~40% as clean empty studio background for logo and copy — the bag and products sit centred through the lower two-thirds. Ultra photorealistic, hyperrealistic, indistinguishable from a real photograph, 8K detail. Resolution 2k.
+```
