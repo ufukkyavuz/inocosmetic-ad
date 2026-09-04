@@ -113,6 +113,31 @@ Using the attached style/composition reference image and @[ÜRÜN ELEMENT] as th
 
 ---
 
+## 8 — Elde Tutulan Beauty Shot (Milk Lip Oil Referansı Uyarlaması)
+
+**Önerilen ürün:** Beauty Shot (Pure Marine Collagen) — element: `@beauty-shot`
+**Model gerekli:** Evet, sadece el/önkol (yüz kadraj dışı)
+**Zemin:** Beyaz stüdyo, radial gradient
+**Kaynak ilham:** Milk Makeup Kush Lip Oil reklamı (fisheye/forced-perspective kompozisyonu elendi, sadece "el ile ürün tutuşu + beauty shot" fikri kullanıldı) — 85mm f/4 klasik beauty shot şablonuna oturtuldu, fisheye/dramatik perspektif KULLANILMADI.
+
+```
+Medium close-up product shot in vertical portrait orientation, camera straight-on at roughly the height of the raised hand, shot on a professional camera with an 85mm lens at a moderate aperture around f/4; the product sits sharp and centred, a clean minimalist beauty-brand studio campaign frame, not a candid snapshot.
+
+The hand and forearm of a young adult woman with smooth, even fair Caucasian skin and a bare natural manicure rise into the frame from the bottom edge, wrist straight, holding the product upright at roughly the vertical centre of the frame. No face, hair or other part of the body is visible — only the hand and part of the forearm.
+
+Seamless white studio background with a soft radial falloff — bright white at the centre easing to a faint neutral grey at the edges. No sky, no horizon, no props, no texture of any kind.
+
+Large soft key light from the front-upper-left with a broad even fill from the right, high-key overall; soft-edged, low-contrast shadows and one clean soft highlight down the bottle's edge. Skin reads healthy and clean with fine natural texture, no harsh speculars. Neutral colour temperature around 5500K.
+
+She holds @beauty-shot upright, cap end up, fingers wrapped in a relaxed natural grip with the thumb along the front, the label turned fully to camera. @beauty-shot must match its reference element exactly — same label layout, colours, typography and logo; all product text perfectly legible, sharp and accurate, no blurry or distorted letters. It is a small drinkable collagen shot bottle, about the size of a compact perfume sample or a mini beverage shot bottle — clearly smaller than a standard water bottle, held comfortably within the closed fingers of one hand, taking up no more than about one-seventh of the total image height. If in doubt, make it smaller, never bigger.
+
+Dominant colours: ["#ffffff", "#f4f4f4", "#e6e6e6", ürünün kendi etiket/içerik renkleri (turuncu-lime ton)] — white-to-pale-grey studio background, natural fair skin, product's own label colours as accents. Mood: clean, minimal, premium — a studio beauty campaign frame.
+
+Vertical 9:16 composition; the upper ~40% is clean empty white studio background reserved for logo and copy — the hand and product sit in the lower two-thirds. Ultra photorealistic, hyperrealistic, indistinguishable from a real photograph, 8K detail. Resolution 2k.
+```
+
+---
+
 ## Sıradaki adım
 
 1. Hangi konsept(ler)i öncelikli üretmek istediğinizi ve hangi ürün/varyantı kullanacağımızı belirtin.
