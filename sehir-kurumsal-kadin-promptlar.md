@@ -325,3 +325,27 @@ Dominant colours: ["#ffffff", "#f4f4f4", "#e6e6e6", "#d8d8d8"] plus @termal-çan
 
 Vertical 9:16 composition; keep the upper ~40% as clean empty studio background for logo and copy — the bag and products sit in the lower two-thirds. Ultra photorealistic, hyperrealistic, indistinguishable from a real photograph, 8K detail. Resolution 2k.
 ```
+
+---
+
+## 12 — Yumruk + ürün, kameraya doğru (MILK formatı) · Beauty Shot (`@beauty-shot`)
+
+Ref: MILK Makeup — model ürünü yumruğuyla kavrayıp kameraya doğru uzatıyor, ürün önde büyük/dominant (perspektif kaynaklı), yüz yumruğun yanından yarı görünür, beyaz stüdyo, edgy styling (yırtık siyah üst, gümüş zincir, kısa siyah saç, grafik eyeliner). Model referanstaki kişi DEĞİL — Kafkas editoryal, siyahi/Asyalı değil. `@beauty-shot` chip yeşile dönmezse `@collagen-shot` / `@pure-marine-collagen` dene.
+
+```
+Close-up portrait shot, camera low and near, angled slightly up, shot on a 35mm lens at a moderate aperture around f/2.8; the product is thrust toward the lens so it reads large and dominant in the foreground through foreshortening, razor sharp, while the face just behind falls a touch soft. A bold, raw editorial product-hero frame, not a candid snapshot.
+
+A beautiful young Caucasian woman, mid-20s, fair skin with a neutral undertone, slim, attractive, high cheekbones, a straight nose, a sharp jaw, a cool blunt expression with a direct level gaze; short choppy black hair with a blunt micro-fringe, graphic black eyeliner, a small silver safety-pin earring. She is a clearly different individual from anyone in the reference — different facial structure, nose and jaw shape, eye shape and colour, lip shape, hairline and hair texture; she is NOT Black or Asian. Her arm is raised and extended toward the camera, hand closed in a firm fist around the bottle held upright (cap up), knuckles to camera, the bottle right beside her face so her fist and forearm partly cross in front of her cheek — one eye and part of her face visible past the fist. Her other arm is down; a chunky polished-silver curb chain sits at her wrist.
+
+She wears a distressed sleeveless black top with frayed raw edges — solid black, no print, no logo. Small fine-line hand tattoos, natural short nails.
+
+Seamless white studio background with a soft radial falloff — bright white centre easing to a faint neutral grey at the edges. No props, no texture, no horizon.
+
+Crisp studio lighting: a large soft key from front-upper-left with a bright even fill, high-key overall, clean soft-edged shadows, a bright specular running down the bottle's edge and the silver cap. Skin reads healthy with fine natural texture. Neutral colour temperature around 5500K.
+
+@beauty-shot is gripped in her fist, upright, label turned fully to camera. It must match its reference element exactly — same bottle shape, cap, liquid colour, label layout, typography and logo; all text perfectly legible, sharp and accurate, no blurry or distorted letters. @beauty-shot is a small single-serve collagen shot bottle only about 10 cm tall — her fist wraps all the way around it and her fingertips nearly meet her palm. It looks large in the frame ONLY because it is close to the lens and foreshortened, not because the bottle itself is big — do not render an oversized bottle. If in doubt, make the bottle smaller and let the close camera do the work.
+
+Dominant colours: ["#ffffff", "#f4f4f4", "#e6e6e6", "#1a1a1a", "#c9c9c9"] plus @beauty-shot's own liquid and label colours as the saturated accent, and cool silver from the cap and chain. Mood: bold, cool, downtown-editorial — an attitude-forward product hero.
+
+Vertical 9:16 composition; keep a clean white strip across the very top of the frame for the logo, and the raised fist with the bottle sits high-centre with the face lower-left — the lower third stays open white for copy. Ultra photorealistic, hyperrealistic, indistinguishable from a real photograph, 8K detail. Resolution 2k.
+```
