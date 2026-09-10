@@ -75,6 +75,67 @@
 - **Ton:** Sıcak yaz, güneşli, bakımlı cilt, lüks — beyaz zemin kuralı bu konseptte geçerli değil
 - **Renk:** Warm skin tones + mavi gökyüzü yansıması kontrast
 
+### Catch Bloom Cosmos — model yüz/duruş serisi (Eylül 2026)
+Ürün henüz elde yok; şimdilik **model karakter elementleri** ile yüz/duruş/makyaj serisi üretiliyor. Her prompt'ta zorunlu etiketler: `@model` + `@cosmos-yanak` (yanak rengi/duruşu) + `@cosmos-dudak` (dudak rengi/finiş). Ürün görünüyorsa `@cosmos` (Pocket boy, ~5 cm). Makyajı **tarif etme**, "match the @cosmos-yanak / @cosmos-dudak element exactly" de. Yanak: elmacık kemiğine değil **apple of the cheek**'e, yuvarlak-kontrollü, kenarsız solan; kulağa/şakağa/göz altına/buruna taşma yok. Detay: [[project-catch-bloom-cosmos]].
+
+**15-şotluk şablon (model başına), hepsi dikey 9:16 / 2K / Nano Banana Pro / Unlimited, beyaz-açık gri seamless, üstte kopya boşluğu, gardırop: beyaz crop top + gerekiyorsa siyah pantolon + mürdüm topuklu:**
+1. Pozlu yakın çekim, ürünle — `@cosmos` ucu yanağın elmasında, oyuncu yan bakış.
+2. Pozlu yakın, ürünsüz — editoryal ¾ dönüş, omuz üstünden lense bakış, çene yukarı, boyun uzun, bir el karşı omuzda (eski "çeneyi ele yaslama" pozu KULLANMA).
+3. Worm's-eye alçak açı, ürünle — enerjik mid-movement (gülerek kafa sallama, omuz düşük, kol savruk).
+4. Kuşbakışı — kamera tam kafanın üstünde, kız **ayakta** kafasını tamamen geriye atıp yukarı lense bakıyor (yatma yok).
+5. Tam karşıdan, simetrik, ürünsüz.
+6. Rembrandt yan ışık, 85mm f/1.8 sığ alan derinliği, ürün çenede (fon beyaz kalır, siyah backdrop yok).
+7. Jaluzi/dappled gölge — yüzde çizgili ışık, ¾ dönük, göz aşağıda, ürünsüz.
+8. Ürünü **lense doğru uzatıyor** — parmak ucuyla tutuş (thumb + 2 parmak, YUMRUK DEĞİL), ürün önde küçük kahraman, yüz arkada net.
+9. Clamshell güzellik makrosu (kaş–çene), camsı `@cosmos-dudak` dudak, ikiz catchlight, ürünsüz. NOT: "lower half of face" / aşırı dudak makrosu NSFW filtresine takılıyor — omuz-üstü çerçeve tercih et.
+10. Rim/arkadan sıcak ışık + hafif pus + saç hareket bulanıklığı, ürün yanakta.
+11–15. **Fisheye seti** — bkz. aşağıdaki fisheye kuralı.
+
+### Fisheye / balık gözü kuralı (kenarlarda siyahlık YASAK)
+nano_banana fisheye'de otomatik **koyu dairesel porthole vinyet** ekleme eğiliminde. Karşı ifade (kısmen çalışıyor): *"Ultra-wide diagonal full-frame fisheye look (like a 14mm rectilinear-corrected fisheye / GoPro wide shot): strong barrel distortion, lines bowed into curves, bulging wrap-around perspective — BUT a normal rectangle that fills the entire 9:16 frame, image into all four corners, corners bright and part of the scene. NOT a circular fisheye."* + negatif: *"no black corners, no dark corners, no circular vignette, no round image, no circular fisheye, no porthole crop, no letterboxing, no heavy corner darkening"*. Sonuç değişken — bir kısmı temiz açık köşe, bir kısmı hâlâ porthole; açık köşeliler kabul.
+
+### Ürün lense doğru uzatılırken — tutuş + boyut
+- **Tutuş:** başparmak + iki parmak ucu, gevşek/açık parmaklar. **Yumruk / avuçla kavrama YASAK** (model "yumruk" deyince elini yumuyor).
+- **Boyut:** lense yakınken metinle bile ruj ölçüsüne kayıyor. Çalışan ifade: fingertip-pinch + *"it does not reach past her fingertips, no thicker than a finger, at most 1/8 of the frame, absolutely NOT a full-size lipstick, if in doubt smaller"* + negatif *"no fist, no clenched hand, no full grab, no lipstick-sized product, no oversized stick"*. Yine büyük çıkarsa → post-crop.
+
+### Model karakter elementleri (Higgsfield ufo projesi)
+Tekrar kullanılabilir **Character** elementleri, prompt'ta `@isim` ile çağrılır. Model satırını KISA tut: *"The model is @isim - true to the element, do not restyle her face; <sadece saç, tek cümle>."* Yüz/göz/cilt/kaş/çil dökümü yapma — element zaten sabitliyor, döküm yüzü bozuyor.
+- `@sadie` — Celtic, uzun dalgalı bakır-kızıl saç, çok açık porselen ten + yoğun çil, açık mavi-gri göz.
+- `@mira` — Filipina/GD-Asya, uzun düz siyah saç, bal-tan ten, sol elmacıkta ben.
+- `@romy` — K-Avrupa, koyu sarı ıslak-görünüm sıkı düşük at kuyruğu, çok açık dewy ten + açık kahve çil, uykulu mavi-gri göz. Referans = direct-flash polaroid.
+- `@lena` — İskandinav, soğuk kül sarısı düz çene hizası bob, açık dewy ten + hafif çil, yeşil-ela göz.
+- `@yuna` — uzun düz orta ayrık siyah saç, açık tan ten, büyük kahve badem göz + belirgin çift kapak. **Akdenizli/Latina/Eurasian okunur — Asyalı DEĞİL, monolid yok.**
+- `@noa` — Eurasian, uzun koyu saç ıslak/geriye taralı ayrık nemli tutamlar, altın-zeytin tan ten + çil, ela-yeşil göz.
+- `@juliette` — Fransız, orta kahve + güneş sarısı balyaj, omuz hizası dağınık hacimli, açık soğuk ten + birkaç çil, parlak mavi göz, burun köprüsünde hafif çıkıntı.
+- `@cho` — Doğu Asyalı, düz siyah omuz hizası lob, açık-orta sıcak ten, koyu kahve göz. (Bilerek Asyalı olan yüz — @yuna'nın Asyalı okunmaması için ayrıldı.)
+- `@roni` — koyu sarı/açık kahve saç geriye taralı (alçak), bal-tan glowy dewy ten, önden.
+- `@hailey` — daha önceki Cosmos yüz serisi modeli (Kafkas editoryal).
+Detay: [[project-model-character-elements]]. Kural [[feedback-model-ethnicity-default]] geçerli ama kullanıcının seçtiği karakter elementi bunu ezer.
+
+### Kamera açıları / kadraj / ışık / yaratıcı çekim sözlüğü
+Tam liste: [[reference-shot-lighting-vocabulary]]. Özet:
+- **Kadraj:** extreme close-up/macro · close-up · medium close-up · medium · cowboy · wide · extreme wide.
+- **Kamera yüksekliği:** eye-level · **hero angle** (~15° üstten, INO packshot standardı) · 45°/three-quarter · high angle · **bird's-eye/top-down 90°** · low angle · **worm's-eye** · dutch/canted (INO kaçınır).
+- **Yaratıcı teknikler:** foreground occlusion (lense yakın obje = dev soft blob) · forced perspective · prism/glass sphere (gökkuşağı yansıma) · tilt-shift/miniature · anamorphic (yatay flare, oval bokeh) · reflection hero (ürün sadece ayna/gözlük/su/camda) · slow-shutter motion blur · splash/pour freeze · levitation · frame-within-frame · negative-space maximisation · surreal scale (guerrilla dev ürün) · rule-breaking crop · colour-block/split background · texture bed (kum/jel/ipek/buz).
+- **Stüdyo ışık paternleri:** butterfly/paramount (yüksek+ön, Hollywood beauty) · loop (en evrensel yumuşak) · **Rembrandt** (45° yan+yüksek, gölge yanakta ışık üçgeni) · split (90° yan) · broad/short · **clamshell** (üst softbox + alt reflektör, beauty close-up default) · rim/backlight/kicker · **high-key** (parlak dolu, beyaz fon, INO default) · low-key · **gobo/dappled** (jaluzi/yaprak gölgesi) · dual-tone/coloured gel · caustics.
+- **AI-gerçekçilik:** salt "photorealistic/hyperrealistic" zayıf ve waxy. Bunun yerine: kamera+lens+diyafram adı ver ("shot on full-frame, 85mm, f/1.8"); ışığı açıkça adlandır; kusur iste (gözenek, peach fuzz, uçuşan teller, hafif asimetri, sensor grain, hafif vignette); negatif-yönlendir ("no illustration, no CGI, no 3D render, no over-sharpening, no plastic skin, no HDR glow"); dizginli renk ("muted brick red", "vivid/bright/neon" değil); film grain / "Portra-like colour" > "8K ultra-detailed".
+
+### Onaylı Cosmos konsept kütüphanesi (model rotasyonlu)
+Hepsi `@model` + `@cosmos-yanak` + `@cosmos-dudak` (+ `@cosmos`) ile, omuz-üstü/temiz çerçeve:
+- Ayna yansıması hero (el aynası, Cosmos yüz camda net, gerçek yüz arkada soft).
+- **İki modelli arkadaş anı** — biri diğerine `@cosmos` sürüyor; **iki `@isim` elementini birlikte bağla**, iyi çalışıyor.
+- Golden-hour pencere ışığı (tül perde, tek yan raking ışık).
+- Taze/nemli — ciltte küçük su damlaları, cam boncuk gibi.
+- Temiz yan profil + parlak rim ışık (ürünsüz, ön yüz asla tam kararmaz).
+- Colour-block bölünmüş fon (beyaz | pudra #efd2cd sert dikey ek).
+- Omuz üstünden aynaya bakış.
+- Tek ince prizma/gökkuşağı ışık şeridi bir elmacık boyunca (tüm yüze değil).
+- Candid "adını duymuş gibi" kafa dönüşü (poz değil, doğal).
+- Arkadan saç halesi + yumuşak ön dolgu.
+- Yüksek-key beyaz flood — Cosmos yanak/dudak tek doygun renk.
+- Beauty-ad hero layout — model kadrajda alçak, ürün yüzün yanında dik, üstte büyük kopya boşluğu.
+- **NSFW filtresi:** aşırı dudak makrosu ("lower half of face", "dab onto lower lip") + crop top defalarca takıldı (kredi iade, üretim gitti) — omuz-üstü/ön çerçeve kal.
+
 ## Reklam Görseli Yapısı
 
 **Canvas:** 1080 × 1920px (9:16 dikey / Story formatı)
@@ -146,6 +207,8 @@ Makyaj ve cilt bakımını bir arada sunan çok amaçlı stick. Tek adımda renk
 > Pocket vs Normal: Kompozisyonda Scarlet/Hibiscus daha kısa, Peony/Daylily daha uzun gösterilmeli.
 
 Çiçek görselleri: `scarlet flower.png`, `hibiscus flower.png`, `daylily flower.png`, `peony flower.png`
+
+**Catch Bloom COSMOS** — yeni shade (Eylül 2026). Referans: `Products/cosmos.png`. Renk: **derin, mat şarap / oxblood berry** — parlak pembe DEĞİL, gül-pembe DEĞİL. Dudakta (`@cosmos-dudak`) parlak koyu berry/oxblood; yanakta (`@cosmos-yanak`) sheer, yumuşak dusty rosy-berry. **Pocket boy ~5 cm** (Scarlet/Hibiscus gibi). Higgsfield elementleri: `@cosmos` (ürün), `@cosmos-dudak`, `@cosmos-yanak`. Ürün henüz lansmanda değil — prompt'ta ambalaj/etiket metni uydurulmaz, "match the @cosmos element exactly" yeterli. Detaylı kullanım + şot şablonları: yukarıdaki **Catch Bloom Cosmos — model yüz/duruş serisi** bölümü.
 
 ---
 
