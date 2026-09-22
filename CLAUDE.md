@@ -67,6 +67,27 @@
 - "Ürünün renginde çanta" istenirse: çantanın deri rengi, öne çıkan varyantın kendi tüp rengiyle (ör. Bare için toz pembe/nude) eşleşmeli — kahverengi/siyah gibi jenerik tonlar kullanılmamalı.
 - Metin alanı kuralı (Zone Dağılımı, üst ~%40-45 temiz) bu sahnelerde de geçerli — geniş açı, çanta sapı + boş arka plan üstte, ürün altta.
 
+## Canvas Çanta (`@canvas-canta`) — element adı ve şekil fiziği
+
+- **Element mention'ı `@canvas-canta` yazılır, `@canvas-çanta` DEĞİL** — Elements panelinde görünen ad cedilla'lı ("canvas-çanta") olsa da, gerçek bağlanabilir mention slug'ı ASCII'dir (`ç` harfi mention parser'ında kopuyor, chip resolve olmuyor). Herhangi bir element adında Türkçe özel karakter (ç, ğ, ı, ö, ş, ü) görürsen aynı ihtimali düşün, Elements panelinden ara/doğrula.
+- **Gerçek boyutu 32 cm genişlik × 18 cm yükseklik** (bkz. Ürün Kataloğu altındaki not) — hem top-view hem normal açıda küçük çıkma eğiliminde, somut cm + diğer ürünlere oranla mutlaka yaz.
+- **İnce, düz, mektup gibi bir zarf** — kalınlığı 1-2 cm'yi geçmez. Çanta hafif çapraz (15-20°) çevrildiğinde kameraya dönen ince yan kesit de aynı ince kalınlıkta düz bir şerit kalmalı; **açı yüzünden şişkin/dolgun bir gusset'e dönüşmemeli**. Bu, kullanıcının defalarca reddettiği bir hata ("kenarları bozuyorsun") — prompt'a şunu ekle: *"the bag is very thin overall, like a flat slab or a tablet sleeve, no more than 1-2cm deep front to back; when turned, the narrow side edge stays a thin, flat, straight strip the same thin depth as the rest of the bag - it does not thicken, bulge, puff out or round off into a gusset just because it is seen at an angle."* Negatif: *"no thick or bulging side edge, no gusset, no puffy or rounded bag, no flared or wide-bottomed bag"*.
+- Kapağa (flap) hiçbir şey eklenmesin — sadece yan kenarlar/kalınlık düzeltilir, kapak referanstaki gibi kalır.
+
+## Website İndirim Görselleri (Tekli Ürün %20 / Set %35)
+
+Figma dosyasında "İndirimli Fiyatlar" sayfası (`node-id=6162-3853`) altında, her ürün/set için **iki ayrı tasarım** üretilir — birbirine karıştırılmaz:
+1. **Sade (fiyatsız):** "`[ÜRÜN ADI]` / `%X İNDİRİMLİ`" — sadece logo + ürün adı + indirim yüzdesi, fiyat rakamı yok.
+2. **Çizikli Fiyat:** "`[ÜRÜN ADI]` / `%X İNDİRİM FIRSATI`" + altında iki sütun: sol "ESKİ FİYAT" (üstü çizili), sağ "İNDİRİMLİ FİYAT" (kalın). Yeni fiyat = eski fiyat × (1 − X/100).
+
+Kural: **tekli ürünler %20, setler %35** indirim kategorisinde. Her ikisi de aynı temel şablonu (arka plan fotoğraf + üstte logo + PATENTLİ TEKNOLOJİ rozeti + varsa ingredient promo-badge'ler) kullanır, tek fark başlık metni ve fiyat satırının var/yok olması. Var olan bir `%30 eski-yeni fiyat` frame'i klonlayıp metni değiştirmek (fotoğraf ve yerleşim aynı kalır) en hızlı yol — dosyada zaten birçok ürün için böyle bir "%30" şablon frame'i var, sıfırdan kurmaya gerek yok.
+
+**Bilinen eski fiyatlar (İndirimli Fiyatlar sayfasından, %30 kampanyasından):** Catch Bloom (genel/Scarlet) 1190₺, Catch Glow Ruby Gold 2090₺, Catch Balm Bubble 1130₺, Beauty Shot 2990₺, Your Everyday Set 5670₺. Broad Spectrum ve Catch Sculpt için fiyat dosyada bulunamadı, kullanıcıdan istenmeli.
+
+**Figma font kısıtı:** Gerçek "Avenir Next" fontu plugin API (use_figma) ortamında yüklenemiyor ("font ailesi yok" hatası) — sadece ücretsiz metrik-uyumlu klonu **"Avenir Next W1G"** yükleniyor. Metin düzenlerken bu fontu kullan (kullanıcı onayladı), stil adları aynı ("Heavy", "Heavy Italic", "Bold", "Medium") ama "Demi Bold" yerine sadece "Demi" var.
+
+**Kamera/ışık şablonu (bag+ürün(ler) website packshot'ları için, bu oturumda kilitlendi):** Bkz. yukarıdaki Canvas Çanta + genel boyut kuralları. Kamera 20-25° hafif üst açı (ne göz hizası ne top-down), 135mm lens f/8 (perspektif distorsiyonu yok), zemin+arkaplan tek düz #ffffff (gradyan/yatay çizgi yok, sadece yumuşak temas gölgesi), tek büyük softbox ön-soldan ~45°, "Portra-like" film greni.
+
 ## Reklam Konsept Kütüphanesi
 
 ### Güneş Gözlüğü Yansıması (Broad Spectrum için onaylı)
@@ -76,7 +97,7 @@
 - **Renk:** Warm skin tones + mavi gökyüzü yansıması kontrast
 
 ### Catch Bloom Cosmos — model yüz/duruş serisi (Eylül 2026)
-Ürün henüz elde yok; şimdilik **model karakter elementleri** ile yüz/duruş/makyaj serisi üretiliyor. Her prompt'ta zorunlu etiketler: `@model` + `@cosmos-yanak` (yanak rengi/duruşu) + `@cosmos-dudak` (dudak rengi/finiş). Ürün görünüyorsa `@cosmos` (Pocket boy, ~5 cm). Makyajı **tarif etme**, "match the @cosmos-yanak / @cosmos-dudak element exactly" de. Yanak: elmacık kemiğine değil **apple of the cheek**'e, yuvarlak-kontrollü, kenarsız solan; kulağa/şakağa/göz altına/buruna taşma yok. Detay: [[project-catch-bloom-cosmos]].
+Ürün henüz elde yok; şimdilik **model karakter elementleri** ile yüz/duruş/makyaj serisi üretiliyor. Her prompt'ta zorunlu etiketler: `@model` + `@cosmos-yanak` (yanak rengi/duruşu) + `@cosmos-dudak` (dudak rengi/finiş). Ürün görünüyorsa `@cosmos` (Pocket boy, 4 cm). Makyajı **tarif etme**, "match the @cosmos-yanak / @cosmos-dudak element exactly" de. Yanak: elmacık kemiğine değil **apple of the cheek**'e, yuvarlak-kontrollü, kenarsız solan; kulağa/şakağa/göz altına/buruna taşma yok. Detay: [[project-catch-bloom-cosmos]].
 
 **15-şotluk şablon (model başına), hepsi dikey 9:16 / 2K / Nano Banana Pro / Unlimited, beyaz-açık gri seamless, üstte kopya boşluğu, gardırop: beyaz crop top + gerekiyorsa siyah pantolon + mürdüm topuklu:**
 1. Pozlu yakın çekim, ürünle — `@cosmos` ucu yanağın elmasında, oyuncu yan bakış.
@@ -143,6 +164,7 @@ Hepsi `@model` + `@cosmos-yanak` + `@cosmos-dudak` (+ `@cosmos`) ile, omuz-üst�
 ### Zone Dağılımı
 - **Üst %40 (0–768px):** Logo + yazı alanı — ürün fotoğrafı GİRMEZ, temiz tutulur
 - **Alt %60 (768–1920px):** Ürün fotoğrafı (full-bleed, canvas'tan taşabilir)
+- **Yaratıcı/mood konsept promptlarında (lab çekimi, lifestyle, makro, doku yatağı vb.) bu üst boşluk kuralı unutulmaya müsait** — prompt kompozisyona odaklanınca kopya boşluğu atlanabiliyor (bir Broad Spectrum havlu-makro promptunda kullanıcı bunu fark edip düzeltti). Bu yüzden artık sadece standart packshot değil, **her görsel promptuna** açıkça bir copy-space/headroom cümlesi eklenecek.
 
 ### Logo
 - Konum: center-x, top ~228px
@@ -172,12 +194,12 @@ Hepsi `@model` + `@cosmos-yanak` + `@cosmos-dudak` (+ `@cosmos`) ile, omuz-üst�
 ### Ürün Boyutu — Yüz ile Kompozisyonlarda (Catch Bloom vb. stick ürünler)
 Model yüzüyle birlikte çekilen stick ürün görsellerinde ürün defalarca gerçekçi olmayan şekilde BÜYÜK çıktı — "chin to nose/lip mesafesi kadar" gibi genel anatomik kıyas ifadeleri bile yetersiz kaldı, somut santimetre değeri yazılmalı:
 - **Daylily ve Peony (Normal/Full boy):** ucu açık (kapak çıkarılmış, aplikatör görünür) haliyle toplam uzunluk **6 cm** — çene ile burun alt çizgisi arası mesafeye yakın
-- **Scarlet ve Hibiscus (Pocket boy):** ucu açık haliyle toplam uzunluk **5 cm** — çene ile üst dudak arası mesafeye yakın
+- **Scarlet, Hibiscus ve Cosmos (Pocket boy):** ucu açık haliyle toplam uzunluk **4 cm** (5cm DEĞİL — kullanıcı defalarca düzeltti) — çene ile üst dudak arası mesafeden biraz daha kısa
 - **Broad Spectrum Sunscreen ve Catch Glow (Ruby Gold, Pink Quartz):** toplam uzunluk **12 cm** — çene ile kaş altı arası mesafeye yakın
 - **Catch Sculpt (Sand, Dune):** Daylily ve Peony ile aynı boy — **6 cm**
-- El ile tutma/elde tutulan kompozisyonlarda cm tek başına yetersiz kalabiliyor — parmak kıyaslaması da eklenmeli: Daylily/Peony ve Catch Sculpt için işaret parmağı (index finger), Scarlet/Hibiscus için serçe parmağı (pinky finger) ile birlikte yazılmalı.
-- **Birden fazla ürün aynı sahnedeyse mutlaka birbirine oranla da yaz:** cm değerleri doğru olsa bile model oranı tutturamayabiliyor. Broad Spectrum/Catch Glow'u (12cm, %100) referans alarak: Daylily/Peony (ve Catch Sculpt) bunun **%35'i kadar**, Hibiscus/Scarlet bunun **%20'si kadar**, Catch Balm bunun **%70'i kadar** boyunda olmalı — bu yüzdesel kıyas cm değeriyle birlikte prompt'a yazılmalı (ör. "@hibiscus is only about 20% the height of @broad-spectrum-sunscreen").
-- Prompt'a mutlaka şu şekilde somut ölçü yazılmalı: *"the product, uncapped, is exactly 6cm long"* (Daylily/Peony, Catch Sculpt) veya *"the product, uncapped, is exactly 5cm long"* (Scarlet/Hibiscus) veya *"the product is exactly 12cm long"* (Broad Spectrum, Catch Glow) — sadece yüz oranı kıyaslaması yeterli gelmiyor, model tekrar tekrar büyük çiziyor.
+- El ile tutma/elde tutulan kompozisyonlarda cm tek başına yetersiz kalabiliyor — parmak kıyaslaması da eklenmeli: Daylily/Peony ve Catch Sculpt için işaret parmağı (index finger), Scarlet/Hibiscus/Cosmos için serçe parmağının SADECE ÜST BOĞUMU (pinky finger's top segment) ile birlikte yazılmalı.
+- **Birden fazla ürün aynı sahnedeyse mutlaka birbirine oranla da yaz:** cm değerleri doğru olsa bile model oranı tutturamayabiliyor. Broad Spectrum/Catch Glow'u (12cm, %100) referans alarak: Daylily/Peony (ve Catch Sculpt) bunun **%35'i kadar**, Hibiscus/Scarlet/Cosmos bunun **%33'ü kadar**, Catch Balm bunun **%70'i kadar** boyunda olmalı — bu yüzdesel kıyas cm değeriyle birlikte prompt'a yazılmalı (ör. "@hibiscus is only about 33% the height of @broad-spectrum-sunscreen").
+- Prompt'a mutlaka şu şekilde somut ölçü yazılmalı: *"the product, uncapped, is exactly 6cm long"* (Daylily/Peony, Catch Sculpt) veya *"the product, uncapped, is exactly 4cm long"* (Scarlet/Hibiscus/Cosmos) veya *"the product is exactly 12cm long"* (Broad Spectrum, Catch Glow) — sadece yüz oranı kıyaslaması yeterli gelmiyor, model tekrar tekrar büyük çiziyor.
 - **Ağız açıkken (gülerken) ölçü referansı kayar:** Model kahkaha atarken/ağzı açıkken çene-dudak veya çene-burun mesafesi görsel olarak değişir, bu da modelin ürünü yine büyük çizmesine yol açıyor. Bu durumda prompt'a şunu ekle: *"use her closed-mouth facial proportions as the size reference for the product, even though her mouth is open in this shot — do not enlarge the product just because her jaw is open."*
 - **El ile tutulan kompozisyonlarda denenen yöntemler hâlâ tam çözmüyor:** cm değeri, parmak kıyaslaması (index finger, thumb) ve yüz-landmark sıkıştırma (ağız kenarı–çene çizgisi) hepsi denendi — her seferinde ürün yine de gözle görülür şekilde büyük çıkıyor. Bu, modelin (nano_banana_pro) close-up güzellik çekimlerinde "elde tutulan ürün" için eğitim verisindeki alışılmış (büyük lipstick/tüp) oranına çekilme eğiliminden kaynaklanıyor olabilir — salt metinle boyut talimatı vermek tek başına güvenilir değil.
 - **Sıradaki denenecek yöntem:** ürünü bilinen, küçük, çok tanıdık bir nesneyle kıyaslamak (ör. "a standard lip balm/chapstick tube" boyutunda) + kadraja göre yüzde vermek (ör. "no more than ~1/5 of total frame height"). Soyut yüz oranı yerine modelin eğitiminde bol örneği olan tanıdık bir nesneye çapalamak daha güvenilir olabilir.
@@ -185,7 +207,8 @@ Model yüzüyle birlikte çekilen stick ürün görsellerinde ürün defalarca g
 - **STANDART (2026-08-28 sonrası): her ürün boyutu 3 katmanla yazılır** — (a) sıkı yüz/el landmark'ı, (b) kadraj yüzdesi, (c) tanıdık nesne çapası + *"if in doubt, make it smaller, never bigger"*. Landmark'ları bilerek küçült (model şişiriyor):
   - **Broad Spectrum / Catch Glow (12 cm):** çene–kaş altı DEĞİL → **çene ile burun dibi arası**; kadrajın **≤ 1/6'sı**; "slim highlighter-pen / travel-size tube" boyutunda.
   - **Catch Balm (9 cm):** **çene ile burun ucu arası**; kadrajın **≤ 1/7'si**; "travel hand-cream / hotel toiletry tube" boyutunda.
-  - **Hibiscus / Scarlet / Daylily / Peony / Sculpt (5–6 cm):** **serçe parmağı boyundan uzun değil**; kadrajın **≤ 1/9'u**; "clearly smaller than a standard lipstick".
+  - **Hibiscus / Scarlet / Cosmos (Pocket, 4 cm):** **serçe parmağın sadece üst boğumu kadar**; kadrajın **≤ 1/10'u**; "clearly smaller than a standard lipstick, smaller than a chapstick".
+  - **Daylily / Peony / Sculpt (Normal/Full, 6 cm):** **serçe parmağı boyundan uzun değil**; kadrajın **≤ 1/9'u**; "clearly smaller than a standard lipstick".
   - Elde tutulan tüpler için ek: *"in her hand it runs only from the base of her fingers to her fingertips and is shorter than her palm is long."*
 
 ---
@@ -208,7 +231,7 @@ Makyaj ve cilt bakımını bir arada sunan çok amaçlı stick. Tek adımda renk
 
 Çiçek görselleri: `scarlet flower.png`, `hibiscus flower.png`, `daylily flower.png`, `peony flower.png`
 
-**Catch Bloom COSMOS** — yeni shade (Eylül 2026). Referans: `Products/cosmos.png`. Renk: **derin, mat şarap / oxblood berry** — parlak pembe DEĞİL, gül-pembe DEĞİL. Dudakta (`@cosmos-dudak`) parlak koyu berry/oxblood; yanakta (`@cosmos-yanak`) sheer, yumuşak dusty rosy-berry. **Pocket boy ~5 cm** (Scarlet/Hibiscus gibi). Higgsfield elementleri: `@cosmos` (ürün), `@cosmos-dudak`, `@cosmos-yanak`. Ürün henüz lansmanda değil — prompt'ta ambalaj/etiket metni uydurulmaz, "match the @cosmos element exactly" yeterli. Detaylı kullanım + şot şablonları: yukarıdaki **Catch Bloom Cosmos — model yüz/duruş serisi** bölümü.
+**Catch Bloom COSMOS** — yeni shade (Eylül 2026). Referans: `Products/cosmos.png`. Renk: **derin, mat şarap / oxblood berry** — parlak pembe DEĞİL, gül-pembe DEĞİL. Dudakta (`@cosmos-dudak`) parlak koyu berry/oxblood; yanakta (`@cosmos-yanak`) sheer, yumuşak dusty rosy-berry. **Pocket boy 4 cm** (Scarlet/Hibiscus gibi — 5cm DEĞİL). Higgsfield elementleri: `@cosmos` (ürün), `@cosmos-dudak`, `@cosmos-yanak`. Ürün henüz lansmanda değil — prompt'ta ambalaj/etiket metni uydurulmaz, "match the @cosmos element exactly" yeterli. Detaylı kullanım + şot şablonları: yukarıdaki **Catch Bloom Cosmos — model yüz/duruş serisi** bölümü.
 
 ---
 
@@ -281,6 +304,8 @@ Bare / Haze / Bubble / Ice adlı 4 varyantı var (metalik sıkma tüp, gümüşt
 | `kese.png` | Siyah çanta/kese |
 | `canvas çanta.png` | Bez çanta |
 | `all products.png` | Tüm ürünler oran referansı |
+
+> **`@refy-canta` (Higgsfield prop, INO makyaj çantası referansı):** gerçek boyutu **32 cm genişlik × 18 cm yükseklik** — hem top-view hem normal açıda küçük çıkma eğiliminde, prompt'a bu somut ölçü mutlaka yazılmalı, diğer ürünlerin boyutu buna oranla verilmeli (yüzde kıyası tek başına yetersiz kaldı).
 
 ---
 
