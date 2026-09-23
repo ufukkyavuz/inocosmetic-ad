@@ -54,7 +54,9 @@
 
 ## Ürün Aksesuar Fiziği — Catch Balm (dik durma + charm)
 
-**Dik durma fiziği:** Catch Balm tüpü bir yüzeyin (masa, raf, zemin) üstünde **kendi başına dik/dikey DURAMAZ** — nozul/kapak ucu bu ağırlığı taşıyacak formda değil. Yüzey üstü sahnelerde tüp **daima yan yatar**. Ancak **el ile tutulurken dik de yatay da tutulabilir** (el desteklediği için fiziksel sorun yok) — "elde asla dik tutulmaz" diye bir kural YOK. Yani yasak olan tek şey: desteksiz bir yüzeyde dikine durması.
+**Dik durma fiziği:** Catch Balm tüpü bir yüzeyin (masa, raf, zemin) üstünde **kendi başına dik/dikey DURAMAZ** — nozul/kapak ucu bu ağırlığı taşıyacak formda değil. Yüzey üstü sahnelerde tüp **daima yan yatar**; ancak bir yere **yaslanırsa / saplanırsa / elde tutulursa** dik olabilir. "Elde asla dik tutulmaz" diye bir kural YOK. Yasak olan tek şey: desteksiz bir yüzeyde dikine durması.
+
+> **Promptta zorunlu:** bu kuralı "element zaten öyle" diye atlama — kompozit set elementlerinde bile (ör. `@your-everyday-essentials`) taşınmıyor, model tüpü dikine kaldırıyor. Her promptta hem pozitif hem negatif yaz: *"@haze lies flat, never upright"* + negatifte *"no upright @haze"*. Sebebini (kapak formu vs.) **yazma** — o, ürün tarifi sayılır ve ürünü bozar.
 
 **Charm/halka:** Zorunlu değil, yasak da değil — sahneye göre karar verilir. Çanta/anahtarlık sahnesi olmasa bile, uygun düştüğünde tüpün nozul ucundaki halkaya küçük bir ayna charm eklenebilir. Sadece **set/dizilim (birden çok ürün yan yana) görsellerinde** eklenmez, orada tüp sade kalır. `@haze`/`@bare` referansındaki charm'ı otomatik her sahneye taşıma — bilinçli seç.
 
@@ -66,6 +68,44 @@
 - Çanta sapının gövdeye bağlantı noktası **yuvarlak metal halka/perçin** olmalı (dikişle/deriyle doğrudan değil) — gerçek tasarımcı çanta donanımına benzemeli.
 - "Ürünün renginde çanta" istenirse: çantanın deri rengi, öne çıkan varyantın kendi tüp rengiyle (ör. Bare için toz pembe/nude) eşleşmeli — kahverengi/siyah gibi jenerik tonlar kullanılmamalı.
 - Metin alanı kuralı (Zone Dağılımı, üst ~%40-45 temiz) bu sahnelerde de geçerli — geniş açı, çanta sapı + boş arka plan üstte, ürün altta.
+
+## Prompt Yazım Disiplini — tekrar tekrar düşülen 5 tuzak (2026-09-23)
+
+**1. Ürün tarifi hep ÖLÇÜ ve FİZİK cümlelerinin içine gizleniyor.** Ana paragrafta "ürünü tarif etme" kuralına uyup, sonra ölçü satırında "the two white **tubes**", "the Pocket-size **stick**", "the canvas **pouch**", "the metallic **tube**" yazmak = kuralı çiğnemek. Ürün bozuk çıkmasının bire bir sebebi bu. Yasaklı olanlar orada da geçerli:
+- tarif eden **isimler**: tube, stick, pouch, bottle, jar
+- **malzeme/renk**: canvas, metallic, white, silver, glass, matte
+- **parça adları**: cap, nozzle, lid, applicator, flap
+- bir duruşun **sebebini açıklamak**: "it can't stand because its cap end can't carry the weight"
+
+Doğrusu — ölçü sadece element adı + rakam, fizik sadece duruş:
+> `@broad-spectrum-sunscreen is 12cm tall. @cosmos is only 4cm tall - about one third the height of @broad-spectrum-sunscreen.`
+> `@haze lies flat, never upright.`
+> Negatifte de aynı: "no upright @haze" — "no standing balm tube balanced on its cap" DEĞİL.
+
+**2. Ürünleri bilerek bulanıklaştırma.** "Ürün öne çıkmasın" istendiğinde ürünü odak dışına atmak yanlış — kullanıcı bulanık ürün istemiyor. Doğru çözüm: ürün **küçük, kenarda, alçakta ve ortalanmamış** olsun ama **net** kalsın. Prompt'a: *"every product is completely sharp and fully in focus with clearly readable labels... never blurred, never soft, never out of focus. Use enough depth of field to hold both the person and the products sharp; only the far background falls soft."* Diyaframı f/2 değil **f/8** yaz. Negatif: *no blurred products, no soft or out-of-focus products, no bokeh over the products, no unreadable labels*.
+
+**3. Kompozit set elementi yerine içindekileri tek tek etiketle.** `@your-everyday-essentials` gibi birleşik element yerine `@canvas-canta` + `@broad-spectrum-sunscreen` + `@ruby-gold` + `@cosmos` + `@haze` yazmak belirgin şekilde daha iyi sonuç veriyor (kullanıcı onayladı). Dizilim koreografisini de uzun uzun yazma — "each appearing exactly once" + "match every element exactly" + `@haze` yatık kuralı yeterli.
+
+**4. Lifestyle = premium, dağınık değil.** "Reklam gibi durmasın, hayatın içinden olsun" istendiğinde candid/dağınık tarafa kaçmak yanlış — buruşuk çarşaf, kırışık mendil, dar karanlık oda "fukara evi" gibi duruyor. Doğrusu: **ferah, aydınlık, tertemiz lüks daire** (honed beyaz taş, açık meşe, ince keten, tavana kadar pencere, geniş boşluk), bakımlı model, düzenli yerleşim — sadece ürünler kadrajın kahramanı olmasın. Negatif: *no clutter, no mess, no worn or shabby interior, no cramped dark room, no cheap fittings, no visible cables*.
+
+**5. Palet: sarı/turuncu yok.** Sıcak ton isteniyorsa bile **beyaza çok yakın krem/ivory/bone/greige**'de kal. Negatif: *no orange, no yellow, no gold, no amber, no rust, no terracotta, no warm colour cast*. Sonbahar gibi temalarda mevsim hissi **formda ve dokuda** verilir (kuru/ağartılmış yaprak, örgü, bukle, kağıt-kesim), renkte değil.
+
+**Ayrıca — insan olan her promptta kendi model elementlerimiz kullanılır:** `@sadie @lena @romy @juliette @noa @roni @hailey @yuna @mira @cho`. Jenerik model tarif etme. Model satırı kısa: *"The model is @lena - true to the element, do not restyle her face."* Varsayılan nötr/Kafkas görünüm için `@cho` (Doğu Asyalı) ve `@mira` (Filipinli) özellikle istenmedikçe seçilmez.
+
+**Prompt metni saf ASCII olmalı.** Panoya kopyalanan metindeki Türkçe/aksanlı karakterler (ç, ı, é) yapıştırma sırasında bozuluyor ("açık" → "a√ßƒ±k", "bouclé" → "boucl√©"). Prompt yazarken aksanları sadeleştir; `-açık` gibi element adlarını yapıştıramıyorsan o kelimeyi silip `@bare-a` yazıp açılan listeden seç.
+
+## Higgsfield Composer — sessiz hata (ÇOK ÖNEMLİ)
+
+**Generate'e bastıktan sonra composer kapanıyor.** Kapalıyken yapılan `cmd+a → delete → cmd+v` **sessizce boşa düşüyor**, eski metin kutuda kalıyor ve bir sonraki Generate **aynı eski prompt'u tekrar gönderiyor**. Bu yüzden "düzelttim" denen promptlar Higgsfield'a hiç ulaşmadan saatlerce aynı hatalı görseller üretildi.
+
+Zorunlu akış — her prompt için:
+1. Composer kapalıysa önce alttaki şeride tıklayıp **aç**.
+2. Metin alanına tıkla → `cmd+a` → `Delete` → kısa bekle → `cmd+v`.
+3. **Yapıştığını gözle doğrula**: metin alanının ilk satırını oku, yeni prompt'un ilk cümlesi göründü mü? Görünmediyse Generate'e BASMA, 1-2'yi tekrarla.
+4. `Unlimited` anahtarının **yeşil/açık** olduğunu doğrula — sayfa yenilenince veya bir süre sonra kendiliğinden kapanıyor, kapalıyken kredi harcıyor.
+5. Generate'e bas, "Queued / Generation started" göründüğünü doğrula.
+
+Unlimited modda aynı anda **tek üretim** işleniyor, gerisi kuyruğa giriyor — bu normal.
 
 ## Canvas Çanta (`@canvas-canta`) — element adı ve şekil fiziği
 
