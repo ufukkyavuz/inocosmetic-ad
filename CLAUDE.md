@@ -6,8 +6,8 @@
 - **Gerçekçilik:** Her görsel ultra-photorealistic olmalı — fotoğraftan ayırt edilemez kalite, hipergerçekçi cilt dokusu, doğal ışık, lens/cam/yüzey şeffaflıkları fizik kurallarına uygun; prompt'a her zaman şu eklenir: *"ultra photorealistic, hyperrealistic, indistinguishable from a real photograph, 8K detail"*
 - **Çözünürlük:** Her zaman `2k` — `"resolution": "2k"` parametresi açıkça yazılacak
 - **Mod:** `unlimited`
-- **Referans zorunlu:** Referanssız görsel üretmek yasak — kullanıcının verdiği her görsel önce analiz edilecek, ardından o görsel referans alınarak üretim yapılacak
-- **Analiz önce:** Kullanıcı görsel paylaşırsa şunlar detaylı analiz edilecek, onay alındıktan sonra üretime geçilecek:
+- **Otonom konsept üretimi (2026-09-27 kararı — eski "referans zorunlu" kuralının yerine geçer):** Kullanıcı artık her seferinde Pinterest linki veya örnek görsel vermek istemiyor — "e önce üzümlerin vsnin ne alakası var" ve "bu işi otomatikleştirmemiz lazım... yaratıcılık kısmında da... araştırma yapıp farklı farklı konseptlerde ama asla premium algıyı bozmadan görseller yapabilmelisin" dedi. Tam akış ve kontrol listesi **[PERFORMANCE-CREATIVE-WORKFLOW.md](PERFORMANCE-CREATIVE-WORKFLOW.md)** dosyasında — her üretim isteğinde önce o dosya okunur. Kullanıcı kendisi bir görsel/link paylaşırsa aşağıdaki analiz adımı yine uygulanır; paylaşmazsa asistan kendi araştırmasından ve bu projedeki kurallardan konsept üretir, "referans yok" diye durmaz.
+- **Analiz önce (kullanıcı bir görsel/referans paylaştığında):** şunlar detaylı analiz edilecek, onay alındıktan sonra üretime geçilecek:
   - **Kamera açısı:** Hangi açıdan çekilmiş, lens mesafesi, alan derinliği
   - **Model duruşu:** Vücut pozisyonu, yüz açısı, el/kol konumu, ifade
   - **Ürün duruşu/yerleşimi:** Üründe tutuş, açı, kadrajdaki konumu
