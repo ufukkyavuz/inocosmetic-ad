@@ -21,10 +21,16 @@ Kullanıcı kararı, 2026-09-27: Referans bulma ve konsept geliştirme asistana 
 - Koyu/rengârenk zemin, karışık dekor, rastgele lüks sembolleri, buz/kış konsepti varsayılan değildir. Renkli balm dünyasında kontrollü vurgu mümkündür; ürün rengini değiştirmez.
 - Üst yaklaşık %40 kopya alanı; ürün tam görünür. Varsayılan 9:16, 2K; farklı format kullanıcı isteği veya belirlenmiş yerleşime göre hazırlanır.
 - Referans ürün geometrisi, logo, yazı, renk ve yüzey bitişi korunur. Element etiketi varsa ambalaj yeniden tarif edilmez.
-- Son doğrulanan ölçüler: Hibiscus/Scarlet/Cosmos 4cm; Peony/Daylily/Sand/Dune 6cm; balmlar 9cm; Broad/Glow 12cm. 12cm bazına göre oranlar sırasıyla %33, %50, %75, %100. Eski 5cm ve yanlış yüzde örneklerini yeniden kullanma.
-- Refy çanta 32cm genişlik ×18cm yükseklik; en büyük kutu 15cm, yani genişliğin yaklaşık %47'si. 18cm yükseklik derinlik değildir. Çanta dışı kırışıksız, gerçek kumaş dokulu; yapısı yeniden tasarlanmaz.
+- Son doğrulanan ölçüler (2026-09-28): görsellerde TÜM Bloom'lar (Hibiscus/Scarlet/Cosmos/Peony/Daylily) Pocket 4cm; Sand/Dune 6cm; balmlar 9cm; Broad/Glow 12cm; ayna charm 5,5cm çap. 12cm bazına göre oranlar %33, %50, %75, %100. Eski 5cm, Full-boy Bloom ve yanlış yüzde örneklerini yeniden kullanma. Tam tablo: CLAUDE.md "Ürün Boyutları — TEK KAYNAK".
+- Çantalar: canvas çanta yaklaşık 26cm genişlik × 15cm yükseklik (1-2cm kalın); siyah kese yaklaşık 20 × 18cm; Refy çanta 32 × 18cm (en büyük kutu 15cm, genişliğin ~%47'si). Yükseklik derinlik değildir. Çanta dışı kırışıksız, gerçek kumaş dokulu; yapısı yeniden tasarlanmaz.
 - Balm yüzeyde desteksiz dik durmaz. Model tutuşu, temas, gölge ve optik fiziksel olarak tutarlı olmalıdır.
 - Uygulamada doğru dudak/yanak/doku referansı kullanılır. Parıltı veya rengi uydurarak artırma. Glow kremi neredeyse beyaz kalır.
+
+## Çanta ve ürün sadakati — 2026-09-27 düzeltmesi
+
+- Çanta kullanılan sahnelerde INO'nun kendi çantası kullanılır. Genel deri/el çantası uydurulmaz. Canvas istenince `Products/canvas çanta.png` referansı esas alınır; Refy çantayla karıştırılmaz. Yan kenarlar düz, orijinal kapak ve logo korunur.
+- Model/ışık başarılı olsa bile ürün doğruluğu ayrı kontrol edilir: aplikatör ve kapalı uç, renk geçişinin yönü, logo yönü, varyant yazısı, fiziksel ölçü. Referans döndürülürken ambalajın tüm parçaları birlikte döner.
+- Salt üretim, birebir ambalaj garantisi sayılmaz. Yazı veya geometri sapması varsa görsel yayın onaylı diye sunulmaz; gerçek ürün görseliyle kompozit/rötuş gerekir.
 
 ## Başlatma
 
