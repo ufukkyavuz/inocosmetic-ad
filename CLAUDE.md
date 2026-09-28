@@ -332,10 +332,9 @@ Geniş spektrum SPF 50+ / PA++++ koruma + cilt bakımını bir arada sunar, UVA 
 
 | Ürün | Dosya |
 |---|---|
-| 00 Clear | `broad.png` + `Broad/` klasörü |
-| 01 Light | *(tona özel görsel yok — `Broad/` klasörü tek tüpün farklı açıları)* |
-| 02 Medium | *(tona özel görsel yok)* |
-| 03 Tan | *(sitede satışta, görsel henüz yok)* |
+| 00 Clear, 01 Light, 02 Medium, 03 Tan | `broad.png` + `Products/Broad/` (farklı açılar) |
+
+> Dört tonun ambalajı aynı (kullanıcı, 2026-09-28) — tona özel görsel/element gerekmez; hangi ton olursa olsun aynı Broad referansı kullanılır.
 
 ---
 
@@ -360,21 +359,21 @@ Bare / Haze / Bubble / Ice adlı 4 varyantı var (metalik sıkma tüp, gümüşt
 
 | Set Adı | İçerik | Fiyat (eski → indirimli) | Dosya |
 |---|---|---|---|
-| Lip Combo | 1 Lip Treatment Balm + 1 Catch Bloom Pocket + INO makyaj çantası | 2320 → 1508₺ | *(görsel yok)* |
-| Color & Glow Set | 1 Catch Bloom + 1 Catch Glow + INO makyaj çantası | 3280 → 2132₺ | `Color & Glow Set.png` |
-| Color & Shield Set | 1 Catch Bloom + 1 Broad Spectrum + INO makyaj çantası | 3580 → 2327₺ | `Color & Shield Set.png` |
-| Glow & Shield Set | 1 Catch Glow + 1 Broad Spectrum + INO makyaj çantası | 4480 → 2912₺ | `Glow & Shield Set.png` |
-| Your Everyday Essentials | 1 Lip Treatment Balm + 1 Catch Bloom Pocket + 1 Catch Glow + INO makyaj çantası | 4410 → 2867₺ | `Your Everyday Essentials hibiscus bare.png` |
-| Lip Quartet | 4 Lip Treatment Balm (Bare, Haze, Bubble, Ice) + çanta | 4520 → 2938₺ | `Lip Quartet.png` |
-| Sun & Color Set | 1 Catch Bloom Pocket + 1 Broad Spectrum + 1 Lip Treatment Balm — **çanta yok** | 4710 → 3062₺ | *(görsel yok)* |
-| Your Everyday Set | 1 Catch Bloom + 1 Catch Glow + 1 Broad Spectrum + INO makyaj çantası | 5670 → 3686₺ | `Your Everyday Set.png` |
-| Your Everyday Rituals Set | 1 Catch Bloom Pocket + 1 Lip Treatment Balm + 1 Catch Glow + 1 Broad Spectrum + INO Iconic Bag hediye | 6800 → 4420₺ | *(görsel yok)* |
-| Ultimate Set | 1 Catch Bloom + 1 Catch Glow + 1 Broad Spectrum + 1 Catch Sculpt + INO makyaj çantası | 7860 → 5109₺ | `Ultimate Set.png` |
-| Full Glam Set | 1 Catch Bloom + 1 Catch Glow + 1 Broad Spectrum + 2 Catch Sculpt + INO makyaj çantası | 10050 → 6533₺ | `Full Glam Set.png` |
-| All-in-one Set | 3 Catch Bloom Pocket + 2 Catch Glow + 1 Broad Spectrum + 2 Catch Sculpt + INO makyaj çantası | 14520 → 9438₺ | `All-in-one Set.png` |
+| Lip Combo | 1 Lip Treatment Balm + 1 Catch Bloom Pocket + INO makyaj çantası (canvas) | 2320 → 1508₺ | `Setler/Lip Combo.png` |
+| Color & Glow Set | 1 Catch Bloom + 1 Catch Glow + INO makyaj çantası | 3280 → 2132₺ | `Setler/Color & Glow Set.png` |
+| Color & Shield Set | 1 Catch Bloom + 1 Broad Spectrum + INO makyaj çantası | 3580 → 2327₺ | `Setler/Color & Shield Set.png` |
+| Glow & Shield Set | 1 Catch Glow + 1 Broad Spectrum + INO makyaj çantası | 4480 → 2912₺ | `Setler/Glow & Shield Set.png` |
+| Your Everyday Essentials | 1 Lip Treatment Balm + 1 Catch Bloom Pocket + 1 Catch Glow + INO makyaj çantası | 4410 → 2867₺ | `Setler/Your Everyday Essentials hibiscus bare.png` |
+| Lip Quartet | 4 Lip Treatment Balm (Bare, Haze, Bubble, Ice) + çanta | 4520 → 2938₺ | `Setler/Lip Quartet.png` |
+| Sun & Color Set | 1 Catch Bloom Pocket + 1 Broad Spectrum + 1 Lip Treatment Balm (site: çanta yok; görselde canvas çanta var) | 4710 → 3062₺ | `Setler/Sun & Color Set.png` |
+| Your Everyday Set | 1 Catch Bloom + 1 Catch Glow + 1 Broad Spectrum + INO makyaj çantası | 5670 → 3686₺ | `Setler/Your Everyday Set.png` |
+| Your Everyday Rituals Set | 1 Catch Bloom Pocket + 1 Lip Treatment Balm + 1 Catch Glow + 1 Broad Spectrum + INO Iconic Bag (`@refy-canta`) | 6800 → 4420₺ | `Setler/Your Everyday Rituals Set.png` |
+| Ultimate Set | 1 Catch Bloom + 1 Catch Glow + 1 Broad Spectrum + 1 Catch Sculpt + INO makyaj çantası | 7860 → 5109₺ | `Setler/Ultimate Set.png` |
+| Full Glam Set | 1 Catch Bloom + 1 Catch Glow + 1 Broad Spectrum + 2 Catch Sculpt + INO makyaj çantası | 10050 → 6533₺ | `Setler/Full Glam Set.png` |
+| All-in-one Set | 3 Catch Bloom Pocket + 2 Catch Glow + 1 Broad Spectrum + 2 Catch Sculpt + INO makyaj çantası | 14520 → 9438₺ | `Setler/All-in-one Set.png` |
 
 > Glow & Shield Set 2026-09-28 itibarıyla sitede VAR (önceki "yok" notu eskidi). Setlerin tamamı %35 indirimde.
-> `bloom_sculpt_broad_glow.png`, `bloom_glow.png`, `bloom_sculpt_broad_glow_beautyshot.png` gibi dosyalar resmi/isimli bir set ürününe karşılık gelmiyor, sadece görsel dosya adları.
+> `Setler/` içindeki `bloom_sculpt_broad_glow.png`, `bloom_glow.png`, `bloom_sculpt_broad_glow_beautyshot.png` gibi dosyalar resmi/isimli bir set ürününe karşılık gelmiyor, sadece görsel dosya adları.
 
 ---
 
@@ -383,10 +382,12 @@ Bare / Haze / Bubble / Ice adlı 4 varyantı var (metalik sıkma tüp, gümüşt
 |---|---|
 | `kese.png` | Siyah büzgülü kese — yaklaşık **20 × 18 cm** |
 | `canvas çanta.png` | Canvas çanta (`@canvas-canta`) — yaklaşık **26 × 15 cm**, 1-2 cm kalın |
-| `all products.png` | Tüm ürünler oran referansı |
+| `Setler/all products.png` | Tüm ürünler lineup görseli (ölçekli DEĞİL) |
+| `refy-canta/` (8 görsel) | INO Iconic Bag = `@refy-canta` — beyaz, körüklü, 2 çıtçıtlı |
+| `termal çanta.png`, `termal çanta 1 .png` | Termal çanta |
 | `Catch Balm/2.jpg` | INO Mirror Charm (`@ayna`) — 5,5 cm çap, vegan elma derisi, mıknatıslı kapak, karabina halka; sitede 399₺ |
 
-> **INO Iconic Bag (sitede, 2026-09-28):** 28 × 17 × 14,5 cm, su itici UV kaplı kumaş, 2 çıtçıt, iç fermuarlı cep; 1390₺ ya da 4200₺ üstü hediye. `@refy-canta` büyük ihtimalle bu çanta — sitedeki ölçü aşağıdaki 32 × 18 notuyla çelişiyor, kullanıcı onaylayınca tek değere indirilecek.
+> **INO Iconic Bag = `@refy-canta` (sitede, 2026-09-28):** 28 × 17 × 14,5 cm, su itici UV kaplı kumaş, 2 çıtçıt, iç fermuarlı cep; 1390₺ ya da 4200₺ üstü hediye. `@refy-canta` bu çanta (Rituals set görseliyle doğrulandı) — sitedeki ölçü aşağıdaki 32 × 18 notuyla çelişiyor, kullanıcı onaylayınca tek değere indirilecek.
 
 > **`@refy-canta` (Higgsfield prop, INO makyaj çantası referansı):** gerçek boyutu **32 cm genişlik × 18 cm yükseklik** — hem top-view hem normal açıda küçük çıkma eğiliminde, prompt'a bu somut ölçü mutlaka yazılmalı, diğer ürünlerin boyutu buna oranla verilmeli (yüzde kıyası tek başına yetersiz kaldı).
 
