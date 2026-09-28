@@ -5,7 +5,7 @@ Kullanıcı kararı, 2026-09-27: Referans bulma ve konsept geliştirme asistana 
 ## Her üretim paketinin akışı
 
 1. Ürün, hedef mesaj, kullanım alanı ve mevcut referansları proje belgelerinden al. Eksik tercihleri makul varsayımla çöz; gerçek ürün referansı eksikse ambalaj uydurma.
-2. Güncel marka kampanyaları, resmi ürün sayfaları ve Pinterest üzerinden araştır. Görselleri gerçekten incele; bağlantı veya başlıktan kompozisyon uydurma. Kaynak URL ve hangi görsel fikrinin alındığını kaydet.
+2. Güncel marka kampanyaları, resmi ürün sayfaları ve Pinterest üzerinden araştır. **Görselleri tarayıcıda açıp gerçekten incele** (metin araması yetmez); her konsept için en az bir referans görselin kamera açısı, ışığı, yerleşimi ve mood'u çıkarılır. Bağlantı veya başlıktan kompozisyon uydurma. Kaynak URL ve hangi görsel fikrinin alındığını kaydet.
 3. Önce performans hipotezi, sonra sahne: kullanım kolaylığı, görünür renk/bitiş, doku, taşınabilirlik, set içeriği, doğrulanmış teklif veya bakım rutini. Her konsept tek bir ana mesaj taşısın. Onaylı ürün iddiaları dışında fayda veya sonuç üretme.
 4. Varsayılan altılı paket: iki uygulama/ürün demonstrasyonu, bir doku-renk kanıtı, bir gerçek yaşam anı, bir set/taşınabilirlik hikâyesi, bir güçlü editoryal ürün karesi. Ürüne uymayan kategori gerekçeyle değiştirilir. Aynı dekoru farklı ürünle tekrarlamak yeni konsept sayılmaz.
 5. Konseptler en az iki eksende farklılaşsın: mesaj, etkileşim, kompozisyon, ışık, kamera veya kullanım bağlamı. Yalnız açı ve prop değişimi yeterli değildir.
@@ -16,7 +16,7 @@ Kullanıcı kararı, 2026-09-27: Referans bulma ve konsept geliştirme asistana 
 
 ## Sabit marka ve ürün kontrolü
 
-- Premium, temiz, cool, fotoğrafik. Beyaz veya beyaza çok yakın nötr zemin; hikâye nesne yığınıyla değil ürün ve kullanım ilişkisiyle kurulur.
+- Premium, temiz, cool, fotoğrafik. Düz beyaz stüdyo fonu sadece kullanıcı isterse; her görselin konsepti ve gerçek mekânı/yüzeyi olur, açık-nötr palet malzemede (taş, keten, krem, açık meşe) yaşar. Hikâye nesne yığınıyla değil ürün ve kullanım ilişkisiyle kurulur.
 - REFY: sade set/yerleşim; Rhode: kullanım hikâyesi ve balm; Haus Labs: doku ve uygulama; MERIT: özenli günlük rutin. Kaynaktan mekanik alınır, başka markanın kimliği kopyalanmaz.
 - Koyu/rengârenk zemin, karışık dekor, rastgele lüks sembolleri, buz/kış konsepti varsayılan değildir. Renkli balm dünyasında kontrollü vurgu mümkündür; ürün rengini değiştirmez.
 - Üst yaklaşık %40 kopya alanı; ürün tam görünür. Varsayılan 9:16, 2K; farklı format kullanıcı isteği veya belirlenmiş yerleşime göre hazırlanır.
