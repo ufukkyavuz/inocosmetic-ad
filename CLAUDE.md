@@ -122,7 +122,15 @@ Figma dosyasında "İndirimli Fiyatlar" sayfası (`node-id=6162-3853`) altında,
 
 Kural: **tekli ürünler %20, setler %35** indirim kategorisinde. Her ikisi de aynı temel şablonu (arka plan fotoğraf + üstte logo + PATENTLİ TEKNOLOJİ rozeti + varsa ingredient promo-badge'ler) kullanır, tek fark başlık metni ve fiyat satırının var/yok olması. Var olan bir `%30 eski-yeni fiyat` frame'i klonlayıp metni değiştirmek (fotoğraf ve yerleşim aynı kalır) en hızlı yol — dosyada zaten birçok ürün için böyle bir "%30" şablon frame'i var, sıfırdan kurmaya gerek yok.
 
-**Bilinen eski fiyatlar (İndirimli Fiyatlar sayfasından, %30 kampanyasından):** Catch Bloom (genel/Scarlet) 1190₺, Catch Glow Ruby Gold 2090₺, Catch Balm Bubble 1130₺, Beauty Shot 2990₺, Your Everyday Set 5670₺. Broad Spectrum ve Catch Sculpt için fiyat dosyada bulunamadı, kullanıcıdan istenmeli.
+**Güncel fiyatlar (inobeauty.com.tr, 2026-09-28 — eski → indirimli):** tekli ürünler %20, setler %35.
+- Catch Bloom Pocket (tüm 5 renk) 1190 → 952₺ · Catch Bloom Full (Daylily, Peony) 1890 → 1512₺
+- Lip Treatment Balm (Bare/Haze/Bubble/Ice) 1130 → 904₺
+- Catch Glow (Pink Quartz, Ruby Gold) 2090 → 1672₺
+- Broad Spectrum SPF 50+ (00/01/02/03) 2390 → 1912₺
+- Catch Sculpt (Sand, Dune) 2190 → 1752₺
+- Beauty Shot (14 × 40ml) 2990 → 2093₺ (%30)
+- INO Iconic Bag 1390₺ (4200₺ üstü alışverişte hediye) · INO Mirror Charm 399₺ (stokta yok, "çok yakında")
+- Set fiyatları için aşağıdaki SETLER tablosu. Fiyat eksikse siteye bak, kullanıcıya sorma.
 
 **Figma font kısıtı:** Gerçek "Avenir Next" fontu plugin API (use_figma) ortamında yüklenemiyor ("font ailesi yok" hatası) — sadece ücretsiz metrik-uyumlu klonu **"Avenir Next W1G"** yükleniyor. Metin düzenlerken bu fontu kullan (kullanıcı onayladı), stil adları aynı ("Heavy", "Heavy Italic", "Bold", "Medium") ama "Demi Bold" yerine sadece "Demi" var.
 
@@ -325,9 +333,9 @@ Geniş spektrum SPF 50+ / PA++++ koruma + cilt bakımını bir arada sunar, UVA 
 | Ürün | Dosya |
 |---|---|
 | 00 Clear | `broad.png` + `Broad/` klasörü |
-| 01 Light | `Broad/` klasörü |
-| 02 Medium | `Broad/` klasörü |
-| 03 Tan | *(görsel henüz eklenmedi)* |
+| 01 Light | *(tona özel görsel yok — `Broad/` klasörü tek tüpün farklı açıları)* |
+| 02 Medium | *(tona özel görsel yok)* |
+| 03 Tan | *(sitede satışta, görsel henüz yok)* |
 
 ---
 
@@ -350,16 +358,22 @@ Bare / Haze / Bubble / Ice adlı 4 varyantı var (metalik sıkma tüp, gümüşt
 ### SETLER
 > Kaynak: canlı site (`inobeauty.com.tr`). Setlerdeki ürün varyantları (renk/ton) müşteri tarafından seçilebilir — set açıklamasında ayrıca belirtilmez.
 
-| Set Adı | İçerik | Dosya |
-|---|---|---|
-| Color & Glow Set | 1 Catch Bloom + 1 Catch Glow + INO makyaj çantası | `Color & Glow Set.png` |
-| Color & Shield Set | 1 Catch Bloom + 1 Broad Spectrum + INO makyaj çantası | `Color & Shield Set.png` |
-| Your Everyday Set | 1 Catch Bloom + 1 Catch Glow + 1 Broad Spectrum + INO makyaj çantası | `Your Everyday Set.png` |
-| Ultimate Set | 1 Catch Bloom + 1 Catch Glow + 1 Broad Spectrum + 1 Catch Sculpt + INO makyaj çantası | `Ultimate Set.png` |
-| Full Glam Set | 1 Catch Bloom + 1 Catch Glow + 1 Broad Spectrum + 2 Catch Sculpt + INO makyaj çantası | `Full Glam Set.png` |
-| All-in-one Set | 3 Catch Bloom Pocket + 2 Catch Glow + 1 Broad Spectrum + 2 Catch Sculpt + INO makyaj çantası | `All-in-one Set.png` |
+| Set Adı | İçerik | Fiyat (eski → indirimli) | Dosya |
+|---|---|---|---|
+| Lip Combo | 1 Lip Treatment Balm + 1 Catch Bloom Pocket + INO makyaj çantası | 2320 → 1508₺ | *(görsel yok)* |
+| Color & Glow Set | 1 Catch Bloom + 1 Catch Glow + INO makyaj çantası | 3280 → 2132₺ | `Color & Glow Set.png` |
+| Color & Shield Set | 1 Catch Bloom + 1 Broad Spectrum + INO makyaj çantası | 3580 → 2327₺ | `Color & Shield Set.png` |
+| Glow & Shield Set | 1 Catch Glow + 1 Broad Spectrum + INO makyaj çantası | 4480 → 2912₺ | `Glow & Shield Set.png` |
+| Your Everyday Essentials | 1 Lip Treatment Balm + 1 Catch Bloom Pocket + 1 Catch Glow + INO makyaj çantası | 4410 → 2867₺ | `Your Everyday Essentials hibiscus bare.png` |
+| Lip Quartet | 4 Lip Treatment Balm (Bare, Haze, Bubble, Ice) + çanta | 4520 → 2938₺ | `Lip Quartet.png` |
+| Sun & Color Set | 1 Catch Bloom Pocket + 1 Broad Spectrum + 1 Lip Treatment Balm — **çanta yok** | 4710 → 3062₺ | *(görsel yok)* |
+| Your Everyday Set | 1 Catch Bloom + 1 Catch Glow + 1 Broad Spectrum + INO makyaj çantası | 5670 → 3686₺ | `Your Everyday Set.png` |
+| Your Everyday Rituals Set | 1 Catch Bloom Pocket + 1 Lip Treatment Balm + 1 Catch Glow + 1 Broad Spectrum + INO Iconic Bag hediye | 6800 → 4420₺ | *(görsel yok)* |
+| Ultimate Set | 1 Catch Bloom + 1 Catch Glow + 1 Broad Spectrum + 1 Catch Sculpt + INO makyaj çantası | 7860 → 5109₺ | `Ultimate Set.png` |
+| Full Glam Set | 1 Catch Bloom + 1 Catch Glow + 1 Broad Spectrum + 2 Catch Sculpt + INO makyaj çantası | 10050 → 6533₺ | `Full Glam Set.png` |
+| All-in-one Set | 3 Catch Bloom Pocket + 2 Catch Glow + 1 Broad Spectrum + 2 Catch Sculpt + INO makyaj çantası | 14520 → 9438₺ | `All-in-one Set.png` |
 
-> ~~Glow & Shield Set~~ — sitede bu isimde bir ürün yok, önceki liste hatalıydı, kaldırıldı.
+> Glow & Shield Set 2026-09-28 itibarıyla sitede VAR (önceki "yok" notu eskidi). Setlerin tamamı %35 indirimde.
 > `bloom_sculpt_broad_glow.png`, `bloom_glow.png`, `bloom_sculpt_broad_glow_beautyshot.png` gibi dosyalar resmi/isimli bir set ürününe karşılık gelmiyor, sadece görsel dosya adları.
 
 ---
@@ -370,6 +384,9 @@ Bare / Haze / Bubble / Ice adlı 4 varyantı var (metalik sıkma tüp, gümüşt
 | `kese.png` | Siyah büzgülü kese — yaklaşık **20 × 18 cm** |
 | `canvas çanta.png` | Canvas çanta (`@canvas-canta`) — yaklaşık **26 × 15 cm**, 1-2 cm kalın |
 | `all products.png` | Tüm ürünler oran referansı |
+| `Catch Balm/2.jpg` | INO Mirror Charm (`@ayna`) — 5,5 cm çap, vegan elma derisi, mıknatıslı kapak, karabina halka; sitede 399₺ |
+
+> **INO Iconic Bag (sitede, 2026-09-28):** 28 × 17 × 14,5 cm, su itici UV kaplı kumaş, 2 çıtçıt, iç fermuarlı cep; 1390₺ ya da 4200₺ üstü hediye. `@refy-canta` büyük ihtimalle bu çanta — sitedeki ölçü aşağıdaki 32 × 18 notuyla çelişiyor, kullanıcı onaylayınca tek değere indirilecek.
 
 > **`@refy-canta` (Higgsfield prop, INO makyaj çantası referansı):** gerçek boyutu **32 cm genişlik × 18 cm yükseklik** — hem top-view hem normal açıda küçük çıkma eğiliminde, prompt'a bu somut ölçü mutlaka yazılmalı, diğer ürünlerin boyutu buna oranla verilmeli (yüzde kıyası tek başına yetersiz kaldı).
 
