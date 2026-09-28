@@ -1,0 +1,216 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>INO Catch Balm — launch film</title>
+<style>html,body{margin:0;background:#fff}canvas{display:block;height:100vh;width:auto;margin:0 auto}</style>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// Render contract: pure function of time. window.seek(t) paints frame t. No timers, no Math.random.
+const W = 1080, H = 1920, DUR = 15, BEAT = 0.5;
+const g = document.getElementById('c').getContext('2d');
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const lerp = (a, b, p) => a + (b - a) * p;
+const INK = '#323232';
+const FONT = '"Avenir Next", "Avenir", sans-serif';
+
+// ---------- motion ----------
+function spring(t, k = 170, d = 26) {
+  if (t <= 0) return 0;
+  const w0 = Math.sqrt(k), z = d / (2 * w0);
+  if (z < 1) {
+    const wd = w0 * Math.sqrt(1 - z * z);
+    return 1 - Math.exp(-z * w0 * t) * (Math.cos(wd * t) + (z * w0 / wd) * Math.sin(wd * t));
+  }
+  return 1 - Math.exp(-w0 * t) * (1 + w0 * t);
+}
+function rng(seed) { return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+  let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+  t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+// ---------- assets ----------
+const VARIANTS = [
+  { key: 'bare',   name: 'Bare',   col: [214, 160, 150] },
+  { key: 'haze',   name: 'Haze',   col: [176, 36, 48] },
+  { key: 'bubble', name: 'Bubble', col: [228, 132, 156] },
+  { key: 'ice',    name: 'Ice',    col: [120, 200, 228] },
+];
+const IMG = {};
+const names = ['swatches', ...VARIANTS.map(v => v.key), 'bubble-open', 'haze-open'];
+const ready = Promise.all(names.map(n => new Promise((res, rej) => {
+  const im = new Image(); im.onload = () => im.decode().then(res, res); im.onerror = rej;
+  im.src = 'assets/' + n + '.png'; IMG[n] = im;
+}))).then(() => document.fonts.load(`italic 800 100px ${FONT}`))
+  .then(() => document.fonts.load(`500 40px ${FONT}`))
+  .then(() => {                       // sample the swatch photo's paper colour so the hook blends seamlessly
+    const c = document.createElement('canvas'); c.width = c.height = 4;
+    const x = c.getContext('2d'); x.drawImage(IMG.swatches, 10, 10, 40, 40, 0, 0, 4, 4);
+    const d = x.getImageData(0, 0, 1, 1).data; SWATCH_BG = `rgb(${d[0]},${d[1]},${d[2]})`;
+  });
+let SWATCH_BG = '#f5f5f5';
+
+// film grain tiles, seeded
+const GRAIN = [0, 1, 2, 3].map(i => {
+  const c = document.createElement('canvas'); c.width = c.height = 256;
+  const x = c.getContext('2d'), d = x.createImageData(256, 256), r = rng(100 + i);
+  for (let p = 0; p < d.data.length; p += 4) { const v = r() * 255; d.data[p] = d.data[p + 1] = d.data[p + 2] = v; d.data[p + 3] = 255; }
+  x.putImageData(d, 0, 0); return c;
+});
+
+// ---------- drawing helpers ----------
+function bg(tint = null, amt = 0) {
+  const mix = (base) => tint ? base.map((b, i) => Math.round(lerp(b, tint[i], amt))) : base;
+  const c0 = mix([255, 255, 255]), c1 = mix([245, 245, 245]);
+  const gr = g.createRadialGradient(W / 2, H * 0.55, 0, W / 2, H * 0.55, H * 0.75);
+  gr.addColorStop(0, `rgb(${c0})`); gr.addColorStop(1, `rgb(${c1})`);
+  g.fillStyle = gr; g.fillRect(0, 0, W, H);
+}
+
+// Masked line of type: rises from below its own baseline box. p: 0 hidden → 1 in place; q: 0 → 1 leaving upward.
+function line(str, x, y, { size = 44, weight = 500, italic = false, align = 'left', color = INK, track = 0, p = 1, q = 0, maxW = 920 } = {}) {
+  if (p <= 0.001 || q >= 0.999) return 0;
+  g.save();
+  let s = size;
+  g.font = `${italic ? 'italic ' : ''}${weight} ${s}px ${FONT}`; g.letterSpacing = track + 'px';
+  let w = g.measureText(str).width;
+  if (w > maxW) { s = size * maxW / w; g.font = `${italic ? 'italic ' : ''}${weight} ${s}px ${FONT}`; w = g.measureText(str).width; }
+  const top = y - s * 1.0, hgt = s * 1.3;
+  g.beginPath(); g.rect(0, top, W, hgt); g.clip();
+  const dy = (1 - p) * hgt - q * hgt;
+  g.fillStyle = color; g.textAlign = align; g.textBaseline = 'alphabetic';
+  g.fillText(str, x, y + dy);
+  g.restore();
+  return w;
+}
+
+const OC = document.createElement('canvas'); OC.width = 1400; OC.height = 1800;
+const oc = OC.getContext('2d');
+// Real product cut-out; sheen = a soft light band clipped to the product's own alpha.
+function tube(key, cx, cy, h, rotDeg = 0, sheen = -1, alpha = 1, shadow = true) {
+  const im = IMG[key]; const w = h * im.width / im.height;
+  const sw = Math.ceil(w), sh = Math.ceil(h);
+  oc.clearRect(0, 0, sw + 2, sh + 2);
+  oc.globalCompositeOperation = 'source-over'; oc.drawImage(im, 0, 0, w, h);
+  if (sheen > -0.5 && sheen < 1.5) {
+    oc.globalCompositeOperation = 'source-atop';
+    const bx = lerp(-0.6, 1.6, sheen) * w;
+    const gr = oc.createLinearGradient(bx - w * 0.35, 0, bx + w * 0.35, h * 0.35);
+    gr.addColorStop(0, 'rgba(255,255,255,0)'); gr.addColorStop(0.5, 'rgba(255,255,255,0.55)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
+    oc.fillStyle = gr; oc.fillRect(0, 0, sw, sh);
+    oc.globalCompositeOperation = 'source-over';
+  }
+  g.save(); g.globalAlpha = alpha;
+  g.translate(cx, cy); g.rotate(rotDeg * Math.PI / 180);
+  if (shadow) { g.shadowColor = 'rgba(40,30,30,0.16)'; g.shadowBlur = 70; g.shadowOffsetY = 40; }
+  g.drawImage(OC, 0, 0, sw, sh, -w / 2, -h / 2, w, h);
+  g.restore();
+}
+
+// INO wordmark rebuilt as vectors from the site logo (units from the 1200px source).
+function logo(cx, cy, s, pI, pN, pO, pU, color = '#1b1b1b') {
+  g.save(); g.translate(cx, cy); g.scale(s, s); g.translate(-600, -569); g.fillStyle = color;
+  if (pI > 0) { const hh = 236 * clamp(pI, 0, 1.2); g.fillRect(297, 687 - hh, 59, hh); }
+  if (pN > 0) {
+    g.save(); const hh = 236 * clamp(pN, 0, 1.2); g.beginPath(); g.rect(400, 687 - hh, 280, hh); g.clip();
+    g.beginPath(); g.moveTo(423, 687); g.lineTo(423, 569); g.arc(541, 569, 118, Math.PI, 0); g.lineTo(659, 687);
+    g.lineTo(600, 687); g.lineTo(600, 569); g.arc(541, 569, 59, 0, Math.PI, true); g.lineTo(482, 687); g.closePath(); g.fill();
+    g.restore();
+  }
+  if (pO > 0) { g.beginPath(); g.arc(812, 540, 90 * Math.max(0, pO), 0, Math.PI * 2); g.fill(); }
+  if (pU > 0) g.fillRect(728, 643, 168 * clamp(pU), 44);
+  g.restore();
+}
+
+// ---------- scenes (local time u) ----------
+const L = 80, R = W - 80;   // text margins; top ~40% is copy zone, product lives below
+const SCENES = [
+  { from: 0, to: 2, draw(u) {                                  // HOOK: real swatches wiped on, kinetic type
+    g.fillStyle = SWATCH_BG; g.fillRect(0, 0, W, H);
+    const r = spring(u - 0.05, 30, 11);
+    const X = -300 + r * 2300;
+    g.save(); g.beginPath(); g.moveTo(-400, 0); g.lineTo(X, 0); g.lineTo(X - 700, H); g.lineTo(-400, H); g.closePath(); g.clip();
+    const sc = 1.0 + 0.05 * u / 2, iw = 1250 * sc, ih = iw * IMG.swatches.height / IMG.swatches.width;
+    g.drawImage(IMG.swatches, W / 2 - iw / 2, 1290 - ih / 2, iw, ih);
+    g.restore();
+    line('YENİ', L, 330, { size: 44, track: 12, p: spring(u - 0.25, 200, 24) });
+    line('Cam gibi', R, 480, { size: 150, weight: 800, italic: true, align: 'right', p: spring(u - 0.5, 200, 22) });
+    line('parlak.', R, 640, { size: 150, weight: 800, italic: true, align: 'right', p: spring(u - 1.0, 200, 22) });
+  }},
+  { from: 2, to: 8, draw(u) {                                  // HERO drop, then variant carousel on the beat
+    const arrive = [0, 3, 4, 5];                                // local times each tube is centred
+    const weights = VARIANTS.map((_, i) => (i === 0 ? 1 : spring(u - arrive[i], 170, 20)) - (i < 3 ? spring(u - arrive[i + 1], 170, 20) : 0));
+    const tint = [0, 1, 2].map(c => VARIANTS.reduce((a, v, i) => a + v.col[c] * clamp(weights[i]), 0));
+    bg(tint, 0.13 * spring(u - 2, 60, 15));
+    VARIANTS.forEach((v, i) => {
+      const inn = i === 0 ? 1 : spring(u - arrive[i], 170, 20);
+      const out = i < 3 ? spring(u - arrive[i + 1], 170, 20) : 0;
+      let x = 540 + (1 - inn) * 1000 - out * 1000, y = 1330, rot = (1 - inn) * 14 - out * 14;
+      if (i === 0) { const d = spring(u, 110, 13); y -= (1 - d) * 1500; rot += -16 * (1 - spring(u, 90, 12)); }
+      if (x < -700 || x > 1780) return;
+      const sheen = i === 0 ? (u - 0.55) / 0.9 : (u - arrive[i] - 0.2) / 0.7;
+      tube(v.key, x, y, 1120, rot, sheen);
+    });
+    // copy — phase A: product name
+    line('LIP TREATMENT BALM', L, 330, { size: 40, track: 9, p: spring(u - 0.3, 200, 24), q: spring(u - 2, 200, 24) });
+    line('Catch Balm', R, 500, { size: 170, weight: 800, italic: true, align: 'right', p: spring(u - 0.6, 200, 22), q: spring(u - 2, 200, 24) });
+    VARIANTS.forEach((v, i) => {                               // phase B: shade names, one per beat pair
+      const tin = 2 + i, tout = i < 3 ? 3 + i : 99;
+      const p = spring(u - tin - 0.16, 220, 24), q = spring(u - tout, 260, 26);   // old copy leaves before new enters
+      line(`0${i + 1} / 04`, L, 330, { size: 40, track: 9, p, q });
+      line(v.name, R, 520, { size: 200, weight: 800, italic: true, align: 'right', p, q });
+      if (p > 0.01 && q < 0.99) {                                // shade chip
+        g.save(); g.fillStyle = `rgb(${v.col})`; g.globalAlpha = clamp(p - q);
+        g.beginPath(); g.arc(L + 250, 318, 16 * spring(u - tin - 0.1, 260, 18) * (1 - q), 0, Math.PI * 2); g.fill(); g.restore();
+      }
+    });
+  }},
+  { from: 8, to: 11, draw(u) {                                 // TEXTURE close-ups + verbatim site claims
+    bg();
+    const cut = 1.5, first = u < cut, lu = first ? u : u - cut;
+    const key = first ? 'bubble-open' : 'haze-open';
+    const im = IMG[key], sc = 0.9 + 0.1 * spring(lu, 140, 15) + 0.025 * lu;
+    const ih = 1500 * sc, iw = ih * im.width / im.height;
+    g.drawImage(im, W / 2 - iw / 2, 1290 - ih / 2, iw, ih);
+    line('VOLUFILINE & DENİZ KOLAJENİ', L, 300, { size: 38, track: 6, p: spring(u - 0.15, 200, 24) });
+    line('Yoğun ve uzun', R, 440, { size: 120, weight: 800, italic: true, align: 'right', p: spring(u - 0.35, 200, 22), q: spring(u - cut, 220, 24) });
+    line('süreli nemlendirme', R, 570, { size: 120, weight: 800, italic: true, align: 'right', p: spring(u - 0.6, 200, 22), q: spring(u - cut, 220, 24) });
+    line('Gözle görülür', R, 440, { size: 120, weight: 800, italic: true, align: 'right', p: spring(u - cut - 0.2, 200, 22) });
+    line('dolgunluk etkisi', R, 570, { size: 120, weight: 800, italic: true, align: 'right', p: spring(u - cut - 0.4, 200, 22) });
+  }},
+  { from: 11, to: 13.5, draw(u) {                              // LINEUP + launch price
+    bg();
+    const xs = [250, 430, 650, 830], rs = [-17, -6, 6, 17], ys = [1260, 1210, 1210, 1260];
+    VARIANTS.forEach((v, i) => {
+      const p = spring(u - i * 0.25, 150, 17);
+      tube(v.key, xs[i], ys[i] + (1 - p) * 1300, 900, rs[i] * p + (1 - p) * 25, (u - 1.1 - i * 0.08) / 0.8);
+    });
+    line('LANSMANA ÖZEL', L, 300, { size: 40, track: 9, p: spring(u - 0.1, 200, 24) });
+    line('%20 indirim', R, 460, { size: 150, weight: 800, italic: true, align: 'right', p: spring(u - 0.35, 200, 22) });
+    // price row
+    const pOld = spring(u - 0.8, 200, 24);
+    const wOld = line('1.130₺', 560, 620, { size: 64, weight: 500, align: 'right', color: '#8a8a8a', p: pOld });
+    const s = clamp((u - 1.25) / 0.3);
+    if (s > 0) { g.save(); g.strokeStyle = '#8a8a8a'; g.lineWidth = 5; g.beginPath(); g.moveTo(560 - wOld - 6, 598); g.lineTo(560 - wOld - 6 + (wOld + 12) * s, 598); g.stroke(); g.restore(); }
+    const pp = spring(u - 1.75, 260, 16);
+    if (pp > 0) { g.save(); g.translate(R, 626); g.scale(pp, pp); g.font = `italic 800 110px ${FONT}`; g.textAlign = 'right'; g.fillStyle = INK; g.fillText('904₺', 0, 0); g.restore(); }
+  }},
+  { from: 13.5, to: 15.01, draw(u) {                           // LOGO build on 16ths
+    bg();
+    logo(W / 2, 880, 1.0, spring(u, 260, 22), spring(u - 0.125, 260, 22), spring(u - 0.25, 240, 13), spring(u - 0.5, 200, 24));
+    line('LIP TREATMENT BALM', W / 2, 1120, { size: 38, track: 10, align: 'center', p: spring(u - 0.6, 200, 24) });
+    line('inobeauty.com.tr', W / 2, 1200, { size: 44, weight: 600, track: 3, align: 'center', color: '#6a6a6a', p: spring(u - 0.75, 200, 24) });
+  }},
+];
+
+function draw(t) {
+  g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; g.letterSpacing = '0px';
+  for (const s of SCENES) if (t >= s.from && t < s.to) { s.draw(t - s.from); break; }
+  g.save(); g.globalAlpha = 0.05; g.globalCompositeOperation = 'overlay';
+  g.fillStyle = g.createPattern(GRAIN[Math.floor(t * 24) % 4], 'repeat'); g.fillRect(0, 0, W, H); g.restore();
+}
+window.seek = (t) => { draw(t); return true; };
+window.ready = ready;
+
+if (!navigator.webdriver) ready.then(() => {
+  const t0 = performance.now();
+  (function loop() { draw(((performance.now() - t0) / 1000) % DUR); requestAnimationFrame(loop); })();
+});
+</script>

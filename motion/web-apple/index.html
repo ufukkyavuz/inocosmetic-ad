@@ -1,0 +1,187 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>INO Catch Balm — web hero film (Apple-style)</title>
+<style>html,body{margin:0;background:#f5f5f7}canvas{display:block;width:100vw;height:auto;max-height:100vh;object-fit:contain}</style>
+<canvas id="c" width="1920" height="1080"></canvas>
+<script>
+// Render contract: pure function of time. window.seek(t) paints frame t. Seamless loop: frame DUR == frame 0.
+const W = 1920, H = 1080, DUR = 20;
+let g = document.getElementById('c').getContext('2d');
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const lerp = (a, b, p) => a + (b - a) * p;
+const ease = x => { x = clamp(x); return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };   // inOutCubic
+const out = x => 1 - Math.pow(1 - clamp(x), 3);
+const INK = '#1d1d1f', GREY = '#6e6e73', BG = '#f5f5f7';
+const FONT = '"Avenir Next", "Avenir", sans-serif';
+
+function spring(t, k = 60, d = 16) {          // defaults: critically damped, no overshoot — Apple motion never bounces
+  if (t <= 0) return 0;
+  const w0 = Math.sqrt(k), z = d / (2 * w0);
+  if (z < 1) { const wd = w0 * Math.sqrt(1 - z * z);
+    return 1 - Math.exp(-z * w0 * t) * (Math.cos(wd * t) + (z * w0 / wd) * Math.sin(wd * t)); }
+  return 1 - Math.exp(-w0 * t) * (1 + w0 * t);
+}
+function rng(seed) { return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+  let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+  t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+const VARIANTS = [
+  { key: 'bare', name: 'Bare', col: [214, 160, 150] },
+  { key: 'haze', name: 'Haze', col: [176, 36, 48] },
+  { key: 'bubble', name: 'Bubble', col: [228, 132, 156] },
+  { key: 'ice', name: 'Ice', col: [120, 200, 228] },
+];
+const IMG = {};
+const names = ['bare-full', 'swatches', 'haze-open', ...VARIANTS.map(v => v.key)];
+let SWATCH_BG = BG;
+const ready = Promise.all(names.map(n => new Promise((res, rej) => {
+  const im = new Image(); im.onload = () => im.decode().then(res, res); im.onerror = rej;
+  im.src = 'assets/' + n + '.png'; IMG[n] = im;
+}))).then(() => Promise.all([`600 100px ${FONT}`, `700 100px ${FONT}`, `500 40px ${FONT}`].map(f => document.fonts.load(f))))
+  .then(() => {
+    const c = document.createElement('canvas'); c.width = c.height = 4;
+    const x = c.getContext('2d'); x.drawImage(IMG.swatches, 10, 10, 40, 40, 0, 0, 4, 4);
+    const d = x.getImageData(0, 0, 1, 1).data; SWATCH_BG = `rgb(${d[0]},${d[1]},${d[2]})`;
+  });
+
+// ---------- helpers ----------
+// Apple-style text entrance: rises 40px, un-blurs, fades. p: 0→1 in, q: 0→1 out.
+function text(str, x, y, { size = 48, weight = 600, align = 'center', color = INK, track = 0, p = 1, q = 0, maxW = 1600, fill = null } = {}) {
+  const a = clamp(p) * (1 - clamp(q));
+  if (a <= 0.002) return 0;
+  g.save();
+  let s = size; const setF = () => { g.font = `${weight} ${s}px ${FONT}`; };
+  setF(); g.letterSpacing = track + 'px';
+  let w = g.measureText(str).width;
+  if (w > maxW) { s = size * maxW / w; setF(); w = g.measureText(str).width; }
+  g.globalAlpha = a; g.textAlign = align; g.textBaseline = 'alphabetic';
+  const blur = (1 - clamp(p)) * 14 + clamp(q) * 10;
+  if (blur > 0.3) g.filter = `blur(${blur.toFixed(1)}px)`;
+  const yy = y + (1 - clamp(p)) * 40 - clamp(q) * 30;
+  if (fill) {                                              // gradient headline, spans the measured text box
+    const x0 = align === 'center' ? x - w / 2 : align === 'right' ? x - w : x;
+    const gr = g.createLinearGradient(x0, 0, x0 + w, 0); fill.forEach(([o, c]) => gr.addColorStop(o, c)); g.fillStyle = gr;
+  } else g.fillStyle = color;
+  g.fillText(str, x, yy);
+  g.restore();
+  return w;
+}
+
+const OC = document.createElement('canvas'); OC.width = 3200; OC.height = 3200;
+const oc = OC.getContext('2d');
+function tube(key, cx, cy, h, rotDeg = 0, sheen = -1, alpha = 1, shadow = 0.14) {
+  const im = IMG[key], w = h * im.width / im.height, sw = Math.ceil(w), sh = Math.ceil(h);
+  oc.clearRect(0, 0, sw + 2, sh + 2); oc.globalCompositeOperation = 'source-over'; oc.drawImage(im, 0, 0, w, h);
+  if (sheen > -0.5 && sheen < 1.5) {
+    oc.globalCompositeOperation = 'source-atop';
+    const bx = lerp(-0.7, 1.7, sheen) * w, gr = oc.createLinearGradient(bx - w * 0.4, 0, bx + w * 0.4, h * 0.3);
+    gr.addColorStop(0, 'rgba(255,255,255,0)'); gr.addColorStop(0.5, 'rgba(255,255,255,0.5)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
+    oc.fillStyle = gr; oc.fillRect(0, 0, sw, sh); oc.globalCompositeOperation = 'source-over';
+  }
+  g.save(); g.globalAlpha = alpha; g.translate(cx, cy); g.rotate(rotDeg * Math.PI / 180);
+  if (shadow) { g.shadowColor = `rgba(30,25,25,${shadow})`; g.shadowBlur = 80; g.shadowOffsetY = 50; }
+  g.drawImage(OC, 0, 0, sw, sh, -w / 2, -h / 2, w, h); g.restore();
+}
+
+function logo(cx, cy, s, a = 1) {                         // INO wordmark as vectors (site logo geometry)
+  g.save(); g.globalAlpha = a; g.translate(cx, cy); g.scale(s, s); g.translate(-600, -569); g.fillStyle = INK;
+  g.fillRect(297, 451, 59, 236);
+  g.beginPath(); g.moveTo(423, 687); g.lineTo(423, 569); g.arc(541, 569, 118, Math.PI, 0); g.lineTo(659, 687);
+  g.lineTo(600, 687); g.lineTo(600, 569); g.arc(541, 569, 59, 0, Math.PI, true); g.lineTo(482, 687); g.closePath(); g.fill();
+  g.beginPath(); g.arc(812, 540, 90, 0, Math.PI * 2); g.fill(); g.fillRect(728, 643, 168, 44);
+  g.restore();
+}
+
+// ---------- scenes: each has a window [from, to]; neighbours overlap by XF and dissolve ----------
+const XF = 0.6;
+const SCENES = [
+  { from: 0, to: 4.3, draw(u) {                             // 1. MACRO: camera glides along a tube lying on its side
+    g.fillStyle = BG; g.fillRect(0, 0, W, H);
+    const m = ease(u / 4.3);
+    const h = 2800 * (1.0 + 0.04 * m);                     // image height on screen (tube length ≈ 0.87h)
+    const cx = W / 2 + lerp(1000, -150, m), cy = H / 2 + 110;   // +110 recentres the tube axis; pan stops before the widest end, so the body never clips
+    tube('bare-full', cx, cy, h, 90 + lerp(-3, 1, m), (u - 1.2) / 2.2, 1, 0.1);
+    text('Yeni', W / 2, 190, { size: 34, weight: 500, color: GREY, track: 6, p: spring(u - 1.6, 30, 11), q: spring(u - 3.6, 60, 16) });
+  }},
+  { from: 3.7, to: 8.3, draw(u) {                           // 2. HERO: product floats in, name with brushed-metal gradient
+    g.fillStyle = BG; g.fillRect(0, 0, W, H);
+    const a = spring(u - 0.1, 22, 9.4), bob = Math.sin(u * 1.4) * 8;
+    tube('bare', 1330, 560 + bob + (1 - a) * 120, lerp(1300, 1000, a), lerp(-38, -24, a) + u * 0.8, (u - 1.6) / 1.6);
+    const gp = [[0, '#8e8e93'], [0.45, '#1d1d1f'], [1, '#b0706a']];
+    text('Catch Balm', 200, 470, { size: 150, weight: 700, align: 'left', track: -3, fill: gp, p: spring(u - 0.6, 40, 12.6) });
+    text('Lip Treatment Balm', 206, 560, { size: 46, weight: 500, align: 'left', color: GREY, p: spring(u - 1.0, 40, 12.6) });
+    text('Cam gibi parlak ve pürüzsüz bitiş.', 206, 660, { size: 38, weight: 500, align: 'left', color: INK, p: spring(u - 1.5, 40, 12.6) });
+  }},
+  { from: 7.7, to: 12.8, draw(u) {                          // 3. COLOURS: lineup + picker ring gliding along the swatches
+    g.fillStyle = BG; g.fillRect(0, 0, W, H);
+    text('Dört ton.', W / 2, 180, { size: 96, weight: 700, track: -2, p: spring(u - 0.2, 40, 12.6) });
+    const sel = u < 2.2 ? 0 : Math.min(3, (u - 2.2) / 0.7);    // ring position (continuous index)
+    const xs = [510, 810, 1110, 1410];
+    VARIANTS.forEach((v, i) => {
+      const p = spring(u - 0.3 - i * 0.12, 30, 11);
+      const lift = 30 * clamp(1 - Math.abs(sel - i)) * spring(u - 2.0, 40, 12.6);
+      tube(v.key, xs[i] + (1 - p) * 260, 560 - lift, 640, 0, (u - 1.3 - i * 0.12) / 1.2, p, 0.12);
+      g.save(); g.globalAlpha = p; g.fillStyle = `rgb(${v.col})`;
+      g.beginPath(); g.arc(xs[i], 930, 16, 0, Math.PI * 2); g.fill(); g.restore();
+      const hot = clamp(1 - Math.abs(sel - i));
+      text(v.name, xs[i], 1000, { size: 30, weight: hot > 0.5 && u > 2 ? 600 : 500, color: hot > 0.5 && u > 2 ? INK : GREY, p });
+    });
+    const rp = spring(u - 2.0, 40, 12.6);                     // selection ring
+    if (rp > 0) {
+      const rx = lerp(xs[0], xs[3], (u < 2.2 ? 0 : ease(clamp((u - 2.2) / 2.1))) );
+      g.save(); g.globalAlpha = rp; g.strokeStyle = INK; g.lineWidth = 2.5;
+      g.beginPath(); g.arc(rx, 930, 26, 0, Math.PI * 2); g.stroke(); g.restore();
+    }
+  }},
+  { from: 12.2, to: 16.8, draw(u) {                         // 4. TEXTURE + claims, Apple "scroll highlight" typography
+    g.fillStyle = SWATCH_BG; g.fillRect(0, 0, W, H);
+    const im = IMG.swatches, m = ease(u / 4.6), ih = 1350 * (1.05 + 0.08 * m), iw = ih * im.width / im.height;
+    g.drawImage(im, 560 - iw / 2 + lerp(40, -40, m), H / 2 - ih / 2 + 30, iw, ih);
+    const claims = ['Yoğun ve uzun süreli nemlendirme.', 'Gözle görülür dolgunluk etkisi.', 'Volufiline & Deniz Kolajeni.', 'Peptit Kompleksi.'];
+    claims.forEach((c, i) => {
+      const t0 = 0.4 + i * 0.75, p = spring(u - t0, 40, 12.6);
+      const active = clamp((u - t0) / 0.4) * (i === 3 ? 1 : 1 - clamp((u - t0 - 0.75) / 0.4));
+      const col = `rgb(${[29, 29, 31].map((c1, k) => Math.round(lerp([134, 134, 139][k], c1, active)))})`;
+      text(c, 1120, 380 + i * 96, { size: 52, weight: 600, align: 'left', color: col, p, maxW: 740 });
+    });
+  }},
+  { from: 16.2, to: 20.01, draw(u) {                        // 5. END CARD: lockup, offer, CTA — then dissolves back into frame 0
+    g.fillStyle = BG; g.fillRect(0, 0, W, H);
+    logo(W / 2, 260, 0.34, clamp(spring(u - 0.2, 40, 12.6)));
+    text('Lip Treatment Balm', W / 2, 420, { size: 84, weight: 700, track: -2, p: spring(u - 0.4, 40, 12.6) });
+    text('Lansmana özel %20 indirimle 904₺.', W / 2, 490, { size: 36, weight: 500, color: GREY, p: spring(u - 0.7, 40, 12.6) });
+    const bp = spring(u - 1.0, 40, 12.6);                  // CTA pill
+    if (bp > 0) { g.save(); g.globalAlpha = bp; const y = 560 + (1 - bp) * 30;
+      g.fillStyle = INK; g.beginPath(); g.roundRect(W / 2 - 140, y, 280, 72, 36); g.fill(); g.restore();
+      text('Şimdi keşfet', W / 2, y + 47, { size: 30, weight: 600, color: '#fff', p: 1 }); }
+    const pos = [[760, 790], [1160, 790], [760, 930], [1160, 930]];
+    VARIANTS.forEach((v, i) => {                            // four tubes lying on their sides, 2x2 grid under the CTA
+      const p = spring(u - 0.6 - i * 0.1, 30, 11);
+      tube(v.key, pos[i][0], pos[i][1] + (1 - p) * 80, 380, 90, (u - 1.8 - i * 0.1) / 1.2, p, 0.1);
+    });
+  }},
+];
+
+// Scenes crossfade: each scene is painted to a layer and composited with an alpha ramp at its edges.
+const LAYER = document.createElement('canvas'); LAYER.width = W; LAYER.height = H;
+function paint(scene, u) { const keep = g; g = LAYER.getContext('2d'); g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; g.filter = 'none'; scene.draw(u); g = keep; }
+function draw(t) {
+  g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; g.filter = 'none';
+  g.fillStyle = BG; g.fillRect(0, 0, W, H);
+  for (let i = 0; i < SCENES.length; i++) {
+    const s = SCENES[i]; if (t < s.from || t >= s.to) continue;
+    const aIn = i === 0 ? 1 : ease((t - s.from) / XF);
+    paint(s, t - s.from);
+    g.globalAlpha = aIn; g.drawImage(LAYER, 0, 0); g.globalAlpha = 1;
+  }
+  if (t > DUR - XF) {                                       // loop seam: dissolve into the opening frame
+    paint(SCENES[0], 0); g.globalAlpha = ease((t - (DUR - XF)) / XF); g.drawImage(LAYER, 0, 0); g.globalAlpha = 1;
+  }
+}
+window.seek = (t) => { draw(t); return true; };
+window.ready = ready;
+if (!navigator.webdriver) ready.then(() => {
+  const t0 = performance.now();
+  (function loop() { draw(((performance.now() - t0) / 1000) % DUR); requestAnimationFrame(loop); })();
+});
+</script>
