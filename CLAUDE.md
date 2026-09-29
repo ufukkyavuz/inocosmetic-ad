@@ -84,7 +84,7 @@ Doğrusu — ölçü sadece element adı + rakam, fizik sadece duruş:
 
 **2. Ürünleri bilerek bulanıklaştırma.** "Ürün öne çıkmasın" istendiğinde ürünü odak dışına atmak yanlış — kullanıcı bulanık ürün istemiyor. Doğru çözüm: ürün **küçük, kenarda, alçakta ve ortalanmamış** olsun ama **net** kalsın. Prompt'a: *"every product is completely sharp and fully in focus with clearly readable labels... never blurred, never soft, never out of focus. Use enough depth of field to hold both the person and the products sharp; only the far background falls soft."* Diyaframı f/2 değil **f/8** yaz. Negatif: *no blurred products, no soft or out-of-focus products, no bokeh over the products, no unreadable labels*.
 
-**3. Kompozit set elementi yerine içindekileri tek tek etiketle.** `@your-everyday-essentials` gibi birleşik element yerine `@canvas-canta` + `@broad-spectrum-sunscreen` + `@ruby-gold` + `@cosmos` + `@haze` yazmak belirgin şekilde daha iyi sonuç veriyor (kullanıcı onayladı). Dizilim koreografisini de uzun uzun yazma — "each appearing exactly once" + "match every element exactly" + `@haze` yatık kuralı yeterli.
+**3. Setlerde TEK ölçekli set elementi kullan (2026-09-28 — eski "içindekileri tek tek etiketle" kuralının yerine geçer).** Karede 4-5 ayrı ürün elementi olunca model ürünleri uyduruyor ("IMAGE", "INQ" gibi sahte markalar). Doğrusu: gerçek oranlara göre yeniden ölçeklenmiş set görselinden yapılmış tek element (`@your-everyday-rituals-set`, `@sun-color-set`, `@lip-combo-set`, `@lip-quartet`, `@your-everyday-essentials-hibiscus-bare`) + promptta "its four products ... exactly four products, no extra product". Ayrıntı: aşağıdaki **Set görselleri — çalışan yöntem** bölümü.
 
 **4. Lifestyle = premium, dağınık değil.** "Reklam gibi durmasın, hayatın içinden olsun" istendiğinde candid/dağınık tarafa kaçmak yanlış — buruşuk çarşaf, kırışık mendil, dar karanlık oda "fukara evi" gibi duruyor. Doğrusu: **ferah, aydınlık, tertemiz lüks daire** (honed beyaz taş, açık meşe, ince keten, tavana kadar pencere, geniş boşluk), bakımlı model, düzenli yerleşim — sadece ürünler kadrajın kahramanı olmasın. Negatif: *no clutter, no mess, no worn or shabby interior, no cramped dark room, no cheap fittings, no visible cables*.
 
@@ -117,6 +117,14 @@ Zorunlu akış — her prompt için:
 
 Unlimited modda aynı anda **tek üretim** işleniyor, gerisi kuyruğa giriyor — bu normal.
 
+**2026-09-28 güncellemesi — en güvenilir gönderim (panoyu hiç kullanma):** macOS panosu ara ara boşalıyor ya da bir ekran görüntüsüyle doluyor; `cmd+v` o zaman ya hiçbir şey yapıştırmıyor ya da istenmeyen bir görseli **referans chip'i olarak** ekliyor (chip satırını kontrol et!). Bunun yerine:
+1. Composer'ı aç (kapalıysa alttaki şeride tıkla; grid'e tıklarsan önizleme açılır — URL'de `?preview=` varsa Escape).
+2. JS ile en uzun `contenteditable`'a `focus()` → gerçek tuşlarla `cmd+a` + `Delete` (JS `execCommand('delete')` bu editörü temizlemiyor).
+3. Sahte yapıştırma: `dt=new DataTransfer(); dt.setData('text/plain',T); el.dispatchEvent(new ClipboardEvent('paste',{clipboardData:dt,bubbles:true,cancelable:true}))` — `@mention`'lar chip'e dönüşüyor.
+4. İlk/son satırı ve Unlimited anahtarını JS ile doğrula, sonra en büyük "Unlimited/Generate" butonuna tıkla.
+- **Kuyruk sınırı = 4.** 4 iş kuyruktayken gönderilen 5. iş hata vermeden kayboluyor. Tek seferde en fazla 4 gönder; tur bitince grid'de her beklenen karenin olduğunu kontrol et, eksik olanı tekrar gönder.
+- Composer bazen Video moduna geçmiş oluyor (kullanıcının video prompt'u içinde) — metne dokunmadan **Image** sekmesine tıkla.
+
 ## Canvas Çanta (`@canvas-canta`) — element adı ve şekil fiziği
 
 - **Element mention'ı `@canvas-canta` yazılır, `@canvas-çanta` DEĞİL** — Elements panelinde görünen ad cedilla'lı ("canvas-çanta") olsa da, gerçek bağlanabilir mention slug'ı ASCII'dir (`ç` harfi mention parser'ında kopuyor, chip resolve olmuyor). Herhangi bir element adında Türkçe özel karakter (ç, ğ, ı, ö, ş, ü) görürsen aynı ihtimali düşün, Elements panelinden ara/doğrula.
@@ -145,6 +153,25 @@ Kural: **tekli ürünler %20, setler %35** indirim kategorisinde. Her ikisi de a
 **Figma font kısıtı:** Gerçek "Avenir Next" fontu plugin API (use_figma) ortamında yüklenemiyor ("font ailesi yok" hatası) — sadece ücretsiz metrik-uyumlu klonu **"Avenir Next W1G"** yükleniyor. Metin düzenlerken bu fontu kullan (kullanıcı onayladı), stil adları aynı ("Heavy", "Heavy Italic", "Bold", "Medium") ama "Demi Bold" yerine sadece "Demi" var.
 
 **Kamera/ışık şablonu (bag+ürün(ler) website packshot'ları için, bu oturumda kilitlendi):** Bkz. yukarıdaki Canvas Çanta + genel boyut kuralları. Kamera 20-25° hafif üst açı (ne göz hizası ne top-down), 135mm lens f/8 (perspektif distorsiyonu yok), zemin+arkaplan tek düz #ffffff (gradyan/yatay çizgi yok, sadece yumuşak temas gölgesi), tek büyük softbox ön-soldan ~45°, "Portra-like" film greni.
+
+## Set görselleri — çalışan yöntem (2026-09-28 testleriyle doğrulandı)
+
+- **Tek ölçekli set elementi:** `Products/Setler/olcekli/` görselleri ürünleri gerçek cm'ye göre çantaya oranlıyor. Bunlardan yapılan elementler: `@your-everyday-rituals-set`, `@sun-color-set`, `@lip-combo-set`, `@lip-quartet`, `@your-everyday-essentials-hibiscus-bare`. Aynı konseptte 5 ayrı elemente göre: ürünler doğru, balm oranı doğru, Bloom 12cm tüpün %60-100'ünden ~%46-53'üne indi. Kullanıcı: "sadece setlerden kullanalım".
+- Promptta: *"the bag of @set lies closed and exactly its N products - no extra product - are placed ..."* + *"every item exactly as the element shows it - same form, colours, printed words and relative sizes"*. Ürün sayısını yazmazsan 5. balm/ekstra tüp çıkıyor.
+- **Balm yatık:** ölçekli set görsellerinde balm dikine çizili, model de dik kaldırıyor. Güçlü ifade: *"The balm is horizontal, lying flat on its side with its whole length touching the surface, never standing, never upright."* Kalıcı çözüm: set görsellerinde balm'ı yatay çizmek. Kuşbakışı karelerde yatık balm dik gibi görünebilir — gölgeye bakmadan hata sayma.
+- **Kişi tek ürün tutuyorsa set elementi KULLANMA:** "setteki balm'ı tutuyor" deyince model 3/3 Bloom tutturdu. O karede tekil elementi bağla (`@haze`, `@bare`) + *"she holds only @haze"*.
+- **Doğal yerleşim:** *"placed casually at slightly different, random angles, as if just set down by hand - not lined up, not evenly spaced"*. Nizami sıra/yelpaze sadece bilinçli bir "sıra" konseptinde. Kullanıcı: "ürünler çok nizami duruyo".
+- **Işık kelimesi:** promptta "softbox" yazınca model softbox'ı kadraja çiziyor → *"soft diffused light from the upper left, no studio equipment visible"*.
+- **Ürünü şeffaf yüzeyin arkasına koyma** (sabun köpüğü, cam panel, su içinde): ürün başka markaya dönüşüyor. Büyüteç ise çalışıyor — *"only one Catch Bloom in the scene; the lens shows that same one enlarged"* yaz, yoksa ikiler.
+- Kalıp cümleler: *"Pure bright white world, plain and minimal - no window, no furniture, no podium, no plinth, no blocks. Soft daylight-balanced light, bright and airy, no orange or yellow."*
+
+**Onaylı konseptler (2026-09-28, sadece set elementleriyle):**
+- Rituals: saat kadranında 4 ürün ("her saate bir ritüel"), çantadan spiral çizerek yükselen ürünler, porselen çay tepsisi, iki el açık çantayı uzatıyor, iple asılı ürünler (galeri enstalasyonu), sabahtan akşama ışık şeridi, açık çantadan havada donan şelale, tüyler, kâğıt dalgalar, laboratuvar tezgâhı + beher.
+- Lip Quartet: havada süzülen balm'lar, çatlak yumurta kabuğu yuvası, beyaz kum dalgaları, ayna zemin, fildişi kâğıtta büyüteç, cam lamlarda renk damlası, fitilli kadife, palto cebi.
+- Lip Combo: süt havuzunda kâğıt kayık, alçı el heykeli, çırpılmış krem, keten + büyüteç, mikroskop lamları.
+- Sun & Color: havada donmuş ipek dalga, Calder tarzı tel mobil, su havuzcuğu + damla halkaları, cam prizma + gökkuşağı çizgisi, cam vazo + kuru dal.
+- Essentials: bulut üstünde, balon demeti, organze, kaşmir + traverten (eski, podyumlu — tekrar kullanma), deney tüpü standı, su dolu cam silindir.
+- Tutmayanlar: sabun köpüğü (ürün değişti), koyu stüdyo/uzun gölge (fazla karanlık), podyumlu lüks stüdyo, pencere/lab penceresi, geniş mekânda 5 ayrı element.
 
 ## Reklam Konsept Kütüphanesi
 
@@ -243,11 +270,12 @@ Hepsi `@model` + `@cosmos-yanak` + `@cosmos-dudak` (+ `@cosmos`) ile, omuz-üst�
 - Tüm öğeler yatayda center veya asimetrik (sol/sağ) hizalı
 - Badge/rozet varsa: Sağ kenara, fotoğrafın üst köşesine, hafif döndürülmüş (+15°)
 
-### Zemin / Arka Plan Kuralı (güncellendi 2026-09-28)
-- **Düz beyaz stüdyo fonu (boş seamless) YALNIZCA kullanıcı istediğinde** — ör. website packshot'ı. Kullanıcı: "ben istemedikçe dümdüz beyaz arkaplanda görsel yapma, bi konsepti olsun, referansları incele".
-- Her performans görselinin bir **konsepti ve gerçek bir mekânı/yüzeyi** olur (taş, keten, banyo, teras, masa, el, yüz, doku yatağı...). Konsept, gerçekten incelenmiş bir referans görselden gelir (bkz. PERFORMANCE-CREATIVE-WORKFLOW.md adım 2).
-- Palet açık ve premium kalır: beyaz/krem/taş/açık meşe **malzeme olarak** kullanılır, boşluk olarak değil. Sarı/turuncu yok.
-- Genel estetik: **lüks, temiz, akılda kalıcı**. Renkli veya koyu zemin yalnızca özellikle istendiğinde.
+### Zemin / Arka Plan Kuralı (güncellendi 2026-09-28, gün sonu)
+- Her görselin bir **konsepti** olur; konsept kalabalık dekordan değil **yüzey + 1-2 obje + ışık/gölge** fikrinden gelir. Kullanıcı: "arkaplanları çok karmaşıklaştırıyosun, daha düz sade sahneler yapalım".
+- **Pencere/pencere çerçevesi gösterme.** Mobilya, kalabalık dekor, "lüks daire" kurgusu yok.
+- **Podyum/kaide/taş blok/sütun/kürsü YOK** — ürünler doğrudan yüzeyin (kumaş, kâğıt, zemin) üstünde ya da elde. Kullanıcı: "şu podyum olayını bırak artık".
+- **Açık ton, beyaza yakın:** beyaz/fildişi fon ve zemin, parlak (high-key). Koyu/orta ton fon (greige/taupe stüdyo) YOK — "renkler çok koyu olmuş, beyazdan çok uzaklaşmayalım". Krem/greige sadece küçük aksan.
+- Sarı/turuncu yok. Mevsim (sonbahar) sadece ağartılmış kuru ot/dal, örgü/bukle/kaşmir dokusu ve alçak ışıkla; deniz/yaz konsepti sonbaharda yok.
 
 ### Ürün Boyutları — TEK KAYNAK (2026-09-28, tüm eski yüzde/cm notlarının yerine geçer)
 
@@ -285,7 +313,7 @@ Kopyala-yapıştır İngilizce bloklar (2026-09-28 revize — başka nesne adı 
 
 > Eski bloklardaki "smaller than a standard lipstick / chapstick / travel-size hand cream / highlighter pen" kıyasları KALDIRILDI: A/B testinde uzun prompt + yabancı nesne adları ürünleri bozuyordu (bkz. "Prompt uzunluğu — KISA ŞABLON").
 
-**KOMPOZİT SET ELEMENTLERİ ÖLÇEKSİZ (ölçüldü 2026-09-28):** `@your-everyday-set`, `@your-everyday-essentials(-hibiscus-bare)` ve `@lip-quartet` referans görselleri gerçek oranda değil — Bloom 12cm tüpün %45'i (gerçek %33), çanta Glow'un 1,45 katı genişlikte (gerçek 26/12 = 2,17), Lip Quartet'te balm çanta genişliğinin %46'sı (gerçek 9/26 = %35). Model bu oranları kopyalıyor, metindeki cm'yi eziyor. Bu yüzden:
+**KOMPOZİT SET ELEMENTLERİ — ESKİ görseller ölçeksizdi (ölçüldü 2026-09-28; ÇÖZÜLDÜ: `Products/Setler/olcekli/` görsellerinden yapılan yeni elementler gerçek oranda, bkz. "Set görselleri — çalışan yöntem"):** `@your-everyday-set`, `@your-everyday-essentials(-hibiscus-bare)` ve `@lip-quartet` referans görselleri gerçek oranda değil — Bloom 12cm tüpün %45'i (gerçek %33), çanta Glow'un 1,45 katı genişlikte (gerçek 26/12 = 2,17), Lip Quartet'te balm çanta genişliğinin %46'sı (gerçek 9/26 = %35). Model bu oranları kopyalıyor, metindeki cm'yi eziyor. Bu yüzden:
 1. Ölçek önemliyse kompozit yerine içindekileri tek tek etiketle (`@canvas-canta` + `@pink-quartz` + `@bare` + `@hibiscus` ...) ve tablodaki oranları yaz (bkz. Prompt Yazım Disiplini #3).
 2. Kompozit kullanmak zorundaysan promptta açıkça yaz: *"the element image is a product lineup, not to scale - use these real sizes instead:"* + tüm ürünlerin 3 katmanlı bloğu.
 3. Tek balm'ı ayrıca kendi elementiyle bağlamak (`@bare`) rengini de düzeltiyor — kompozitin içindeki balm şeftali/bronza kayıyor.
