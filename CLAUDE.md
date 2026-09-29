@@ -162,7 +162,7 @@ Kural: **tekli ürünler %20, setler %35** indirim kategorisinde. Her ikisi de a
 - **Kişi tek ürün tutuyorsa set elementi KULLANMA:** "setteki balm'ı tutuyor" deyince model 3/3 Bloom tutturdu. O karede tekil elementi bağla (`@haze`, `@bare`) + *"she holds only @haze"*.
 - **Doğal yerleşim:** *"placed casually at slightly different, random angles, as if just set down by hand - not lined up, not evenly spaced"*. Nizami sıra/yelpaze sadece bilinçli bir "sıra" konseptinde. Kullanıcı: "ürünler çok nizami duruyo".
 - **Işık kelimesi:** promptta "softbox" yazınca model softbox'ı kadraja çiziyor → *"soft diffused light from the upper left, no studio equipment visible"*.
-- **Şeffaf yüzeyler (cam, su, köpük, fanus, prizma) serbest — yaratıcılık için önemli (kullanıcı, 2026-09-28).** Tek başarısız örnek sabun köpüğüydü (ürünler başka markaya döndü); cam fanus, cam prizma, cam küp, su havuzcuğu, cam panel ve büyüteç sorunsuz çıktı. Riski azaltmak için: ürünün baskılı yüzü kameraya dönük ve cam/film ince ve temiz olsun; *"every product stays exactly as the element shows it, printed words clearly readable through the thin clear glass"*; ürünü kalın, buğulu ya da renkli bir şeyin tamamen arkasına gömme. Büyüteç karesinde *"only one Catch Bloom in the scene; the lens shows that same one enlarged"* yaz, yoksa ikiler.
+- **Şeffaf yüzeyler (cam, su, köpük, fanus, prizma) serbest — yaratıcılık için önemli (kullanıcı, 2026-09-28).** İlk sabun köpüğü denemesinde ürünler başka markaya dönmüştü; aşağıdaki ifadeyle yapılan testte (2026-09-29) sabun köpüğü, cam fanus, su dolu cam kase ve kalın cam blok 4/4 doğru çıktı. Cam prizma, cam küp, cam panel ve büyüteç de sorunsuz. Riski azaltmak için: ürünün baskılı yüzü kameraya dönük ve cam/film ince ve temiz olsun; *"every product stays exactly as the element shows it, printed words clearly readable through the thin clear glass"*; ürünü kalın, buğulu ya da renkli bir şeyin tamamen arkasına gömme. Büyüteç karesinde *"only one Catch Bloom in the scene; the lens shows that same one enlarged"* yaz, yoksa ikiler.
 - Kalıp cümleler: *"Pure bright white world, plain and minimal - no window, no furniture, no podium, no plinth, no blocks. Soft daylight-balanced light, bright and airy, no orange or yellow."*
 
 **Onaylı konseptler (2026-09-28, sadece set elementleriyle):**
@@ -171,7 +171,8 @@ Kural: **tekli ürünler %20, setler %35** indirim kategorisinde. Her ikisi de a
 - Lip Combo: süt havuzunda kâğıt kayık, alçı el heykeli, çırpılmış krem, keten + büyüteç, mikroskop lamları.
 - Sun & Color: havada donmuş ipek dalga, Calder tarzı tel mobil, su havuzcuğu + damla halkaları, cam prizma + gökkuşağı çizgisi, cam vazo + kuru dal.
 - Essentials: bulut üstünde, balon demeti, organze, kaşmir + traverten (eski, podyumlu — tekrar kullanma), deney tüpü standı, su dolu cam silindir.
-- Tutmayanlar: sabun köpüğü (ürün değişti — tekrar denenebilir, yukarıdaki ince-film ifadesiyle), koyu stüdyo/uzun gölge (fazla karanlık), podyumlu lüks stüdyo, pencere/lab penceresi, geniş mekânda 5 ayrı element.
+- Şeffaf testte tutanlar (2026-09-29): sabun köpüğü içinde süzülen Sun & Color, cam fanus içinde Rituals, su dolu cam kasede Lip Combo, cam blok + Lip Quartet.
+- Tutmayanlar: koyu stüdyo/uzun gölge (fazla karanlık), podyumlu lüks stüdyo, pencere/lab penceresi, geniş mekânda 5 ayrı element.
 
 ## Reklam Konsept Kütüphanesi
 
